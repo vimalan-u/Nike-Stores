@@ -1,10 +1,11 @@
 {
+  "homepage": "https://github.com/VenketeshRushi/ecom-client/",
   "name": "client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/VenketeshRushi/ecom-client/",
   "scripts": {
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
