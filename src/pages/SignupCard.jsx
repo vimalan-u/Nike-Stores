@@ -147,6 +147,7 @@ export default function SignupCard() {
                     </Box>
                 </Stack>
             </Flex>
+            <Box marginTop={["-10px", "-20px", "-30px", "-40px", "-40px"]}></Box>
         </>
     );
 }
