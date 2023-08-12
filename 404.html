@@ -1,32 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Vite + React</title>
-    <script type="text/javascript">
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol +
-          "//" +
-          l.hostname +
-          (l.port ? ":" + l.port : "") +
-          l.pathname
-            .split("/")
-            .slice(0, 1 + pathSegmentsToKeep)
-            .join("/") +
-          "/?/" +
-          l.pathname
-            .slice(1)
-            .split("/")
-            .slice(pathSegmentsToKeep)
-            .join("/")
-            .replace(/&/g, "~and~") +
-          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
-          l.hash
-      );
-      console.log("refresh url", l);
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .content {
+        text-align: center;
+      }
+
+      .error-code {
+        font-size: 6rem;
+        color: #f44336;
+        margin-bottom: 0.5rem;
+      }
+
+      .error-message {
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      .home-link {
+        text-decoration: none;
+        color: #2196f3;
+        font-weight: bold;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="error-code">404</div>
+        <div class="error-message">
+          Oops! The refresh page issue is comming from GitHub Pages.
+        </div>
+        <p>Please Do Not Refresh The Page.</p>
+        <a class="home-link" href="/">Go back to the homepage</a>
+      </div>
+    </div>
+  </body>
 </html>
