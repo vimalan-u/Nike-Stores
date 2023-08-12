@@ -51,7 +51,6 @@ export const Router = () => {
             </Private>
           }
         />
-        <Routes path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
     </Suspense>
