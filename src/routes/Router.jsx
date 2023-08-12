@@ -13,6 +13,7 @@ const Order = lazy(() => import("../pages/Order"));
 const Products = lazy(() => import("../pages/Products"));
 const SignupCard = lazy(() => import("../pages/SignupCard"));
 const LoginCard = lazy(() => import("../pages/LoginCard"));
+const ForgetPassword = lazy(() => import("../pages/ForgetPassword"))
 
 export const Router = () => {
   return (
@@ -26,6 +27,7 @@ export const Router = () => {
         <Route path="/allProducts" element={<Products />} />
         <Route path="/products" element={<Products />} />
         <Route path="/description" element={<Description />} />
+        <Route path="/resetpassword" element={<ForgetPassword />} />
         <Route
           path="/favourite"
           element={

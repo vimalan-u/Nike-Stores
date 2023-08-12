@@ -35,7 +35,7 @@ export const resetpassword = createAsyncThunk(
   async (data, toast, navigate) => {
     try {
       let res = await axios.post(
-        "https://blog-app-yz77.onrender.com/user/checkmail",
+        "/user/checkmail",
         {
           data,
         }
@@ -56,7 +56,11 @@ export const resetpassword = createAsyncThunk(
 export const authSlice = createSlice({
   name: "authentication",
   initialState,
-  reducers: {},
+  reducers: {
+    removepassword: (state, action) => {
+      state.resetemail = "";
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getLoginSuccess.pending, (state) => {
       state.loading = true;
@@ -90,5 +94,7 @@ export const authSlice = createSlice({
     });
   },
 });
+
+export const { removepassword } = authSlice.actions;
 
 export default authSlice.reducer;
