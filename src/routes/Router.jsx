@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Private } from "./Private";
 import { Suspense, lazy } from "react";
 
@@ -51,6 +51,7 @@ export const Router = () => {
             </Private>
           }
         />
+        <Routes path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
     </Suspense>
