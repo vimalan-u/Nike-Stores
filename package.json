@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/VenketeshRushi/E-commerce-Web-App/",
+  "homepage": "https://github.com/VenketeshRushi/ecom-client/",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",
