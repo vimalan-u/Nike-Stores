@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Private } from "./Private";
 import { Suspense, lazy } from "react";
 
@@ -24,7 +24,10 @@ export const Router = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginCard />} />
         <Route path="/signup" element={<SignupCard />} />
-        <Route path="/allProducts" element={<Products />} />
+        <Route path="/sale" element={<Products />} />
+        <Route path="/newin" element={<Products />} />
+        <Route path="/summershop" element={<Products />} />
+        <Route path="/goingout" element={<Products />} />
         <Route path="/products" element={<Products />} />
         <Route path="/description" element={<Description />} />
         <Route path="/resetpassword" element={<ForgetPassword />} />

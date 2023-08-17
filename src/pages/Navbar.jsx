@@ -52,24 +52,24 @@ export const Navbar = () => {
 
                 <Box display={["none", "none", "flex", "flex", "flex"]}>
                     <Category
-                        name={"/"}
-                        text={"Home"}
-                        link={"/"}
+                        name={"sale"}
+                        text={"SALE"}
+                        link={"/sale"}
                     />
                     <Category
-                        name={"men"}
-                        text={"Men"}
-                        link={"/men"}
+                        name={"newin"}
+                        text={"NEW IN"}
+                        link={"/newin"}
                     />
                     <Category
-                        name={"women"}
-                        text={"Women"}
-                        link={"women"}
+                        name={"summershop"}
+                        text={"SUMMER SHOP"}
+                        link={"/summershop"}
                     />
                     <Category
-                        name={"kids"}
-                        text={"Kids"}
-                        link={"/kids"}
+                        name={"goingout"}
+                        text={"GOING OUT"}
+                        link={"/goingout"}
                     />
                 </Box>
 
