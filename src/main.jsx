@@ -10,8 +10,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import axios from 'axios'
 
-
-axios.defaults.baseURL = "https://backend-nike.onrender.com";
+axios.defaults.baseURL = "http://localhost:8000";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const getClothData = createAsyncThunk("home/getClothData", async () => {
-  let res = await axios.get("/cloth");
+  let res = await axios.get("/product/getfourproducts");
   const data = await res.data;
   return data;
 });
@@ -25,8 +25,10 @@ export const homeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getClothData.fulfilled, (state, action) => {
+      console.log("action: " + action);
       state.loading = false;
       state.clothData = action.payload;
+      state.error = false;
     });
     builder.addCase(getClothData.rejected, (state, action) => {
       state.loading = false;

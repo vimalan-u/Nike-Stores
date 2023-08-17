@@ -41,7 +41,7 @@ export default function SignupCard() {
     }
     console.log(signUpcreds);
     try {
-      let response = await axios.post("/user/signup", signUpcreds);
+      let response = await axios.post("/auth/register", signUpcreds);
       setToast(toast, "Signup Successfull", "success");
       navigate("/login");
     } catch (error) {

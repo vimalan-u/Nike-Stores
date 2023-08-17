@@ -11,11 +11,13 @@ const initialState = {
 export const getProductsData = createAsyncThunk(
   "product/getProductsData",
   async () => {
-    let res = await axios.get("http://localhost:8000/getallproducts");
+    let res = await axios.get("/product/getallproducts");
     const data = await res.data;
+    console.log("rs",data)
     return data;
   }
 );
+
 
 export const productSlice = createSlice({
   name: "product",
@@ -57,8 +59,8 @@ export const productSlice = createSlice({
     });
     builder.addCase(getProductsData.fulfilled, (state, action) => {
       state.loading = false;
-      state.products = action.payload.data;
-      state.backupData = action.payload.data;
+      state.products = action.payload;
+      state.backupData = action.payload;
       state.error = false;
     });
     builder.addCase(getProductsData.rejected, (state, action) => {

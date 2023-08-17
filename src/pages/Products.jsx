@@ -29,6 +29,7 @@ function Products() {
   const { colorMode } = useColorMode();
   const [isFilter, setIsFilter] = useState(true);
   const { products, loading, error } = useSelector((state) => state.product);
+  console.log("products: " + products)
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -60,7 +61,7 @@ function Products() {
         bg={colorMode === "light" ? "white" : "#1a202c"}
         zIndex={1}
       >
-        <Center textAlign={"start"}>
+        {/* <Center textAlign={"start"}>
           <Text
             w={"100%"}
             ml={["20px", "20px", "30px", "40px", "50px"]}
@@ -76,7 +77,7 @@ function Products() {
               : "Total Products"}{" "}
             [{products.length}]
           </Text>
-        </Center>
+        </Center> */}
         <Spacer />
         <Center>
           <Flex
@@ -98,7 +99,7 @@ function Products() {
                 setIsFilter(!isFilter);
               }}
               rightIcon={
-                <IoOptionsOutline enableBackground={false} color="white" />
+                <IoOptionsOutline enableBackground={"false"} color="white" />
               }
             >
               {isFilter ? "Hide Filter" : "Show Filter"}
@@ -166,7 +167,7 @@ function Products() {
                 "repeat(3, 1fr)",
               ]}
             >
-              {products.map((product, index) => (
+              {products?.map((product, index) => (
                 <ProductDisplayBox
                   {...product}
                   key={index}

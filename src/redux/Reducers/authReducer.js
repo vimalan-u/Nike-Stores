@@ -17,11 +17,14 @@ export const getLoginSuccess = createAsyncThunk(
   "authentication/getLoginSuccess",
   async (data, toast, navigate) => {
     try {
-      const res = await axios.post(`/users/login`, data);
+      const res = await axios.post(`/auth/login`, data);
       const resdata = await res.data;
+      console.log(resdata)
       setItem("token", resdata.token);
       setItem("user", resdata.user);
-      setToast(toast, "Signup successfully", "success");
+      let a=getItem("token")
+      console.log("a",a)
+      // setToast(toast, "Signup successfully", "success");
       navigate(-1);
       return resdata;
     } catch (error) {
@@ -35,7 +38,7 @@ export const resetpassword = createAsyncThunk(
   async (data, toast, navigate) => {
     try {
       let res = await axios.post(
-        "/user/checkmail",
+        "/auth/sendotp",
         {
           data,
         }
@@ -81,16 +84,16 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(resetpassword.pending, (state) => {
-      state.loading = true;
+      state.loadingreset = true;
     });
     builder.addCase(resetpassword.fulfilled, (state, action) => {
       console.log("in redux action", action);
       state.resetemail = action.payload.email;
-      state.loading = false;
+      state.loadingreset = false;
     });
     builder.addCase(resetpassword.rejected, (state, action) => {
-      state.error = action.payload.message;
-      state.loading = false;
+      state.errorrest = action.payload.message;
+      state.loadingreset = false;
     });
   },
 });
