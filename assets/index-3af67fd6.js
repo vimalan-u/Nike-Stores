@@ -1,0 +1,1 @@
+import{K as a,r as C}from"./index-5d0ef8cc.js";function P(c){const{value:s,defaultValue:d,onChange:p,shouldUpdate:f=(t,u)=>t!==u}=c,l=a(p),r=a(f),[i,h]=C.useState(d),o=s!==void 0,e=o?s:i,v=a(t=>{const n=typeof t=="function"?t(e):t;r(e,n)&&(o||h(n),l(n))},[o,l,e,r]);return[e,v]}export{P as u};
