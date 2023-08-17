@@ -1,164 +1,184 @@
 import {
-    Box,
-    Button,
-    Center,
-    Flex,
-    Image,
-    Spacer,
-    Text,
-    HStack,
-    useColorModeValue,
-    Menu,
-    MenuButton,
-    MenuDivider,
-    MenuItem,
-    MenuList,
-    Divider,
+  Box,
+  Button,
+  Center,
+  Flex,
+  Image,
+  Spacer,
+  Text,
+  HStack,
+  useColorModeValue,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Divider,
 } from "@chakra-ui/react";
-import { RiHeartLine, RiLuggageCartLine, RiShoppingBagLine } from "react-icons/ri";
+import {
+  RiHeartLine,
+  RiLuggageCartLine,
+  RiShoppingBagLine,
+} from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { nikeLogo } from "../constants/images";
 import { Category, NavIcon } from "../components/navbar/CategoryAndIcon";
 import { SideDrawer } from "../components/navbar/SideDrawer";
-import {
-    FiChevronDown, FiLogOut,
-} from 'react-icons/fi'
+import { FiChevronDown, FiLogOut } from "react-icons/fi";
 import Coupon from "./Coupon";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart2, BsFillCaretDownFill } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
 
 export const Navbar = () => {
-    const navigate = useNavigate()
-    const { token } = useSelector((state) => state.auth);
-    const { orderSummary } = useSelector((state) => state.cartReducer) || 0;
-    const user = useSelector((state) => state.auth.user) || "test";
+  const navigate = useNavigate();
+  const { token } = useSelector((state) => state.auth);
+  const { orderSummary } = useSelector((state) => state.cartReducer) || 0;
+  const user = useSelector((state) => state.auth.user) || "test";
 
-    const handleLogoutBtn = () => {
-        console.log(user + " logged out")
-        // dispatch(logoutFromAccount(toast));
-    };
-    return (
-        <>
-            <Flex h={"60px"} flexDirection={"row"} px={"20px"}>
-                <Box w={"80px"}>
-                    <Link to={"/"}>
-                        <Image src={nikeLogo} />
-                    </Link>
-                </Box>
+  const handleLogoutBtn = () => {
+    console.log(user + " logged out");
+  };
+  return (
+    <>
+      <Flex h={"60px"} py="1" flexDirection={"row"} px={"20px"}>
+        <Box w={"80px"}>
+          <Link to={"/"}>
+            <Image src={nikeLogo} />
+          </Link>
+        </Box>
 
-                <Spacer />
+        <Spacer />
 
-                <Box display={["none", "none", "flex", "flex", "flex"]}>
-                    <Category
-                        name={"sale"}
-                        text={"SALE"}
-                        link={"/sale"}
-                    />
-                    <Category
-                        name={"newin"}
-                        text={"NEW IN"}
-                        link={"/newin"}
-                    />
-                    <Category
-                        name={"summershop"}
-                        text={"SUMMER SHOP"}
-                        link={"/summershop"}
-                    />
-                    <Category
-                        name={"goingout"}
-                        text={"GOING OUT"}
-                        link={"/goingout"}
-                    />
-                </Box>
+        <Box display={["none", "none", "flex", "flex", "flex"]}>
+          <Category name={"sale"} text={"SALE"} link={"/sale"} />
+          <Category name={"newin"} text={"NEW IN"} link={"/newin"} />
+          <Category
+            name={"summershop"}
+            text={"SUMMER SHOP"}
+            link={"/summershop"}
+          />
+          <Category name={"goingout"} text={"GOING OUT"} link={"/goingout"} />
+        </Box>
 
-                <Spacer />
+        <Spacer />
 
-                <Center position={"relative"} mr={"10px"}>
-                    <Link to={"/favourite"}>
-                        <NavIcon iconName={RiHeartLine} />
-                    </Link>
-                </Center>
+        <Center position={"relative"} mr={"10px"}>
+          <Link to={"/favourite"}>
+            <NavIcon iconName={RiHeartLine} />
+          </Link>
+        </Center>
 
-                <Center position={"relative"} mr={"10px"}>
-                    <Link to={"/cart"}>
-                        <NavIcon iconName={RiShoppingBagLine} />
-                        <Box
-                            position={"absolute"}
-                            top={0.5}
-                            right={-0.4}
-                            borderRadius={"50%"}
-                            width={"25px"}
-                            height={"25px"}
-                            textAlign={"center"}
-                            zIndex={-1}
-                            bgGradient='linear(to-l, #7928CA, #FF0080)'
-                            display={"flex"}
-                            flexDirection="column"
-                            alignContent={"center"}
-                            justifyContent={"center"}
-                            color={"white"}
-                            opacity={0.89}
-                        >
-                            <Text>{orderSummary?.quantity ? orderSummary.quantity : "0"}</Text>
-                        </Box>
-                    </Link>
-                </Center>
+        <Center position={"relative"} mr={"10px"}>
+          <Link to={"/cart"}>
+            <NavIcon iconName={RiShoppingBagLine} />
+            <Box
+              position={"absolute"}
+              top={0.5}
+              right={-0.4}
+              borderRadius={"50%"}
+              width={"25px"}
+              height={"25px"}
+              textAlign={"center"}
+              zIndex={-1}
+              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              display={"flex"}
+              flexDirection="column"
+              alignContent={"center"}
+              justifyContent={"center"}
+              color={"white"}
+              opacity={0.89}
+            >
+              <Text>
+                {orderSummary?.quantity ? orderSummary.quantity : "0"}
+              </Text>
+            </Box>
+          </Link>
+        </Center>
 
-                <Box display={["flex", "flex", "none", "none", "none"]}>
-                    <Center mr={"10px"}>
-                        <SideDrawer handlePath={"handlePath"} />
-                    </Center>
-                </Box>
+        <Box display={["flex", "flex", "none", "none", "none"]}>
+          <Center mr={"10px"}>
+            <SideDrawer handlePath={"handlePath"} />
+          </Center>
+        </Box>
 
-                <Flex alignItems={'center'} marginTop={"-10px"}>
-                    <Menu >
-                        {token ? <MenuButton as={Button} transition="all 0.3s" _hover={{
-                            bg: 'transparent',
-                        }} _focus={{ boxShadow: 'none' }} size='sm' bg={'transparent'} rightIcon={<BsFillCaretDownFill />}>{user}</MenuButton> :
-                            <MenuButton as={Button} size='sm' bg={'transparent'} _hover={{
-                                bg: 'transparent',
-                            }} transition="all 0.3s" _focus={{ boxShadow: 'none' }} borderRadius={10}>
-                                <HStack align={"center"}>
-                                    <AiOutlineUser style={{ height: "25px", width: "25px" }} />
-                                    <Box display={{ base: 'none', md: 'flex' }}>
-                                        <FiChevronDown />
-                                    </Box>
-                                </HStack>
-                            </MenuButton>}
-                        {token ? <MenuList zIndex={2}>
-                            <Flex flexDirection={'column'} gap={'5px'} fontSize={'17px'}>
-                                <MenuItem onClick={() => { navigate('/favourite') }} icon={<FaRegHeart />} >
-                                    Wishlist
-                                </MenuItem>
-                                <MenuItem onClick={() => { navigate('/orders') }} icon={<RiLuggageCartLine />} >
-                                    Orders
-                                </MenuItem>
-
-                                <Coupon />
-
-                                <MenuItem onClick={() => { navigate('/cart') }} icon={<BsCart2 />} >
-                                    Cart
-                                </MenuItem>
-                                <Divider />
-                                <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
-                                    Logout
-                                </MenuItem>
-                            </Flex>
-                        </MenuList> : <MenuList
-                            bg={useColorModeValue('white', 'gray.900')}
-                            borderColor={useColorModeValue('gray.200', 'gray.700')}>
-                            <MenuItem onClick={() => navigate("/signup")}>Sign Up</MenuItem>
-                            <MenuDivider />
-                            <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
-                        </MenuList>}
-                    </Menu>
+        <Flex alignItems={"center"} marginTop={"-10px"}>
+          <Menu>
+            {token ? (
+              <MenuButton
+                as={Button}
+                transition="all 0.3s"
+                _hover={{
+                  bg: "transparent",
+                }}
+                _focus={{ boxShadow: "none" }}
+                size="sm"
+                bg={"transparent"}
+                rightIcon={<BsFillCaretDownFill />}
+              >
+                {user}
+              </MenuButton>
+            ) : (
+              <Button
+                size="sm"
+                bg={"transparent"}
+                _hover={{
+                  bg: "transparent",
+                }}
+                transition="all 0.3s"
+                _focus={{ boxShadow: "none" }}
+                borderRadius={10}
+              >
+                <Flex flexDirection={"row"} gap={"5px"}>
+                  <Text onClick={() => navigate("/login")}>Login</Text>|
+                  <Text onClick={() => navigate("/signup")}>Sign Up</Text>
                 </Flex>
-            </Flex >
-            <Box h={["10px", "20px", "30px", "40px", "40px"]}></Box>
-        </>
-    );
+              </Button>
+            )}
+            {
+              <MenuList zIndex={2}>
+                <Flex flexDirection={"column"} gap={"5px"} fontSize={"17px"}>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/favourite");
+                    }}
+                    icon={<FaRegHeart />}
+                  >
+                    Wishlist
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/orders");
+                    }}
+                    icon={<RiLuggageCartLine />}
+                  >
+                    Orders
+                  </MenuItem>
+
+                  <Coupon />
+
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/cart");
+                    }}
+                    icon={<BsCart2 />}
+                  >
+                    Cart
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
+                    Logout
+                  </MenuItem>
+                </Flex>
+              </MenuList>
+            }
+          </Menu>
+        </Flex>
+      </Flex>
+      <Box h={["10px", "20px", "30px", "40px", "40px"]}></Box>
+    </>
+  );
 };
 
 export default Navbar;

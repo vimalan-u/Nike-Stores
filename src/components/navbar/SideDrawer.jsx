@@ -16,7 +16,7 @@ import { DrawerCategory } from "./CategoryAndIcon";
 
 export const SideDrawer = ({ handlePath }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const user = useSelector((state) => state.auth.user) || "raman";
+  const user = useSelector((state) => state.auth.user) || "Admin";
 
   return (
     <>
