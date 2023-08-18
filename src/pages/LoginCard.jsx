@@ -35,18 +35,44 @@ export default function LoginCard() {
   };
 
   const handleSubmit = async () => {
-    dispatch(getLoginSuccess(signUpcreds));
-    setToast(toast, "Login successfully", "success");
-    navigate("/");
+    if (signUpcreds.email === "" || signUpcreds.password === "") {
+      setToast(toast, "Please Fill All The Fields", "error");
+    }
+    try {
+      const res = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
+      setToast(toast, "Login successfully", "success");
+      navigate("/");
+    } catch (rejectedValueOrSerializedError) {
+      setToast(
+        toast,
+        rejectedValueOrSerializedError.message
+          ? rejectedValueOrSerializedError.message
+          : "Invalid Credentials",
+        "error"
+      );
+      console.error(rejectedValueOrSerializedError);
+    }
   };
 
   let color = useColorModeValue("white", "gray.700");
 
-  const handleSubmitreset = async () => {
-    let res = await dispatch(resetpassword(resetemail, toast, navigate));
-    if (res.meta.requestStatus === "fulfilled") {
+  const handleSubmitReset = async () => {
+    if (resetemail === "") {
+      setToast(toast, "Please Enter Your Email", "error");
+    }
+    try {
+      const res = await dispatch(resetpassword(resetemail)).unwrap();
       setToast(toast, "Reset OTP Sent To Your Email", "success");
       navigate("/resetpassword");
+    } catch (rejectedValueOrSerializedError) {
+      setToast(
+        toast,
+        rejectedValueOrSerializedError.message
+          ? rejectedValueOrSerializedError.message
+          : "User Not Found",
+        "error"
+      );
+      console.error(rejectedValueOrSerializedError);
     }
   };
 
@@ -67,11 +93,9 @@ export default function LoginCard() {
             maxW={"2xl"}
             py={10}
             px={10}
-          // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
           >
             <Stack align={"center"} spacing={2}>
               <Heading fontSize={"4xl"}>Enter Your Email</Heading>
-              {/* <Text color={'gray.600'} fontSize={"lg"}>Please provide your email address to receive a one-time password (OTP) for the purpose of resetting your password.</Text> */}
               <Text color={"gray.600"} fontSize={"lg"}>
                 This OTP will be sent to your email.
               </Text>
@@ -97,7 +121,7 @@ export default function LoginCard() {
                     _hover={{
                       boxShadow: "xl",
                     }}
-                    onClick={handleSubmitreset}
+                    onClick={handleSubmitReset}
                   >
                     Submit
                   </Button>
@@ -122,14 +146,7 @@ export default function LoginCard() {
             </Box>
           </Stack>
         ) : (
-          <Stack
-            spacing={8}
-            mx={"auto"}
-            maxW={"2xl"}
-            py={10}
-            px={10}
-          // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
-          >
+          <Stack spacing={8} mx={"auto"} maxW={"2xl"} py={10} px={10}>
             <Stack align={"center"}>
               <Heading fontSize={"3xl"}>Login to your account</Heading>
               <Text fontSize={"lg"} color={"gray.600"}>

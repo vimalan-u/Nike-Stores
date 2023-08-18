@@ -15,7 +15,7 @@ const initialState = {
 
 export const getLoginSuccess = createAsyncThunk(
   "authentication/getLoginSuccess",
-  async (data) => {
+  async (data, { rejectWithValue }) => {
     try {
       const res = await axios.post(`/auth/login`, data);
       const resdata = await res.data;
@@ -24,14 +24,14 @@ export const getLoginSuccess = createAsyncThunk(
       setItem("user", userdata);
       return resdata;
     } catch (error) {
-      throw error.response.data;
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
 export const resetpassword = createAsyncThunk(
   "authentication/resetpassword",
-  async (data, toast, navigate) => {
+  async (data, { rejectWithValue }) => {
     console.log("email data", data);
     try {
       let res = await axios.post("/auth/sendotp", {
@@ -43,7 +43,7 @@ export const resetpassword = createAsyncThunk(
       });
       return resdata;
     } catch (error) {
-      throw error.response.data;
+      return rejectWithValue(error.response.data);
     }
   }
 );

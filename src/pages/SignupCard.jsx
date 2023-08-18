@@ -36,8 +36,12 @@ export default function SignupCard() {
   };
 
   const handleSubmit = async () => {
-    if (signUpcreds.role === "") {
-      setToast(toast, "Please Select Role", "error");
+    if (
+      signUpcreds.name === "" ||
+      signUpcreds.email === "" ||
+      signUpcreds.password === ""
+    ) {
+      setToast(toast, "Please Fill All The Fields", "error");
     }
     console.log(signUpcreds);
     try {
@@ -45,7 +49,13 @@ export default function SignupCard() {
       setToast(toast, "Signup Successfull", "success");
       navigate("/login");
     } catch (error) {
-      setToast(toast, error.response.data.message, "error");
+      setToast(
+        toast,
+        error.response.data.message
+          ? error.response.data.message
+          : "Invalid Credentials",
+        "error"
+      );
       console.log(error);
     }
   };
@@ -57,13 +67,7 @@ export default function SignupCard() {
         justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Stack
-          spacing={5}
-          mx={"auto"}
-          maxW={"lg"}
-          py={10}
-          px={10}
-        >
+        <Stack spacing={5} mx={"auto"} maxW={"lg"} py={10} px={10}>
           <Stack align={"center"}>
             <Heading fontSize={"3xl"} textAlign={"center"}>
               Sign up
