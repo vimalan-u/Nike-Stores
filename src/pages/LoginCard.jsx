@@ -9,7 +9,6 @@ import {
   Button,
   Heading,
   Text,
-  Select,
   useToast,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -37,8 +36,8 @@ export default function LoginCard() {
 
   const handleSubmit = async () => {
     dispatch(getLoginSuccess(signUpcreds));
-    setToast(toast, "Signup successfully", "success");
-    navigate(-1);
+    setToast(toast, "Login successfully", "success");
+    navigate("/");
   };
 
   let color = useColorModeValue("white", "gray.700");
@@ -51,7 +50,7 @@ export default function LoginCard() {
     <>
       <Box marginTop={["-5px", "-10px", "-20px", "-30px", "-40px"]}></Box>
       <Flex
-        minH={"80vh"}
+        minH={"75vh"}
         align={"center"}
         justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
@@ -62,9 +61,9 @@ export default function LoginCard() {
             spacing={5}
             mx={"auto"}
             maxW={"2xl"}
-            py={8}
-            px={8}
-            boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
+            py={10}
+            px={10}
+            // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
           >
             <Stack align={"center"} spacing={2}>
               <Heading fontSize={"4xl"}>Enter Your Email</Heading>
@@ -73,7 +72,7 @@ export default function LoginCard() {
                 This OTP will be sent to your email.
               </Text>
             </Stack>
-            <Box rounded={"lg"} bg={color} boxShadow={"lg"} px={4}>
+            <Box rounded={"lg"} bg={color} boxShadow={"lg"} p={8}>
               <Stack spacing={4}>
                 <Text color={"gray.600"} fontSize={"md"} fontWeight="bold">
                   Email Address
@@ -123,7 +122,7 @@ export default function LoginCard() {
             spacing={8}
             mx={"auto"}
             maxW={"2xl"}
-            py={8}
+            py={10}
             px={10}
             // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
           >
@@ -134,7 +133,7 @@ export default function LoginCard() {
                 ✌️
               </Text>
             </Stack>
-            <Box rounded={"lg"} bg={color} boxShadow={"lg"} p={6}>
+            <Box rounded={"lg"} bg={color} boxShadow={"lg"} p={9}>
               <Stack spacing={3}>
                 <FormControl id="email" isRequired>
                   <FormLabel>Email address</FormLabel>

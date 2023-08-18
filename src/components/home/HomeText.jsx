@@ -7,7 +7,7 @@ export const HomeText = ({ children }) => {
             fontWeight={600}
             letterSpacing={2}
             fontFamily={"'Anton', sans-serif"}
-            fontSize={['35px', '40px', '55px', '60px', '60px']}
+            fontSize={['45px', '55px', '65px', '70px', '75px']}
         >{children}
         </Text>
     );

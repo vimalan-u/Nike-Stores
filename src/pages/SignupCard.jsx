@@ -53,7 +53,6 @@ export default function SignupCard() {
     <>
       <Box marginTop={["-10px", "-20px", "-30px", "-40px", "-40px"]}></Box>
       <Flex
-        minH={"100vh"}
         align={"center"}
         justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
@@ -62,9 +61,8 @@ export default function SignupCard() {
           spacing={5}
           mx={"auto"}
           maxW={"lg"}
-          py={4}
-          px={6}
-          boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
+          py={10}
+          px={10}
         >
           <Stack align={"center"}>
             <Heading fontSize={"3xl"} textAlign={"center"}>
@@ -78,7 +76,7 @@ export default function SignupCard() {
             rounded={"lg"}
             bg={useColorModeValue("white", "gray.700")}
             boxShadow={"lg"}
-            px={6}
+            p={7}
           >
             <Stack spacing={4}>
               <FormControl id="Name" isRequired>

@@ -60,7 +60,7 @@ function Products() {
         bg={colorMode === "light" ? "white" : "#1a202c"}
         zIndex={1}
       >
-        {/* <Center textAlign={"start"}>
+        <Center textAlign={"start"}>
           <Text
             w={"100%"}
             ml={["20px", "20px", "30px", "40px", "50px"]}
@@ -76,7 +76,7 @@ function Products() {
               : "Total Products"}{" "}
             [{products.length}]
           </Text>
-        </Center> */}
+        </Center>
         <Spacer />
         <Center>
           <Flex

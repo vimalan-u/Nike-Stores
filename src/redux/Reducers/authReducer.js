@@ -20,7 +20,8 @@ export const getLoginSuccess = createAsyncThunk(
       const res = await axios.post(`/auth/login`, data);
       const resdata = await res.data;
       setItem("token", resdata.token);
-      setItem("user", resdata.user);
+      let userdata = JSON.stringify(resdata.user);
+      setItem("user", userdata);
       return resdata;
     } catch (error) {
       throw error.response.data;
@@ -55,6 +56,13 @@ export const authSlice = createSlice({
     removepassword: (state, action) => {
       state.resetemail = "";
     },
+    logoutApi: (state, action) => {
+      state.isLogin = false;
+      state.error = "";
+      state.token = "";
+      state.user = {};
+      state.loading = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getLoginSuccess.pending, (state) => {
@@ -63,7 +71,7 @@ export const authSlice = createSlice({
     builder.addCase(getLoginSuccess.fulfilled, (state, action) => {
       state.token = getItem("token");
       state.isLogin = true;
-      state.user = getItem("user");
+      state.user = JSON.parse(getItem("user"));
       state.loading = false;
     });
     builder.addCase(getLoginSuccess.rejected, (state, action) => {
@@ -78,7 +86,6 @@ export const authSlice = createSlice({
       state.loadingreset = true;
     });
     builder.addCase(resetpassword.fulfilled, (state, action) => {
-      console.log("in redux action", action);
       state.resetemail = action.payload.email;
       state.loadingreset = false;
     });
@@ -89,6 +96,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { removepassword } = authSlice.actions;
+export const { removepassword, logoutApi } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, HStack, Image, Text, useMediaQuery } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error, clothData } = useSelector((state) => state.home);
-
+  const [isLargerThan420] = useMediaQuery('(min-width: 420px)')
   useEffect(() => {
     dispatch(getClothData());
   }, []);
@@ -22,12 +22,12 @@ function Home() {
     <Error />
   ) : (
     <Box width={"100%"}>
-      <Box width={"89%"} m="auto" objectFit={"contain"}>
+      {isLargerThan420 && <Box width={"89%"} m="auto" objectFit={"contain"}>
         <Image
           src="https://media.boohoo.com/i/boohooamplience/080823-LUCIO-AMMEND-DESK?$homesplash_desktop_full$&_1x$&fmt=webp"
           alt="banner"
         />
-      </Box>
+      </Box>}
       <Box
         width={"89%"}
         m={"auto"}
@@ -36,21 +36,19 @@ function Home() {
         alignItems={["left", "left", "left", "center"]}
         justifyContent={"center"}
         mt={6}
-        mb={9}
+        mb={[4, 5, 7, 8, 9]}
         textAlign={["left", "left", "left", "center"]}
       >
         <Box>
-          <Text mb={-3}>boohooMAN</Text>
           <Heading
-            letterSpacing={"-3px"}
-            fontSize={"72px"}
+            fontSize={["40px", "45px", "50px", "60px", "65px"]}
             fontFamily={"heading"}
           >
             FEEL IT TO GET IT
           </Heading>
           <Text>UP TO 70% OFF EVERYTHING!</Text>
         </Box>
-        <HStack mt={5}>
+        <HStack mt={[3, 3, 4, 4, 5]}>
           <Button
             bgColor={"black"}
             color={"white"}
@@ -61,7 +59,7 @@ function Home() {
             _hover={{
               bgColor: "black",
             }}
-            // onClick={handlePath}
+          // onClick={handlePath}
           >
             Shop
           </Button>
@@ -131,7 +129,7 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
-                // onClick={handlePath}
+              // onClick={handlePath}
               >
                 Explore
               </Button>
@@ -142,7 +140,7 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
-                // onClick={handlePath}
+              // onClick={handlePath}
               >
                 Top 10 Gifts
               </Button>
@@ -181,7 +179,7 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
-                // onClick={handlePath}
+              // onClick={handlePath}
               >
                 Get It First
               </Button>
