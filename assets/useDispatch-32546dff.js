@@ -1,0 +1,1 @@
+import{a3 as e,a4 as u,a5 as c}from"./index-39168cee.js";function r(t=e){const o=t===e?u:c(t);return function(){const{store:s}=o();return s}}const a=r();function i(t=e){const o=t===e?a:r(t);return function(){return o().dispatch}}const p=i();export{p as u};
