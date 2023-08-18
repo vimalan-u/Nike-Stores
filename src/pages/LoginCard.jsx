@@ -42,8 +42,12 @@ export default function LoginCard() {
 
   let color = useColorModeValue("white", "gray.700");
 
-  const handleSubmitreset = () => {
-    dispatch(resetpassword(resetemail, toast, navigate));
+  const handleSubmitreset = async () => {
+    let res = await dispatch(resetpassword(resetemail, toast, navigate));
+    if (res.meta.requestStatus === "fulfilled") {
+      setToast(toast, "Reset OTP Sent To Your Email", "success");
+      navigate("/resetpassword");
+    }
   };
 
   return (
@@ -63,7 +67,7 @@ export default function LoginCard() {
             maxW={"2xl"}
             py={10}
             px={10}
-            // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
+          // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
           >
             <Stack align={"center"} spacing={2}>
               <Heading fontSize={"4xl"}>Enter Your Email</Heading>
@@ -124,7 +128,7 @@ export default function LoginCard() {
             maxW={"2xl"}
             py={10}
             px={10}
-            // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
+          // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
           >
             <Stack align={"center"}>
               <Heading fontSize={"3xl"}>Login to your account</Heading>

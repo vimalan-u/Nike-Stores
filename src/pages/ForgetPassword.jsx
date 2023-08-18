@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setToast } from "../utils/extraFunctions";
 import { removepassword } from "../redux/Reducers/authReducer";
+import { getItem } from "../utils/cookiestorage";
 
 export default function Forgetpassword() {
     const toast = useToast();
@@ -37,11 +38,10 @@ export default function Forgetpassword() {
     };
 
     const handlesubmit = async () => {
-        let otp = Cookies.get("otp");
-        console.log(otp);
+        let otp = getItem("otp");
         if (otp === code) {
             try {
-                let res = await axios.post("/user/resetpassword", {
+                let res = await axios.post("/auth/resetpassword", {
                     data: { email: resetemail, password: resetepass },
                 });
                 dispatch(removepassword());

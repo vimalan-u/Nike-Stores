@@ -32,6 +32,7 @@ export const getLoginSuccess = createAsyncThunk(
 export const resetpassword = createAsyncThunk(
   "authentication/resetpassword",
   async (data, toast, navigate) => {
+    console.log("email data", data);
     try {
       let res = await axios.post("/auth/sendotp", {
         data,
@@ -40,8 +41,6 @@ export const resetpassword = createAsyncThunk(
       Cookies.set("otp", res.data.otp, {
         expires: new Date(new Date().getTime() + 5 * 60 * 1000),
       });
-      setToast(toast, "Reset OTP Sent To Your Email", "success");
-      navigate("/resetpassword");
       return resdata;
     } catch (error) {
       throw error.response.data;
