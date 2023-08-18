@@ -29,7 +29,6 @@ function Products() {
   const { colorMode } = useColorMode();
   const [isFilter, setIsFilter] = useState(true);
   const { products, loading, error } = useSelector((state) => state.product);
-  console.log("products: " + products)
 
   const dispatch = useDispatch();
   const toast = useToast();

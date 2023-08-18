@@ -113,7 +113,7 @@ function Home() {
         >
           <Box
             color={"white"}
-            wordWrap={"break-word"}
+            // wordWrap={"break-word"}
             width={["100%", "80%", "90%", "90%"]}
             height={["80%", "70%", "50%", "64%", "85%"]}
             textAlign="left"
@@ -163,7 +163,7 @@ function Home() {
         >
           <Box
             color={"white"}
-            wordWrap={"break-word"}
+            // wordWrap={"break-word"}
             width={["100%", "80%", "90%", "90%"]}
             height={["80%", "70%", "50%", "64%", "85%"]}
             textAlign="left"
@@ -191,7 +191,6 @@ function Home() {
       </Box>
       <Box>
         {clothData?.map((data, index) => (
-            console.log("data", data),
           <ClothSection handleSection={"handleSection"} key={index} {...data} />
         ))}
       </Box>

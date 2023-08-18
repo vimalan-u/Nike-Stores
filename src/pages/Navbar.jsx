@@ -30,12 +30,15 @@ import Coupon from "./Coupon";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart2, BsFillCaretDownFill } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
+import { useMediaQuery } from '@chakra-ui/react'
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
   const { orderSummary } = useSelector((state) => state.cartReducer) || 0;
   const user = useSelector((state) => state.auth.user) || "test";
+
+  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
   const handleLogoutBtn = () => {
     console.log(user + " logged out");
@@ -96,10 +99,16 @@ export const Navbar = () => {
             </Box>
           </Link>
         </Center>
-
-        <Box display={["flex", "flex", "none", "none", "none"]}>
+        {!isLargerThan800 && <Box display={["flex", "flex", "none", "none", "none"]}>
           <Center mr={"10px"}>
-            {token ? (
+            <SideDrawer handlePath={""} />
+          </Center>
+        </Box>}
+
+
+        {/* <Box display={["flex", "flex", "none", "none", "none"]}>
+          <Center mr={"10px"}>
+            {!isLargerThan800 ? (
               <SideDrawer handlePath={"handlePath"} />
             ) : (
               <Button
@@ -119,9 +128,9 @@ export const Navbar = () => {
               </Button>
             )}
           </Center>
-        </Box>
+        </Box> */}
 
-        <Flex alignItems={"center"} marginTop={"-10px"}>
+        {isLargerThan800 && <Flex alignItems={"center"} marginTop={"-10px"}>
           <Menu>
             {token ? (
               <MenuButton
@@ -135,7 +144,7 @@ export const Navbar = () => {
                 bg={"transparent"}
                 rightIcon={<BsFillCaretDownFill />}
               >
-                {user}
+                {user.firstNmae}
               </MenuButton>
             ) : (
               <Button
@@ -192,7 +201,7 @@ export const Navbar = () => {
               </MenuList>
             }
           </Menu>
-        </Flex>
+        </Flex>}
       </Flex>
       <Box h={["10px", "20px", "30px", "40px", "40px"]}></Box>
     </>

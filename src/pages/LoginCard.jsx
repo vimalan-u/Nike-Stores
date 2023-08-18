@@ -17,6 +17,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getLoginSuccess, resetpassword } from "../redux/Reducers/authReducer";
+import { setToast } from "../utils/extraFunctions";
 
 export default function LoginCard() {
   const [signUpcreds, setsignUpcreds] = useState({});
@@ -35,7 +36,9 @@ export default function LoginCard() {
   };
 
   const handleSubmit = async () => {
-    dispatch(getLoginSuccess(signUpcreds, toast, navigate));
+    dispatch(getLoginSuccess(signUpcreds));
+    setToast(toast, "Signup successfully", "success");
+    navigate(-1);
   };
 
   let color = useColorModeValue("white", "gray.700");
@@ -120,9 +123,9 @@ export default function LoginCard() {
             spacing={8}
             mx={"auto"}
             maxW={"2xl"}
-            py={4}
-            px={6}
-            boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
+            py={8}
+            px={10}
+            // boxShadow="rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px"
           >
             <Stack align={"center"}>
               <Heading fontSize={"3xl"}>Login to your account</Heading>
@@ -131,7 +134,7 @@ export default function LoginCard() {
                 ✌️
               </Text>
             </Stack>
-            <Box rounded={"lg"} bg={color} boxShadow={"lg"} px={3}>
+            <Box rounded={"lg"} bg={color} boxShadow={"lg"} p={6}>
               <Stack spacing={3}>
                 <FormControl id="email" isRequired>
                   <FormLabel>Email address</FormLabel>

@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 const initialState = {
   isLogin: false,
-  token: getItem("token") || false,
+  token: getItem("token") || "",
   user: getItem("user") || {},
   error: "",
   loading: true,
@@ -15,17 +15,12 @@ const initialState = {
 
 export const getLoginSuccess = createAsyncThunk(
   "authentication/getLoginSuccess",
-  async (data, toast, navigate) => {
+  async (data) => {
     try {
       const res = await axios.post(`/auth/login`, data);
       const resdata = await res.data;
-      console.log(resdata)
       setItem("token", resdata.token);
       setItem("user", resdata.user);
-      let a=getItem("token")
-      console.log("a",a)
-      // setToast(toast, "Signup successfully", "success");
-      navigate(-1);
       return resdata;
     } catch (error) {
       throw error.response.data;
@@ -37,12 +32,9 @@ export const resetpassword = createAsyncThunk(
   "authentication/resetpassword",
   async (data, toast, navigate) => {
     try {
-      let res = await axios.post(
-        "/auth/sendotp",
-        {
-          data,
-        }
-      );
+      let res = await axios.post("/auth/sendotp", {
+        data,
+      });
       const resdata = await res.data;
       Cookies.set("otp", res.data.otp, {
         expires: new Date(new Date().getTime() + 5 * 60 * 1000),
@@ -69,10 +61,9 @@ export const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getLoginSuccess.fulfilled, (state, action) => {
-      console.log("in redux action", action);
-      state.token = action.payload.token;
+      state.token = getItem("token");
       state.isLogin = true;
-      state.user = action.payload.user;
+      state.user = getItem("user");
       state.loading = false;
     });
     builder.addCase(getLoginSuccess.rejected, (state, action) => {

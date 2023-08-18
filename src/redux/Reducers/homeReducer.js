@@ -25,7 +25,6 @@ export const homeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getClothData.fulfilled, (state, action) => {
-      console.log("action: " + action);
       state.loading = false;
       state.clothData = action.payload;
       state.error = false;
