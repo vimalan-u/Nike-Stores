@@ -55,7 +55,7 @@ export const OrderSummary = () => {
     const handleMemberCheckout = () => {
         if (!token) {
             setToast(toast, 'Please login first', 'error');
-            return navigate('/auth');
+            return navigate('/login');
         }
         if (orderSummary.total === 0) {
             return setToast(toast, 'Please add some products in the cart', 'error');

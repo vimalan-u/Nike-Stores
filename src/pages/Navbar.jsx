@@ -80,7 +80,7 @@ export const Navbar = () => {
             <NavIcon iconName={RiShoppingBagLine} />
             <Box
               position={"absolute"}
-              top={0.5}
+              top={0}
               right={-0.4}
               borderRadius={"50%"}
               width={"25px"}

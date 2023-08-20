@@ -12,9 +12,9 @@ import {
   useToast,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getLoginSuccess, resetpassword } from "../redux/Reducers/authReducer";
 import { setToast } from "../utils/extraFunctions";
 
@@ -26,12 +26,14 @@ export default function LoginCard() {
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuth);
+  const isAuthenticated = useSelector((state) => state.auth.isLogin);
 
   const location = useLocation();
+
   useEffect(() => {
     if (isAuthenticated) {
       if (location.state && location.state.from) {
+        console.log("abc")
         navigate(location.state.from, { replace: true });
       } else {
         navigate("/");
@@ -54,7 +56,6 @@ export default function LoginCard() {
     try {
       const res = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
       setToast(toast, "Login successfully", "success");
-      navigate("/");
     } catch (rejectedValueOrSerializedError) {
       setToast(
         toast,
