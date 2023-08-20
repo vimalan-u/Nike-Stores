@@ -13,7 +13,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getLoginSuccess, resetpassword } from "../redux/Reducers/authReducer";
 import { setToast } from "../utils/extraFunctions";
@@ -25,6 +25,19 @@ export default function LoginCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuth);
+
+  const location = useLocation();
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (location.state && location.state.from) {
+        navigate(location.state.from, { replace: true });
+      } else {
+        navigate("/");
+      }
+    }
+  }, [isAuthenticated]);
 
   const hanldeChange = (e) => {
     const { name, value } = e.target;
@@ -87,13 +100,7 @@ export default function LoginCard() {
         width={"100%"}
       >
         {reset ? (
-          <Stack
-            spacing={5}
-            mx={"auto"}
-            maxW={"2xl"}
-            py={10}
-            px={10}
-          >
+          <Stack spacing={5} mx={"auto"} maxW={"2xl"} py={10} px={10}>
             <Stack align={"center"} spacing={2}>
               <Heading fontSize={"4xl"}>Enter Your Email</Heading>
               <Text color={"gray.600"} fontSize={"lg"}>

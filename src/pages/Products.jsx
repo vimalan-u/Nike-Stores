@@ -42,8 +42,7 @@ function Products() {
   };
 
   const handleSingleProduct = (data) => {
-    setItemSession("singleProduct", data);
-    navigate("/description");
+    navigate(`/description/${data.id}`);
   };
 
   useEffect(() => {
@@ -166,15 +165,20 @@ function Products() {
                 "repeat(3, 1fr)",
               ]}
             >
-              {products?.map((product, index) => (
-                <ProductDisplayBox
-                  {...product}
-                  key={index}
-                  onClick={() => {
-                    handleSingleProduct(product);
-                  }}
-                />
-              ))}
+              {products?.map(
+                (product, index) => (
+                  console.log("product: " + product),
+                  (
+                    <ProductDisplayBox
+                      {...product}
+                      key={index}
+                      onClick={() => {
+                        handleSingleProduct(product);
+                      }}
+                    />
+                  )
+                )
+              )}
             </Grid>
           )}
         </Box>
