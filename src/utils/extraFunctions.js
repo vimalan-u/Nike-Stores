@@ -23,7 +23,6 @@ export const convertObject = (obj) => {
       obj[k1][k2] && ans[k1].push(k2);
     }
   }
-  console.log("ans", ans);
   return ans;
 };
 

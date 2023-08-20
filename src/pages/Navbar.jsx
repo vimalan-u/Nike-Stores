@@ -34,7 +34,7 @@ import { logoutApi } from "../redux/Reducers/authReducer";
 export const Navbar = () => {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
-  const { orderSummary } = useSelector((state) => state.cartReducer) || 0;
+  const { orderSummary } = useSelector((state) => state.cart) || 0;
   const user = useSelector((state) => state.auth.user) || "test";
   const dispatch = useDispatch()
 

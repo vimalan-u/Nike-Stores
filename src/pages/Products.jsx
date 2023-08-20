@@ -167,7 +167,6 @@ function Products() {
             >
               {products?.map(
                 (product, index) => (
-                  console.log("product: " + product),
                   (
                     <ProductDisplayBox
                       {...product}

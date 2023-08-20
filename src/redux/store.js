@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import authReducer from "./Reducers/authReducer";
 import homeReducer from "./Reducers/homeReducer";
 import productsReducer from "./Reducers/productsReducer";
+import cartReducer from "./Reducers/cartReducer";
 
 const rootPersistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   home: homeReducer,
   product: productsReducer,
+  cart: cartReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

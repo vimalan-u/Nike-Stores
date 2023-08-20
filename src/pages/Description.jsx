@@ -12,21 +12,18 @@ import { numberWithCommas, setToast } from "../utils/extraFunctions";
 import { ImageModal } from "../components/description/ImageModal";
 import { SelectSize } from "../components/description/SelectSize";
 import { NewButton } from "../components/description/NewButton";
-// import { getItemSession } from "../utils/sessionStorage";
-// import { addToCartRequest } from "../redux/features/cart/actions";
 import { useEffect, useState } from "react";
-// import { addToFavouriteRequest } from "../redux/features/favourite/actions";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loading } from "../components/loading/Loading";
 import { Error } from "../components/loading/Error";
+import { addToCartRequest } from "../redux/Reducers/cartReducer";
 
 function Description() {
   useEffect(() => {
     getSingleProduct();
   }, []);
 
-  const location = useLocation();
   const [mySize, setMySize] = useState(false);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -41,8 +38,9 @@ function Description() {
     if (mySize === false) {
       setToast(toast, "Please select a Size", "error");
     } else {
-      const payload = { ...data, size: mySize, quantity: 1 };
-      //   dispatch(addToCartRequest(payload, toast));
+      const payload = [{ ...data, size: mySize, quantity: 1 }, toast, "add"];
+
+      dispatch(addToCartRequest(payload));
       navigate("/cart");
     }
   };
@@ -67,7 +65,7 @@ function Description() {
       console.log("error", error);
       setError(true);
       setToast(toast, "Product Not Found", "error");
-      navigate(-1, { replace: true })
+      navigate(-1, { replace: true });
     }
   };
 

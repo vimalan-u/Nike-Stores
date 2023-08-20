@@ -32,7 +32,6 @@ export const getLoginSuccess = createAsyncThunk(
 export const resetpassword = createAsyncThunk(
   "authentication/resetpassword",
   async (data, { rejectWithValue }) => {
-    console.log("email data", data);
     try {
       let res = await axios.post("/auth/sendotp", {
         data,

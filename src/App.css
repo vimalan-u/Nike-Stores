@@ -21,7 +21,6 @@ body::-webkit-scrollbar-thumb {
   transform: scale(1.2);
 }
 
-
 .typeWritertheme {
   border-right: 3px solid white;
   width: 0ch;
@@ -37,5 +36,42 @@ body::-webkit-scrollbar-thumb {
 
   50% {
     width: 28ch;
+  }
+}
+
+#oval,
+#plus,
+#diamond,
+#bubble-rounded {
+  animation: plopp 4s ease-out infinite;
+}
+
+#bg-line:nth-child(2) {
+  fill-opacity: 0.3;
+}
+
+#bg-line:nth-child(3) {
+  fill-opacity: 0.4;
+}
+
+@keyframes plopp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+}
+
+@keyframes plopp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px);
+    opacity: 0.5;
   }
 }
