@@ -14,6 +14,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  useColorModeValue,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
@@ -92,10 +93,10 @@ export default function Profile() {
         </ModalContent>
       </Modal>
       <VStack spacing={1}>
-        <Heading as="h3" fontSize="xl" color="brand.dark">
+        <Heading as="h3" fontSize="xl" color={useColorModeValue("brand.dark", "brand.light")}>
           Venketesh Rushi
         </Heading>
-        <Text color="brand.gray" fontSize="sm">
+        <Text color={useColorModeValue("brand.gray", "brand.light")} fontSize="sm">
           {"Pune, India"}
         </Text>
       </VStack>

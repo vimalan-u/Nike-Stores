@@ -1,4 +1,4 @@
-import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from '@chakra-ui/react'
 
 import AccountSettings from './AccountSettings'
 import Actions from './Actions'
@@ -21,6 +21,7 @@ export default function Content() {
       borderWidth={1}
       borderColor="gray.200"
       style={{ transform: 'translateY(-100px)' }}
+      bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Tabs>
         <TabList px={5}>
@@ -34,7 +35,7 @@ export default function Content() {
               color="brand.cadet"
               borderBottomWidth={1}
               _active={{ bg: 'transparent' }}
-              _selected={{ color: 'brand.dark', borderColor: 'brand.blue' }}
+              _selected={{ color: useColorModeValue("brand.dark", "white"), borderColor: 'brand.blue' }}
             >
               {tab}
             </Tab>

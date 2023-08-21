@@ -22,7 +22,6 @@ import { useNavigate } from "react-router-dom";
 export const SideDrawer = ({ handlePath }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useSelector((state) => state.auth.user) || "Admin";
-  console.log("user", user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

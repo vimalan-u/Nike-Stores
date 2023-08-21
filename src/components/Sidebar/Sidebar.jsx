@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, useColorModeValue } from '@chakra-ui/react'
 
 import Actions from './Actions'
 import Data from './Data'
@@ -16,6 +16,7 @@ function Sidebar() {
       borderWidth={1}
       borderColor="brand.light"
       style={{ transform: 'translateY(-100px)' }}
+      bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Profile />
       <Data />

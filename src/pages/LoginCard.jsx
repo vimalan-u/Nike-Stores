@@ -33,7 +33,7 @@ export default function LoginCard() {
   useEffect(() => {
     if (isAuthenticated) {
       if (location.state && location.state.from) {
-        console.log("abc")
+
         navigate(location.state.from, { replace: true });
       } else {
         navigate("/");

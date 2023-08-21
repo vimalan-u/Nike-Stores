@@ -398,15 +398,14 @@ export const EmptyCart = () => {
       <Button
         mt={4}
         mb={"20px"}
-        fontSize={"20px"}
-        fontWeight={600}
-        color={"white"}
-        bgGradient="linear(to-l, #7928CA, #FF0080)"
-        _hover={{
-          bgGradient: "linear(to-l, #7928CA, #FF0080)",
-          boxShadow: "xl",
-        }}
-        size="sm"
+        borderColor={'#cecdce'}
+        h={"40px"}
+        bgColor={"white"}
+        color={"black"}
+        border={`1px solid #cecdce`}
+        borderRadius={"10px"}
+        fontSize={"15px"}
+        _hover={{ borderColor: "black" }}
         onClick={() => navigate("/sale")}
       >
         Explore

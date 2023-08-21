@@ -1,4 +1,4 @@
-import { Box, Text, VStack, HStack, useColorMode } from '@chakra-ui/react'
+import { Box, Text, VStack, HStack, useColorMode, useColorModeValue } from '@chakra-ui/react'
 import { useEffect } from 'react';
 
 const list = [
@@ -26,16 +26,6 @@ const list = [
 function Data() {
 
   const { colorMode, toggleColorMode } = useColorMode();
-
-  useEffect(() => {
-    const isDarkModePreferred = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (isDarkModePreferred) {
-      colorMode === "dark"
-      if (colorMode !== 'dark') {
-        toggleColorMode();
-      }
-    }
-  }, []);
 
   return (
     <VStack as="ul" spacing={0} listStyleType="none">
@@ -68,7 +58,7 @@ function Data() {
           borderBottomWidth={1}
           borderColor="brand.light"
         >
-          <Text color="brand.dark">{item.name}</Text>
+          <Text color={useColorModeValue("brand.dark", "brand.light")}>{item.name}</Text>
           <Text color={`brand.${item.color}`} fontWeight="bold">
             {item.value}
           </Text>
