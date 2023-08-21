@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
 import {
   Button,
+  HStack,
   useClipboard,
   VStack,
+  Text
 } from '@chakra-ui/react'
 
 export default function Actions() {
