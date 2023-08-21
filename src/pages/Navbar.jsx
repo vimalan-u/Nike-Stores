@@ -29,13 +29,14 @@ import { BsCart2, BsFillCaretDownFill } from "react-icons/bs";
 import { useMediaQuery } from '@chakra-ui/react'
 import { removeItem } from "../utils/cookiestorage";
 import { logoutApi } from "../redux/Reducers/authReducer";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
   const { orderSummary } = useSelector((state) => state.cart) || 0;
-  const user = useSelector((state) => state.auth.user) || "test";
+  const user = useSelector((state) => state.auth.user) || "Test";
   const dispatch = useDispatch()
 
   const [isLargerThan800] = useMediaQuery('(min-width: 720px)')
@@ -103,7 +104,7 @@ export const Navbar = () => {
         </Center>
         {!isLargerThan800 && <Box display={["flex", "flex", "none", "none", "none"]}>
           <Center mr={"10px"}>
-            {token? (
+            {token ? (
               <SideDrawer handlePath={"handlePath"} />
             ) : (
               <Button
@@ -187,6 +188,14 @@ export const Navbar = () => {
                     icon={<BsCart2 />}
                   >
                     Cart
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/userprofile");
+                    }}
+                    icon={<AiOutlineUserAdd />}
+                  >
+                    User Profile
                   </MenuItem>
                   <Divider />
                   <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>

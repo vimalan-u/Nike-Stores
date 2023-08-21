@@ -1,18 +1,16 @@
-import { Box, Center, Flex, Grid, Icon, Link, Text } from "@chakra-ui/react";
+import { Box, Center, Flex, Grid, Text } from "@chakra-ui/react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { MdOutlinePersonPin } from "react-icons/md";
-import { FcLike } from "react-icons/fc";
 import { IconLink } from "../components/footer/IconLink";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate()
+  const contact = () => {
+    navigate("/contactus")
+  }
   return (
     <Box h={"300px"} bg={"black"} color={"white"} mt={"40px"}>
-      {/* <Center h={"80px"}>
-        <Text className="typeWritertheme">
-          Made with <Icon as={FcLike} /> by Venketesh Rushi
-        </Text>
-      </Center> */}
-
       <Grid
         h={"220px"}
         p={"10px"}
@@ -25,11 +23,11 @@ const Footer = () => {
             fontWeight={600}
             flexDirection={"column"}
           >
-            <Text>FIND A NEARBY STORE</Text>
-            <Text>BECOME A MEMBER</Text>
-            <Text>ALREADY A MEMBER</Text>
-            <Text>SIGNUP FOR EMAIL</Text>
-            <Text>SEND US FEEDBACK</Text>
+            <Text onClick={contact} cursor={"pointer"}>FIND A NEARBY STORE</Text>
+            <Text onClick={contact} cursor={"pointer"}>BECOME A MEMBER</Text>
+            <Text onClick={contact} cursor={"pointer"}>ALREADY A MEMBER</Text>
+            <Text onClick={contact} cursor={"pointer"}>SIGNUP FOR EMAIL</Text>
+            <Text onClick={contact} cursor={"pointer"}>SEND US FEEDBACK</Text>
           </Flex>
         </Center>
 
@@ -41,13 +39,13 @@ const Footer = () => {
             flexDirection={"column"}
             color={"gray"}
           >
-            <Text color={"white"} fontWeight={600}>
+            <Text color={"white"} fontWeight={600} onClick={contact} cursor={"pointer"}>
               GET HELP
             </Text>
-            <Text>Order Status</Text>
-            <Text>Delivery</Text>
-            <Text>Returns</Text>
-            <Text>Payment Options</Text>
+            <Text onClick={() => navigate("/userprofile")} cursor={"pointer"}>Order Status</Text>
+            <Text onClick={() => navigate("/userprofile")} cursor={"pointer"}>Delivery</Text>
+            <Text onClick={() => navigate("/userprofile")} cursor={"pointer"}>Returns</Text>
+            <Text onClick={() => navigate("/userprofile")} cursor={"pointer"}>Payment Options</Text>
           </Flex>
         </Center>
 

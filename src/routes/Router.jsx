@@ -15,6 +15,8 @@ const Products = lazy(() => import("../pages/Products"));
 const SignupCard = lazy(() => import("../pages/SignupCard"));
 const LoginCard = lazy(() => import("../pages/LoginCard"));
 const ForgetPassword = lazy(() => import("../pages/ForgetPassword"));
+const UserPage = lazy(() => import("../pages/UserPage"));
+const Contact = lazy(() => import("../pages/Contact"))
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 export const Router = () => {
@@ -59,6 +61,16 @@ export const Router = () => {
               </Private>
             }
           />
+          <Route path="/userprofile" element={
+            <Private>
+              <UserPage />
+            </Private>
+          } />
+          <Route path="/contactus" element={
+            <Private>
+              <Contact />
+            </Private>
+          } />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
