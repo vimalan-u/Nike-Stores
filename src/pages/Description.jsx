@@ -18,6 +18,7 @@ import axios from "axios";
 import { Loading } from "../components/loading/Loading";
 import { Error } from "../components/loading/Error";
 import { addToCartRequest } from "../redux/Reducers/cartReducer";
+import { addFavourite } from "../redux/Reducers/favouriteReducer";
 
 function Description() {
   useEffect(() => {
@@ -30,6 +31,7 @@ function Description() {
   const [error, setError] = useState(false);
   const param = useParams();
   const token = useSelector((state) => state.auth.token);
+  console.log("token",token)
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -45,12 +47,30 @@ function Description() {
     }
   };
 
-  const handleAddToFavourite = () => {
+  const handleAddToFavourite = async () => {
     if (!token) {
       setToast(toast, "Please login first", "error");
       navigate("/auth");
     } else {
-      //   dispatch(addToFavouriteRequest(data, token, toast));
+      try {
+        let payload = [data, token];
+        await dispatch(addFavourite(payload)).unwrap();
+        setToast(toast, "Item added to the favourites", "success");
+      } catch (rejectedValueOrSerializedError) {
+        console.log(rejectedValueOrSerializedError);
+        if (
+          rejectedValueOrSerializedError.response.data.message ===
+          "Already present in the Favourite"
+        ) {
+          setToast(
+            toast,
+            rejectedValueOrSerializedError.response.data.message,
+            "info"
+          );
+        } else {
+          setToast(toast, "Something went wrong", "error");
+        }
+      }
     }
   };
 

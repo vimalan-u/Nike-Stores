@@ -11,6 +11,7 @@ const initialState = {
   error: "",
   loading: true,
   resetemail: "",
+  dark: false,
 };
 
 export const getLoginSuccess = createAsyncThunk(
@@ -61,6 +62,9 @@ export const authSlice = createSlice({
       state.user = {};
       state.loading = false;
     },
+    updateColorModel: (state, action) => {
+      state.dark = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getLoginSuccess.pending, (state) => {
@@ -94,6 +98,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { removepassword, logoutApi } = authSlice.actions;
+export const { removepassword, logoutApi, updateColorModel } =
+  authSlice.actions;
 
 export default authSlice.reducer;

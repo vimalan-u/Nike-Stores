@@ -1,30 +1,37 @@
-import { Box, Text, VStack, HStack, useColorMode, useColorModeValue } from '@chakra-ui/react'
-import { useEffect } from 'react';
+import {
+  Box,
+  Text,
+  VStack,
+  HStack,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateColorModel } from "../../redux/Reducers/authReducer";
 
 const list = [
   {
     id: 1,
-    name: 'Total Orders Placed',
+    name: "Total Orders Placed",
     value: 32,
-    color: 'yellow',
+    color: "yellow",
   },
   {
     id: 2,
-    name: 'Ongoing Deliveries',
+    name: "Ongoing Deliveries",
     value: 6,
-    color: 'green',
+    color: "green",
   },
   {
     id: 3,
-    name: 'Products Favorited',
+    name: "Products Favorited",
     value: 10,
-    color: 'cadet',
+    color: "cadet",
   },
-]
-
+];
 
 function Data() {
-
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -37,15 +44,20 @@ function Data() {
         alignItems="center"
         justifyContent="space-between"
         borderBottomWidth={1}
-        borderColor="brand.light">
+        borderColor="brand.light"
+      >
         <Text fontWeight="bold">
-          {colorMode === 'dark' ? 'Dark Mode' : 'Light Mode'}
+          {colorMode === "dark" ? "Dark Mode" : "Light Mode"}
         </Text>
         <div className="checkbox-wrapper-25">
-          <input type="checkbox" checked={colorMode === 'dark'} onChange={toggleColorMode} />
+          <input
+            type="checkbox"
+            checked={colorMode === "dark"}
+            onChange={toggleColorMode}
+          />
         </div>
       </HStack>
-      {list.map(item => (
+      {list.map((item) => (
         <Box
           key={item.id}
           as="li"
@@ -58,14 +70,16 @@ function Data() {
           borderBottomWidth={1}
           borderColor="brand.light"
         >
-          <Text color={useColorModeValue("brand.dark", "brand.light")}>{item.name}</Text>
+          <Text color={useColorModeValue("brand.dark", "brand.light")}>
+            {item.name}
+          </Text>
           <Text color={`brand.${item.color}`} fontWeight="bold">
             {item.value}
           </Text>
         </Box>
       ))}
     </VStack>
-  )
+  );
 }
 
-export default Data
+export default Data;

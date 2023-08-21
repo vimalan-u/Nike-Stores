@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Divider,
   Flex,
   Image,
@@ -11,11 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { numberWithCommas, setToast } from "../../utils/extraFunctions";
 import { BagItemBtn, QuantityBtn } from "./BagItemBtn";
 import { useNavigate } from "react-router-dom";
-// import { addToFavouriteRequest } from "../../redux/features/favourite/actions";
 import {
   addToCartRequest,
   removeFromCartRequest,
 } from "../../redux/Reducers/cartReducer";
+import { addFavourite } from "../../redux/Reducers/favouriteReducer";
 
 export const ItemBox = ({
   title,
@@ -36,12 +35,30 @@ export const ItemBox = ({
     dispatch(removeFromCartRequest(payload));
   };
 
-  const handleAddToFavourite = () => {
+  const handleAddToFavourite = async () => {
     if (!token) {
       setToast(toast, "Please login first", "error");
       navigate("/auth");
     } else {
-      // dispatch(addToFavouriteRequest(data, token, toast));
+      try {
+        let payload = [data, token];
+        await dispatch(addFavourite(data, token)).unwrap();
+        setToast(toast, "Item added to the favourites", "success");
+      } catch (rejectedValueOrSerializedError) {
+        console.log(rejectedValueOrSerializedError);
+        if (
+          rejectedValueOrSerializedError.response.data.message ===
+          "Already present in the Favourite"
+        ) {
+          setToast(
+            toast,
+            rejectedValueOrSerializedError.response.data.message,
+            "info"
+          );
+        } else {
+          setToast(toast, "Something went wrong", "error");
+        }
+      }
     }
   };
 
