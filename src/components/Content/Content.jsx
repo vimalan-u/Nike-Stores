@@ -2,8 +2,8 @@ import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 
 import AccountSettings from './AccountSettings'
 import Actions from './Actions'
-import CompanySettings from './CompanySettings'
 import Notifications from './Notifications'
+import OrderStaus from './OrderStaus'
 
 export default function Content() {
   const tabs = ['Account Settings', 'Order Status', 'Notifications']
@@ -46,7 +46,7 @@ export default function Content() {
             <AccountSettings />
           </TabPanel>
           <TabPanel>
-            <CompanySettings />
+            <OrderStaus />
           </TabPanel>
           <TabPanel>
             <Notifications />
