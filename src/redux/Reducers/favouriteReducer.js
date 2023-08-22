@@ -14,7 +14,7 @@ export const addFavourite = createAsyncThunk(
     let token = data[1];
     console.log("token in redux " , token);
     try {
-      const res = await axios.post(`/product/add/favourite`, data1, {
+      const res = await axios.post(`/favourite/add/favourite`, data1, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const resdata = await res.data;
@@ -29,7 +29,7 @@ export const getFavourite = createAsyncThunk(
   "favourite/getFavourite",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`/product/get/favourite`, {
+      const res = await axios.get(`/favourite/get/favourite`, {
         headers: { Authorization: `Bearer ${data}` },
       });
       const resdata = await res.data;
@@ -46,7 +46,7 @@ export const deleteFavorite = createAsyncThunk(
     let id = data[0];
     let token = data[1];
     try {
-      let res = await axios.delete(`/product/delete/favourite/${id}`, {
+      let res = await axios.delete(`/favourite/delete/favourite/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const resdata = await res.data;
