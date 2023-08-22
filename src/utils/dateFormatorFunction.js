@@ -1,4 +1,4 @@
-export default function dateFormater(dt) {
+export function dateFormater(dt) {
   const rawDate = new Date(dt);
 
   const time = rawDate.toLocaleTimeString();
