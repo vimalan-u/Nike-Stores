@@ -1,1 +1,0 @@
-import{S as t}from"./chunk-ZHMYA64R-25355b95.js";import{l as o,j as s}from"./index-e32fbf2a.js";var e=o((a,r)=>s.jsx(t,{align:"center",...a,direction:"column",ref:r}));e.displayName="VStack";export{e as V};
