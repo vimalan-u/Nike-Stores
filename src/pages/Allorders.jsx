@@ -14,7 +14,7 @@ import { Error } from "../components/loading/Error.jsx";
 import { Loading } from "../components/loading/Loading.jsx";
 import { useSelector } from "react-redux";
 import { OrderSection } from "../components/order/OrderSection";
-import dateFormater from "../Utils/dateFormator.js";
+import dateFormater from "../Utils/dateFormator";
 
 export default function Allorders() {
   const [isLoading, setIsLoading] = useState(false);
