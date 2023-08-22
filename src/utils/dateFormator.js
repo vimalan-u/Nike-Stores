@@ -1,28 +1,15 @@
-export const dateFormator = (dt) => {
+export default function dateFormater(dt) {
+  const rawDate = new Date(dt);
 
-    const rawDate = new Date(dt);
+  const time = rawDate.toLocaleTimeString();
 
-    const time = rawDate.toLocaleTimeString();
+  const dateFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
-    const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const date = dateFormatter.format(rawDate);
 
-    const date = dateFormatter.format(rawDate);
-
-    return { date, time };
-};
-
-export const dateFormatorAllOrder = (dt) => {
-    const rawDate = new Date(dt);
-  
-    const time = rawDate.toLocaleTimeString();
-  
-    const dateFormatter = new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  
-    const date = dateFormatter.format(rawDate);
-  
-    return { date, time };
-  };
+  return { date, time };
+}

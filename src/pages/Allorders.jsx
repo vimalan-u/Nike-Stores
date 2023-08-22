@@ -14,7 +14,7 @@ import { Error } from "../components/loading/Error.jsx";
 import { Loading } from "../components/loading/Loading.jsx";
 import { useSelector } from "react-redux";
 import { OrderSection } from "../components/order/OrderSection";
-import { dateFormatorAllOrder } from "../Utils/dateFormator.js";
+import dateFormater from "../Utils/dateFormator.js";
 
 export default function Allorders() {
   const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +59,7 @@ export default function Allorders() {
   ) : (
     <Accordion allowMultiple width={"100%"}>
       {data?.map((item) => {
-        const { date, time } = dateFormatorAllOrder(item.createdAt);
+        const { date, time } = dateFormater(item.createdAt);
         return (
           <OrderSection date={date} time={time}>
             {" "}
