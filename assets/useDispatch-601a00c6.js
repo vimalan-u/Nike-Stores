@@ -1,0 +1,1 @@
+import{a8 as e,a9 as u,aa as a}from"./index-e32fbf2a.js";function r(t=e){const o=t===e?u:a(t);return function(){const{store:s}=o();return s}}const c=r();function i(t=e){const o=t===e?c:r(t);return function(){return o().dispatch}}const p=i();export{p as u};
