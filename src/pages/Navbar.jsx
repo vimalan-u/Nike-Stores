@@ -45,6 +45,7 @@ export const Navbar = () => {
     removeItem("token")
     removeItem("user")
     dispatch(logoutApi())
+    navigate("/")
   };
   return (
     <>

@@ -1,16 +1,10 @@
-import {
-  Text,
-  Grid,
-} from '@chakra-ui/react'
+import {  VStack } from "@chakra-ui/react";
+import Allorders from "../../pages/Allorders";
 
 export default function OrderStaus() {
   return (
-    <Grid
-      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
-      gap={6}
-    >
-      <Text>Coming Soon...</Text>
-    </Grid>
-  )
+    <VStack overflowY={"auto"} minH={"355px"} maxH={"455px"}>
+      <Allorders />
+    </VStack>
+  );
 }
-

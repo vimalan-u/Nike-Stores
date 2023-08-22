@@ -6,7 +6,7 @@ import Notifications from './Notifications'
 import OrderStaus from './OrderStaus'
 
 export default function Content() {
-  const tabs = ['Account Settings', 'Order Status', 'Notifications']
+  const tabs = ['Account Settings', 'Orders Placed', 'Notifications']
 
   return (
     <Box
@@ -16,7 +16,6 @@ export default function Content() {
       flexDir="column"
       justifyContent="space-between"
       pt={5}
-      bg="white"
       rounded="md"
       borderWidth={1}
       borderColor="gray.200"

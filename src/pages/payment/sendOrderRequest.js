@@ -26,7 +26,7 @@ export const sendOrderRequest = async (
   };
 
   try {
-    await axios.post("/order", payload, {
+    await axios.post("/order/createorder", payload, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
