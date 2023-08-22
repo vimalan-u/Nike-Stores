@@ -43,7 +43,6 @@ export default function SignupCard() {
     ) {
       setToast(toast, "Please Fill All The Fields", "error");
     }
-    console.log(signUpcreds);
     try {
       let response = await axios.post("/auth/register", signUpcreds);
       setToast(toast, "Signup Successfull", "success");

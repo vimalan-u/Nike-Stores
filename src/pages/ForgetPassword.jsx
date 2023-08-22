@@ -33,7 +33,6 @@ export default function Forgetpassword() {
   const resetemail = useSelector((state) => state.auth.resetemail);
 
   const handleChange = (e) => {
-    console.log(e);
     setCode(e);
   };
 

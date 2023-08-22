@@ -12,7 +12,6 @@ export const addFavourite = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     let data1 = data[0];
     let token = data[1];
-    console.log("token in redux " , token);
     try {
       const res = await axios.post(`/favourite/add/favourite`, data1, {
         headers: { Authorization: `Bearer ${token}` },

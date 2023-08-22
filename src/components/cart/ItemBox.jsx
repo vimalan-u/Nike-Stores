@@ -42,10 +42,9 @@ export const ItemBox = ({
     } else {
       try {
         let payload = [data, token];
-        await dispatch(addFavourite(data, token)).unwrap();
-        setToast(toast, "Item added to the favourites", "success");
+        let res = await dispatch(addFavourite(payload)).unwrap();
+        setToast(toast, res.message ? res.message : "Item added to the favourites", "success");
       } catch (rejectedValueOrSerializedError) {
-        console.log(rejectedValueOrSerializedError);
         if (
           rejectedValueOrSerializedError.response.data.message ===
           "Already present in the Favourite"

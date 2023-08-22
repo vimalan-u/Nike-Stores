@@ -32,7 +32,6 @@ export const FavouriteItemBox = ({
       await dispatch(getFavourite(token)).unwrap();
       setToast(toast, "Product removed from favourites", "success");
     } catch (rejectedValueOrSerializedError) {
-      console.log(rejectedValueOrSerializedError);
       setToast(toast, "Something went wrong", "error");
     }
   };

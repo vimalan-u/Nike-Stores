@@ -8,7 +8,7 @@ import { getFavourite } from "../redux/Reducers/favouriteReducer";
 
 export default function Favourite() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.authReducer.token);
+  const token = useSelector((state) => state.auth.token);
   const { isLoading, isError, favourite } = useSelector(
     (state) => state.favourite
   );
@@ -31,7 +31,7 @@ export default function Favourite() {
     <Error />
   ) : (
     <>
-      <Box maxW={"1450px"} mx={"auto"} my={"20px"} p={"15px"}>
+      <Box maxW={"1450px"} minHeight={"60vh"} mx={"auto"} my={"20px"} p={"15px"}>
         <Text fontSize={"20px"} fontWeight={500}>
           Favourites
         </Text>
@@ -58,7 +58,7 @@ export default function Favourite() {
             ]}
           >
             {favourite.map((item) => (
-              <FavouriteItemBox key={item._id} {...item} data={item} />
+              <FavouriteItemBox key={item.id} {...item} data={item} />
             ))}
           </Box>
         )}

@@ -31,7 +31,6 @@ function Description() {
   const [error, setError] = useState(false);
   const param = useParams();
   const token = useSelector((state) => state.auth.token);
-  console.log("token",token)
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,14 +49,13 @@ function Description() {
   const handleAddToFavourite = async () => {
     if (!token) {
       setToast(toast, "Please login first", "error");
-      navigate("/auth");
+      navigate("/login");
     } else {
       try {
         let payload = [data, token];
-        await dispatch(addFavourite(payload)).unwrap();
-        setToast(toast, "Item added to the favourites", "success");
+        let res = await dispatch(addFavourite(payload)).unwrap();
+        setToast(toast, res.message ? res.message : "Item added to the favourites", "success");
       } catch (rejectedValueOrSerializedError) {
-        console.log(rejectedValueOrSerializedError);
         if (
           rejectedValueOrSerializedError.response.data.message ===
           "Already present in the Favourite"
@@ -82,7 +80,6 @@ function Description() {
       setData(res.data);
       setLoading(false);
     } catch (error) {
-      console.log("error", error);
       setError(true);
       setToast(toast, "Product Not Found", "error");
       navigate(-1, { replace: true });
