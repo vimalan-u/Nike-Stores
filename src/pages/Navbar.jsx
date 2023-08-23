@@ -105,8 +105,10 @@ export const Navbar = () => {
         </Center>
         {!isLargerThan800 && <Box display={["flex", "flex", "none", "none", "none"]}>
           <Center mr={"10px"}>
-            {token ? (
-              <SideDrawer handlePath={"handlePath"} />
+            <SideDrawer handlePath={"handlePath"} />
+            {/* {token ? (
+            <SideDrawer handlePath={"handlePath"} />
+
             ) : (
               <Button
                 size="sm"
@@ -123,7 +125,7 @@ export const Navbar = () => {
                   <Text onClick={() => navigate("/signup")}>Sign Up</Text>
                 </Flex>
               </Button>
-            )}
+            )} */}
           </Center>
         </Box>}
 

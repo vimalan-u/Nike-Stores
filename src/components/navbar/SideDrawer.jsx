@@ -7,6 +7,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  HStack,
   Icon,
   useDisclosure,
   VStack,
@@ -18,19 +19,31 @@ import { FiLogOut } from "react-icons/fi";
 import { removeItem } from "../../utils/cookiestorage";
 import { logoutApi } from "../../redux/Reducers/authReducer";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineLogin } from "react-icons/ai";
+import { VscSignIn } from "react-icons/vsc";
 
 export const SideDrawer = ({ handlePath }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useSelector((state) => state.auth.user) || "Admin";
+  const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogoutBtn = () => {
-    removeItem("token")
-    removeItem("user")
-    dispatch(logoutApi())
-    onClose()
-    navigate("/")
+    removeItem("token");
+    removeItem("user");
+    dispatch(logoutApi());
+    onClose();
+    navigate("/");
+  };
+  const handleLoginBtn = () => {
+    onClose();
+    navigate("/login");
+  };
+
+  const handleSignupBtn = () => {
+    onClose();
+    navigate("signup");
   };
 
   return (
@@ -44,7 +57,12 @@ export const SideDrawer = ({ handlePath }) => {
           <Divider />
           <DrawerBody>
             <VStack justify={"space-between"} height={"100%"}>
-              <VStack gap={"18px"} mt={"40px"} onClick={onClose} align={"flex-start"}>
+              <VStack
+                gap={"18px"}
+                mt={"40px"}
+                onClick={onClose}
+                align={"flex-start"}
+              >
                 <DrawerCategory
                   handlePath={handlePath}
                   name={"/"}
@@ -81,16 +99,56 @@ export const SideDrawer = ({ handlePath }) => {
                 />
                 <Divider />
               </VStack>
-              <Button
-                size="lg"
-                bg={"blue.400"}
-                color={"white"}
-                bgColor={"rgb(0,0,0)"}
-                _hover={{
-                  boxShadow: "xl",
-                }} width={"100%"} mb={5} onClick={handleLogoutBtn} leftIcon={<FiLogOut />}>
-                Logout
-              </Button>
+              {!token ? (
+                <VStack width={"100%"}>
+                  <Button
+                    size="lg"
+                    bg={"blue.400"}
+                    color={"white"}
+                    bgColor={"rgb(0,0,0)"}
+                    _hover={{
+                      boxShadow: "xl",
+                    }}
+                    width={"100%"}
+                    onClick={handleLoginBtn}
+                    leftIcon={<AiOutlineLogin />}
+                    
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    size="lg"
+                    bg={"blue.400"}
+                    color={"white"}
+                    bgColor={"rgb(0,0,0)"}
+                    _hover={{
+                      boxShadow: "xl",
+                    }}
+                    width={"100%"}
+                    mb={5}
+                    onClick={handleSignupBtn}
+                    leftIcon={<VscSignIn />}
+                  >
+                    Sign Up
+                  </Button>
+                </VStack>
+              ) : (
+                <Button
+                  size="lg"
+                  bg={"blue.400"}
+                  color={"white"}
+                  bgColor={"rgb(0,0,0)"}
+                  _hover={{
+                    boxShadow: "xl",
+                  }}
+                  width={"100%"}
+                  mb={5}
+                  onClick={handleLogoutBtn}
+                  leftIcon={<FiLogOut />}
+                >
+                  Logout
+                </Button>
+              )}
             </VStack>
           </DrawerBody>
         </DrawerContent>
