@@ -17,9 +17,9 @@ export const HomeText = ({ children }) => {
 export const HomeDescText = ({ children }) => {
     return (
         <Text
-            mb={['30px']}
+            mb={['22px']}
             px={['10px', '15px', '30px', '50px', '100px']}
-            fontSize={['14px', '15px', '16px', '16px', '16px']}
+            fontSize={['18px', '18px', '20px', '22px', '25px']}
         >
             {children}
         </Text>
