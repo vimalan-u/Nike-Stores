@@ -26,20 +26,7 @@ export default function LoginCard() {
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const isAuthenticated = useSelector((state) => state.auth.isLogin);
-
   const location = useLocation();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      if (location.state && location.state.from) {
-
-        navigate(location.state.from, { replace: true });
-      } else {
-        navigate("/");
-      }
-    }
-  }, [isAuthenticated]);
 
   const hanldeChange = (e) => {
     const { name, value } = e.target;
@@ -56,6 +43,11 @@ export default function LoginCard() {
     try {
       const res = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
       setToast(toast, "Login successfully", "success");
+      if (location.state && location.state.from) {
+        navigate(location.state.from, { replace: true });
+      } else {
+        navigate("/");
+      }
     } catch (rejectedValueOrSerializedError) {
       setToast(
         toast,

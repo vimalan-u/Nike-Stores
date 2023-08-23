@@ -199,9 +199,19 @@ export const Navbar = () => {
                     User Profile
                   </MenuItem>
                   <Divider />
-                  <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
-                    Logout
-                  </MenuItem>
+                  {
+                    token ?
+                      <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
+                        Logout
+                      </MenuItem>
+                      :
+                      (
+                        <>
+                          <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
+                          <MenuItem onClick={() => navigate("/signup")}>Sign Up</MenuItem>
+                        </>
+                      )
+                  }
                 </Flex>
               </MenuList>
             }
