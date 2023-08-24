@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineSearch} from 'react-icons/ai';
 
 
-export const Category = ({ text, link, handlePath, name }) => {
+export const Category = ({ text, link, name }) => {
     const { colorMode } = useColorMode();
     return (
         <Center
@@ -13,7 +13,6 @@ export const Category = ({ text, link, handlePath, name }) => {
             _hover={{ borderBottom: `2px solid ${colorMode === 'light' ? 'black' : 'white'}` }}
         >
             <Link
-                onClick={handlePath}
                 to={link}
                 name={name}
             >
@@ -24,11 +23,10 @@ export const Category = ({ text, link, handlePath, name }) => {
 };
 
 
-export const DrawerCategory = ({ text, link, handlePath, name }) => {
+export const DrawerCategory = ({ text, link, name }) => {
     return (
         <Text fontSize={'20px'} fontWeight={500}>
             <Link
-                onClick={handlePath}
                 to={link}
                 name={name}
             >

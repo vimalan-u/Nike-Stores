@@ -105,7 +105,7 @@ export const Navbar = () => {
         </Center>
         {!isLargerThan800 && <Box display={["flex", "flex", "none", "none", "none"]}>
           <Center mr={"10px"}>
-            <SideDrawer handlePath={"handlePath"} />
+            <SideDrawer/>
             {/* {token ? (
             <SideDrawer handlePath={"handlePath"} />
 

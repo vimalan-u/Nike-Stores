@@ -59,7 +59,6 @@ function Home() {
             _hover={{
               bgColor: "black",
             }}
-          // onClick={handlePath}
           >
             Shop
           </Button>
@@ -129,7 +128,6 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
-              // onClick={handlePath}
               >
                 Explore
               </Button>
@@ -140,7 +138,6 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
-              // onClick={handlePath}
               >
                 Top 10 Gifts
               </Button>
@@ -179,7 +176,6 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
-              // onClick={handlePath}
               >
                 Get It First
               </Button>

@@ -7,7 +7,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
-  HStack,
+  Flex,
   Icon,
   useDisclosure,
   VStack,
@@ -19,10 +19,14 @@ import { FiLogOut } from "react-icons/fi";
 import { removeItem } from "../../utils/cookiestorage";
 import { logoutApi } from "../../redux/Reducers/authReducer";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineLogin } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 import { VscSignIn } from "react-icons/vsc";
+import { FaRegHeart } from "react-icons/fa";
+import { RiLuggageCartLine } from "react-icons/ri";
+import { BsCart2 } from "react-icons/bs";
+import Coupon from "../../pages/Coupon";
 
-export const SideDrawer = ({ handlePath }) => {
+export const SideDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useSelector((state) => state.auth.user) || "Admin";
   const { token } = useSelector((state) => state.auth);
@@ -53,7 +57,7 @@ export const SideDrawer = ({ handlePath }) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Hi {user.firstName}</DrawerHeader>
+          <DrawerHeader>Hi {user?.firstName}</DrawerHeader>
           <Divider />
           <DrawerBody>
             <VStack justify={"space-between"} height={"100%"}>
@@ -64,35 +68,30 @@ export const SideDrawer = ({ handlePath }) => {
                 align={"flex-start"}
               >
                 <DrawerCategory
-                  handlePath={handlePath}
                   name={"/"}
                   text={"SALE"}
-                  link={"/"}
+                  link={"/sale"}
                 />
                 <Divider />
                 <DrawerCategory
-                  handlePath={handlePath}
                   name={"newin"}
                   text={"NEW IN"}
                   link={"/newin"}
                 />
                 <Divider />
                 <DrawerCategory
-                  handlePath={handlePath}
                   name={"newin"}
                   text={"SUMMER SHOP"}
                   link={"/newin"}
                 />
                 <Divider />
                 <DrawerCategory
-                  handlePath={handlePath}
                   name={"summershop"}
                   text={"SUMMER SHOP"}
                   link={"/summershop"}
                 />
                 <Divider />
                 <DrawerCategory
-                  handlePath={handlePath}
                   name={"goingout"}
                   text={"GOING OUT"}
                   link={"/goingout"}
@@ -112,7 +111,7 @@ export const SideDrawer = ({ handlePath }) => {
                     width={"100%"}
                     onClick={handleLoginBtn}
                     leftIcon={<AiOutlineLogin />}
-                    
+
                   >
                     Login
                   </Button>
@@ -133,21 +132,63 @@ export const SideDrawer = ({ handlePath }) => {
                   </Button>
                 </VStack>
               ) : (
-                <Button
-                  size="lg"
-                  bg={"blue.400"}
-                  color={"white"}
-                  bgColor={"rgb(0,0,0)"}
-                  _hover={{
-                    boxShadow: "xl",
-                  }}
-                  width={"100%"}
-                  mb={5}
-                  onClick={handleLogoutBtn}
-                  leftIcon={<FiLogOut />}
-                >
-                  Logout
-                </Button>
+                <VStack width={"100%"}>
+                  <Flex width={"100%"} flexDirection={"column"} gap={"5px"} fontSize={"17px"} mb={3}>
+                    <Divider />
+                    <Button
+                      onClick={() => {
+                        navigate("/favourite");
+                      }}
+                      leftIcon={<FaRegHeart />}
+                    >
+                      Wishlist
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        navigate("/orders");
+                      }}
+                      leftIcon={<RiLuggageCartLine />}
+                    >
+                      Orders
+                    </Button>
+
+                    <Coupon />
+
+                    <Button
+                      onClick={() => {
+                        navigate("/cart");
+                      }}
+                      leftIcon={<BsCart2 />}
+                    >
+                      Cart
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        navigate("/userprofile");
+                      }}
+                      leftIcon={<AiOutlineUserAdd />}
+                    >
+                      User Profile
+                    </Button>
+                    <Divider />
+                  </Flex>
+                  <Button
+                    size="lg"
+                    bg={"blue.400"}
+                    color={"white"}
+                    bgColor={"rgb(0,0,0)"}
+                    _hover={{
+                      boxShadow: "xl",
+                    }}
+                    width={"100%"}
+                    mb={5}
+                    onClick={handleLogoutBtn}
+                    leftIcon={<FiLogOut />}
+                  >
+                    Logout
+                  </Button>
+                  <Divider />
+                </VStack>
               )}
             </VStack>
           </DrawerBody>
