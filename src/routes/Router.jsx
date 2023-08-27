@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Private } from "./Private";
 import { Suspense, lazy } from "react";
 import ErrorBoundary from "../pages/ErrorBoundary";
+import { Abc } from "../pages/abc";
 
 const Cart = lazy(() => import("../pages/Cart"));
 const Checkout = lazy(() => import("../pages/Checkout"));
@@ -45,6 +46,8 @@ export const Router = () => {
             }
           />
           <Route path="/cart" element={<Cart />} />
+
+          <Route path="/cartTest" element={<Abc />} />
           <Route
             path="/checkout"
             element={

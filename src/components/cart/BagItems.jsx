@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import { ItemBox } from "./ItemBox";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { EmptyCart } from "./EmptyCart";
+import cartReducer, { initialState } from "../../pages/useReducer.cart";
+import { useEffect, useReducer } from "react";
 
-export const BagItems = () => {
-  const cartProducts = useSelector((state) => state.cart.cartProducts);
-  const { orderSummary } = useSelector((state) => state.cart) || 0;
+export const BagItems = ({ cartProducts, orderSummary }) => {
+  // const cartProducts = useSelector((state) => state.cart.cartProducts);
+  // const { orderSummary } = useSelector((state) => state.cart) || 0;
 
   return (
     <>

@@ -7,7 +7,7 @@ import {
   UnorderedList,
   useToast,
 } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { numberWithCommas, setToast } from "../utils/extraFunctions";
 import { ImageModal } from "../components/description/ImageModal";
 import { SelectSize } from "../components/description/SelectSize";
@@ -19,6 +19,8 @@ import { Loading } from "../components/loading/Loading";
 import { Error } from "../components/loading/Error";
 import { addToCartRequest } from "../redux/Reducers/cartReducer";
 import { addFavourite } from "../redux/Reducers/favouriteReducer";
+import { useReducer } from "react";
+import cartReducer, { initialState } from "./useReducer.cart";
 
 function Description() {
   useEffect(() => {
@@ -33,16 +35,24 @@ function Description() {
   const token = useSelector((state) => state.auth.token);
   const toast = useToast();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const handleAddToCart = () => {
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  const handleAddToCart = (productData) => {
     if (mySize === false) {
       setToast(toast, "Please select a Size", "error");
     } else {
-      const payload = [{ ...data, size: mySize, quantity: 1 }, toast, "add"];
-
-      dispatch(addToCartRequest(payload));
-      navigate("/cart");
+      dispatch({
+        type: "addToCart",
+        payload: {
+          operation: "add",
+          data: { ...productData, size: mySize, quantity: 1 },
+          token: token,
+          toast: toast,
+          navigate: navigate,
+        },
+      });
     }
   };
 
@@ -54,7 +64,11 @@ function Description() {
       try {
         let payload = [data, token];
         let res = await dispatch(addFavourite(payload)).unwrap();
-        setToast(toast, res.message ? res.message : "Item added to the favourites", "success");
+        setToast(
+          toast,
+          res.message ? res.message : "Item added to the favourites",
+          "success"
+        );
       } catch (rejectedValueOrSerializedError) {
         if (
           rejectedValueOrSerializedError.response.data.message ===
@@ -121,7 +135,7 @@ function Description() {
         </Box>
 
         <NewButton
-          click={handleAddToCart}
+          click={() => handleAddToCart(data)}
           name={"Add to Bag"}
           bgColor={"black"}
           color={"white"}

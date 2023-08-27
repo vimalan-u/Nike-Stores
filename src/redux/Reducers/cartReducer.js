@@ -8,6 +8,7 @@ import {
 import { getCartTotal } from "../../utils/getCartTotal";
 import { setToast } from "../../utils/extraFunctions";
 import { getItemLocal, setItemLocal } from "../../utils/localstorage";
+import axios from "axios";
 
 export const addToCartRequest = createAsyncThunk(
   "cart/addToCart",
@@ -15,25 +16,28 @@ export const addToCartRequest = createAsyncThunk(
     let data = data1[0];
     let toast = data1[1];
     let operation = data1[2];
-    try {
-      let cartData = getItemLocal("cartProducts") || [];
+    let token = data1[3];
+    // try {
+    //   let cartData = getItemLocal("cartProducts") || [];
 
-      cartData = handleCartDuplicate(cartData, data, operation);
-      setItemLocal("cartProducts", cartData);
-      const discountPercent = getItemSession("discountPercent");
-      const orderSummary = getCartTotal(cartData, discountPercent);
-      setItemLocal("orderSummary", orderSummary);
-      dispatch(cartSlice.actions.addToCartSuccess({ cartData, orderSummary }));
+    //   cartData = handleCartDuplicate(cartData, data, operation);
+    //   setItemLocal("cartProducts", cartData);
+    //   const discountPercent = getItemSession("discountPercent");
+    //   const orderSummary = getCartTotal(cartData, discountPercent);
+    //   setItemLocal("orderSummary", orderSummary);
+    //   dispatch(cartSlice.actions.addToCartSuccess({ cartData, orderSummary }));
 
-      if (operation === "add") {
-        setToast(toast, "Item added to the cart", "success");
-      } else if (operation === "reduce") {
-        setToast(toast, "Item quantity reduced", "success");
-      }
-      return;
-    } catch (error) {
-      console.log("error", error);
-    }
+    //   if (operation === "add") {
+    //     setToast(toast, "Item added to the cart", "success");
+    //   } else if (operation === "reduce") {
+    //     setToast(toast, "Item quantity reduced", "success");
+    //   }
+    //   return;
+    // } catch (error) {
+    //   console.log("error", error);
+    // }
+
+    
   }
 );
 

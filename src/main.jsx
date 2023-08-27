@@ -10,10 +10,10 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import axios from 'axios'
 
-axios.defaults.baseURL = "https://nike-clone-tcmw.onrender.com";
+axios.defaults.baseURL = "http://localhost:8000";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/ecom-client">
@@ -22,6 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </ChakraProvider>
         </BrowserRouter>
       </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  // </React.StrictMode>,
 )
