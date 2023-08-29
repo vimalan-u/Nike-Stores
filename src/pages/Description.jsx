@@ -7,7 +7,7 @@ import {
   UnorderedList,
   useToast,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { numberWithCommas, setToast } from "../utils/extraFunctions";
 import { ImageModal } from "../components/description/ImageModal";
 import { SelectSize } from "../components/description/SelectSize";
@@ -17,10 +17,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loading } from "../components/loading/Loading";
 import { Error } from "../components/loading/Error";
-import { addToCartRequest } from "../redux/Reducers/cartReducer";
 import { addFavourite } from "../redux/Reducers/favouriteReducer";
-import { useReducer } from "react";
-import cartReducer, { initialState } from "./useReducer.cart";
+import { addToCartRequest } from "../redux/Reducers/cartReducer";
 
 function Description() {
   useEffect(() => {
@@ -35,24 +33,21 @@ function Description() {
   const token = useSelector((state) => state.auth.token);
   const toast = useToast();
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const handleAddToCart = (productData) => {
     if (mySize === false) {
       setToast(toast, "Please select a Size", "error");
     } else {
-      dispatch({
-        type: "addToCart",
-        payload: {
-          operation: "add",
-          data: { ...productData, size: mySize, quantity: 1 },
-          token: token,
-          toast: toast,
-          navigate: navigate,
-        },
-      });
+      let payload = [
+        "add",
+        { ...productData, size: mySize, quantity: 1 },
+        token,
+        toast,
+      ]
+      dispatch(addToCartRequest(payload));
+      navigate("/cart");
     }
   };
 

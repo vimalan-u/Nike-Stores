@@ -33,7 +33,6 @@ export default function Allorders() {
       let { data } = await axios.get("/order/getorders", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("data: ", data);
       setData(data);
       setIsLoading(false);
     } catch (error) {

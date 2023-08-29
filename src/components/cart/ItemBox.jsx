@@ -12,6 +12,7 @@ import { BagItemBtn, QuantityBtn } from "./BagItemBtn";
 import { useNavigate } from "react-router-dom";
 import {
   addToCartRequest,
+  getCartProducts,
   removeFromCartRequest,
 } from "../../redux/Reducers/cartReducer";
 import { addFavourite } from "../../redux/Reducers/favouriteReducer";
@@ -31,7 +32,7 @@ export const ItemBox = ({
   const token = useSelector((state) => state.auth.token);
 
   const handleRemoveItem = () => {
-    const payload = [index, toast];
+    const payload = [index, token, toast];
     dispatch(removeFromCartRequest(payload));
   };
 
@@ -61,7 +62,24 @@ export const ItemBox = ({
     }
   };
 
-  const handleQuantityChange = ({ target: { name } }) => {
+  const handleQuantityChange = (id, operation) => {
+    if (quantity === 1 && operation === "reduce") {
+      const payload = [id, token, toast];
+      return dispatch(removeFromCartRequest(payload));
+    }
+    const payload = [operation,
+      data,
+      token,
+      toast,
+    ];
+
+    dispatch(addToCartRequest(payload));
+    let payload1 = [token, toast]
+    dispatch(getCartProducts(payload1));
+    return
+  };
+
+  const handleQuantityChange1 = ({ target: { name } }) => {
     if (quantity === 1 && name === "reduce") {
       const payload = [index, toast];
       return dispatch(removeFromCartRequest(payload));
@@ -107,14 +125,14 @@ export const ItemBox = ({
               <QuantityBtn
                 text={"-"}
                 name={"reduce"}
-                onClick={handleQuantityChange}
+                onClick={() => handleQuantityChange(index, "reduce")}
               />
               <Text fontWeight={600}>{quantity}</Text>
 
               <QuantityBtn
                 text={"+"}
                 name={"add"}
-                onClick={handleQuantityChange}
+                onClick={() => handleQuantityChange(index, "add")}
               />
             </Flex>
 

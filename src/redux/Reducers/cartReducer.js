@@ -13,51 +13,92 @@ import axios from "axios";
 export const addToCartRequest = createAsyncThunk(
   "cart/addToCart",
   async (data1, { dispatch }) => {
-    let data = data1[0];
-    let toast = data1[1];
-    let operation = data1[2];
-    let token = data1[3];
-    // try {
-    //   let cartData = getItemLocal("cartProducts") || [];
+    let operation = data1[0];
+    let data = data1[1];
+    let token = data1[2];
+    let toast = data1[3];
 
-    //   cartData = handleCartDuplicate(cartData, data, operation);
-    //   setItemLocal("cartProducts", cartData);
-    //   const discountPercent = getItemSession("discountPercent");
-    //   const orderSummary = getCartTotal(cartData, discountPercent);
-    //   setItemLocal("orderSummary", orderSummary);
-    //   dispatch(cartSlice.actions.addToCartSuccess({ cartData, orderSummary }));
+    try {
+      let res = await axios.post(
+        "/cart/addtocart",
+        {
+          operation: operation,
+          data: data,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-    //   if (operation === "add") {
-    //     setToast(toast, "Item added to the cart", "success");
-    //   } else if (operation === "reduce") {
-    //     setToast(toast, "Item quantity reduced", "success");
-    //   }
-    //   return;
-    // } catch (error) {
-    //   console.log("error", error);
-    // }
+      setToast(
+        toast,
+        res.data.message ? res.data.message : "Something Went Worng!",
+        "success"
+      );
 
-    
+      const orderSummary = getCartTotal(res.data.products);
+      return dispatch(
+        cartSlice.actions.addToCartSuccess({
+          cartProducts: res.data.products,
+          orderSummary: orderSummary,
+        })
+      );
+    } catch (error) {
+      console.log("error", error);
+      return;
+    }
+  }
+);
+
+// Get Cart Products
+export const getCartProducts = createAsyncThunk(
+  "cart/getFromCart",
+  async (data1, { dispatch }) => {
+    let token = data1[0];
+    try {
+      let res = await axios.get("/cart/getcart", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const orderSummary = getCartTotal(res.data);
+      dispatch(
+        cartSlice.actions.getCartDataSuccess({
+          cartProducts: res.data,
+          orderSummary: orderSummary,
+        })
+      );
+      return;
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 );
 
 // Async thunk for removing an item from the cart
 export const removeFromCartRequest = createAsyncThunk(
   "cart/removeFromCart",
-  async (data1, { getState, dispatch }) => {
-    let index = data1[0];
-    let toast = data1[1];
-    const state = getState().cart;
-    const cartData = [...state.cartProducts];
-    cartData.splice(index, 1);
-    setItemLocal("cartProducts", cartData);
-    const discountPercent = getItemSession("discountPercent");
-    const orderSummary = getCartTotal(cartData, discountPercent);
-    if (orderSummary.subTotal === 0) {
-      removeItemSession("discountPercent");
+  async (data1, { dispatch }) => {
+    let id = data1[0];
+    let token = data1[1];
+    let toast = data1[2];
+    try {
+      let res = await axios.delete(`/cart/delete/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const orderSummary = getCartTotal(res.data.products);
+      dispatch(
+        cartSlice.actions.removeFromCartSuccess({
+          cartProducts: res.data.products,
+          orderSummary: orderSummary,
+        })
+      );
+      setToast(
+        toast,
+        res.data.message ? res.data.message : "Something Went Wrong",
+        "success"
+      );
+    } catch (error) {
+      console.log("error", error);
     }
-    setItemLocal("orderSummary", orderSummary);
-    dispatch(cartSlice.actions.removeFromCartSuccess({ index, orderSummary }));
   }
 );
 
@@ -111,11 +152,13 @@ export const cartSlice = createSlice({
       discount: 0,
       total: 0,
     },
+    loading: false,
+    error: false,
   },
   reducers: {
     updateCartDetails: (state) => {
-      state.cartProducts = getItemLocal("cartProducts") || [];
-      state.orderSummary = getItemLocal("orderSummary") || {
+      state.cartProducts = [];
+      state.orderSummary = {
         subTotal: 0,
         quantity: 0,
         shipping: 0,
@@ -123,19 +166,22 @@ export const cartSlice = createSlice({
         total: 0,
       };
     },
-    addToCartSuccess: (state, action) => {
-      const { cartData, orderSummary } = action.payload;
-      state.cartProducts = [...cartData];
-      state.orderSummary = { ...state.orderSummary, ...orderSummary };
-    },
-    removeFromCartSuccess: (state, action) => {
-      state.cartProducts = state.cartProducts.filter(
-        (e, i) => i !== action.payload.index
-      );
+    getCartDataSuccess: (state, action) => {
+      state.cartProducts = [...action.payload.cartProducts];
       state.orderSummary = {
         ...state.orderSummary,
         ...action.payload.orderSummary,
       };
+    },
+    addToCartSuccess: (state, action) => {
+      const { cartProducts, orderSummary } = action.payload;
+      state.cartProducts = [...cartProducts];
+      state.orderSummary = { ...state.orderSummary, ...orderSummary };
+    },
+    removeFromCartSuccess: (state, action) => {
+      const { cartProducts, orderSummary } = action.payload;
+      state.cartProducts = [...cartProducts];
+      state.orderSummary = { ...state.orderSummary, ...orderSummary };
     },
     applyCouponSuccess: (state, action) => {
       const couponDetails = action.payload;
