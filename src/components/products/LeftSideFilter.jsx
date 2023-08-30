@@ -3,10 +3,23 @@ import { setToast } from "../../utils/extraFunctions";
 import { FilterSection } from "./LeftSideFilterComponents";
 
 export const LeftSideFilter = () => {
+
+  const initFilterData = {
+    gender: [],
+    category: [],
+    size: [],
+    color: []
+  };
+
+  const [filterData, setFilterData] = useState(initFilterData); 
+
   const toast = useToast();
 
-  const handleFilterChange = () => {
-
+  const handleFilterChange = (filterType, selectedOptions) => {
+    setFilterData((prevFilterData) => ({
+      ...prevFilterData,
+      [filterType]: selectedOptions
+    }));
   };
 
   const handleFilterApply = (e) => {
