@@ -35,7 +35,7 @@ export const FilterSection = ({ title, item, change, apply }) => {
               <Text fontSize={["13px", "16px"]}>{e}</Text>
             </Checkbox>
           ))}
-          <Button
+          {/* <Button
             mt={1}
             size="sm"
             color={"white"}
@@ -49,7 +49,7 @@ export const FilterSection = ({ title, item, change, apply }) => {
             onClick={apply}
           >
             Apply
-          </Button>
+          </Button> */}
         </Stack>
       </AccordionPanel>
     </AccordionItem>

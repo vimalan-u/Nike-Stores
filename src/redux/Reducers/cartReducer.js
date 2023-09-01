@@ -45,7 +45,7 @@ export const addToCartRequest = createAsyncThunk(
       );
     } catch (error) {
       console.log("error", error);
-      return;
+      return error;
     }
   }
 );
@@ -69,6 +69,7 @@ export const getCartProducts = createAsyncThunk(
       return;
     } catch (error) {
       console.log("error", error);
+      return error;
     }
   }
 );
@@ -98,6 +99,7 @@ export const removeFromCartRequest = createAsyncThunk(
       );
     } catch (error) {
       console.log("error", error);
+      return error;
     }
   }
 );

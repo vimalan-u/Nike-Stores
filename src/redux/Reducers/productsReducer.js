@@ -17,6 +17,27 @@ export const getProductsData = createAsyncThunk(
   }
 );
 
+export const setAllFilters = createAsyncThunk(
+  "product/getFilterdProductsData",
+  async (filterData, { getState, rejectWithValue }) => {
+    try {
+      console.log("filterData", filterData);
+      const res = await axios.post("/product/getfilterdproducts", {
+        data: filterData,
+      });
+      const data = await res.data.products;
+      const backupdata = getState().backupData;
+
+      if (data.length <= 0) {
+        return backupdata;
+      }
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const productSlice = createSlice({
   name: "product",
@@ -63,6 +84,18 @@ export const productSlice = createSlice({
       state.error = false;
     });
     builder.addCase(getProductsData.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(setAllFilters.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(setAllFilters.fulfilled, (state, action) => {
+      state.loading = false;
+      state.products = action.payload;
+      state.error = false;
+    });
+    builder.addCase(setAllFilters.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });
