@@ -40,14 +40,19 @@ function Description() {
     if (mySize === false) {
       setToast(toast, "Please select a Size", "error");
     } else {
-      let payload = [
-        "add",
-        { ...productData, size: mySize, quantity: 1 },
-        token,
-        toast,
-      ]
-      dispatch(addToCartRequest(payload));
-      navigate("/cart");
+      if(token.length>0){
+        let payload = [
+          "add",
+          { ...productData, size: mySize, quantity: 1 },
+          token,
+          toast,
+        ]
+        dispatch(addToCartRequest(payload));
+        navigate("/cart");
+      }else{
+        setToast(toast, "Please Login First", "error");
+      }
+
     }
   };
 
