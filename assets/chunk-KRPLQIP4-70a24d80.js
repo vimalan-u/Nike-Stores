@@ -1,0 +1,1 @@
+import{m as c,j as p,q as m}from"./index-c328f8e5.js";var d=c(function(s,e){const{direction:r,align:i,justify:a,wrap:t,basis:l,grow:n,shrink:o,...x}=s,f={display:"flex",flexDirection:r,alignItems:i,justifyContent:a,flexWrap:t,flexBasis:l,flexGrow:n,flexShrink:o};return p.jsx(m.div,{ref:e,__css:f,...x})});d.displayName="Flex";export{d as F};
