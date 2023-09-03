@@ -31,6 +31,7 @@ export const getGender = (gender) => {
 };
 
 export const numberWithCommas = (x) => {
+  console.log("x", typeof x);
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 

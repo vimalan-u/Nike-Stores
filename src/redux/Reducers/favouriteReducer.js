@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setToast } from "../../utils/extraFunctions";
 
 const initialState = {
   loading: false,
@@ -12,13 +13,27 @@ export const addFavourite = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     let data1 = data[0];
     let token = data[1];
+    let toast = data[2];
     try {
-      const res = await axios.post(`/favourite/add/favourite`, data1, {
+      const response = await axios.post(`/favourite/add/favourite`, data1, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const resdata = await res.data;
+      const resdata = await response.data;
+      console.log("resdata: ", resdata);
+      // setToast(
+      //   toast,
+      //   resdata.message ? resdata.message : "Item added to the favourites",
+      //   "success"
+      // );
       return resdata;
     } catch (error) {
+      // setToast(
+      //   toast,
+      //   error.response.data.message
+      //     ? error.response.data.message
+      //     : "Something Went Wrong!",
+      //   "info"
+      // );
       return rejectWithValue(error.response.data);
     }
   }

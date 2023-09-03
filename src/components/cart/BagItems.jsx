@@ -3,12 +3,19 @@ import { useSelector } from "react-redux";
 import { ItemBox } from "./ItemBox";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { EmptyCart } from "./EmptyCart";
+import { Loading } from "../loading/Loading";
+import { Error } from "../loading/Error";
 
 export const BagItems = () => {
   const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const { error, loading } = useSelector((state) => state.cart);
   const { orderSummary } = useSelector((state) => state.cart) || 0;
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : error ? (
+    <Error />
+  ) : (
     <>
       <Box>
         <Button
@@ -31,7 +38,13 @@ export const BagItems = () => {
         ) : (
           <>
             {cartProducts?.map((item, index) => (
-              <ItemBox key={index} {...item} index={item.id} data={item} />
+              <ItemBox
+                key={index}
+                {...item}
+                cartProductId={item.cartProductId}
+                index={item.id}
+                data={item}
+              />
             ))}
           </>
         )}

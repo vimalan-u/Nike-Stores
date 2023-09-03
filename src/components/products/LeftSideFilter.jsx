@@ -27,9 +27,8 @@ export const LeftSideFilter = () => {
   useEffect(() => {
     // Check if it's not the initial load
     if (!initialLoadRef.current) {
-      dispatch(setAllFilters(manageFilter));
-      setToast(toast, "Filter Applied Successfully", "success", 1000);
-      console.log(manageFilter);
+      filterProducts();
+      // console.log(manageFilter);
     } else {
       // Set the initial load to false after the first render
       initialLoadRef.current = false;
@@ -47,12 +46,25 @@ export const LeftSideFilter = () => {
         [value]: checked,
       },
     });
-
   };
 
-  const handleFilterApply = (e) => {
-  };
+  const handleFilterApply = (e) => {};
 
+  const filterProducts = async () => {
+    try {
+      const response = await dispatch(setAllFilters(manageFilter)).unwrap();
+      setToast(toast, "Filter Applied Successfully", "success", 1000);
+    } catch (rejectedValueOrSerializedError) {
+      setToast(
+        toast,
+        rejectedValueOrSerializedError.message
+          ? rejectedValueOrSerializedError.message
+          : "Products not found! Change the filter or click on the reset button to see products.",
+        "info",
+      );
+      console.error(rejectedValueOrSerializedError);
+    }
+  };
 
   return (
     <Accordion allowMultiple>

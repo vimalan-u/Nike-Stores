@@ -53,23 +53,26 @@ export const addToCartRequest = createAsyncThunk(
 // Get Cart Products
 export const getCartProducts = createAsyncThunk(
   "cart/getFromCart",
-  async (data1, { dispatch }) => {
+  async (data1, { dispatch, rejectWithValue }) => {
     let token = data1[0];
     try {
       let res = await axios.get("/cart/getcart", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const orderSummary = getCartTotal(res.data);
-      dispatch(
-        cartSlice.actions.getCartDataSuccess({
-          cartProducts: res.data,
-          orderSummary: orderSummary,
-        })
-      );
-      return;
+      // dispatch(
+      //   cartSlice.actions.getCartDataSuccess({
+      //     cartProducts: res.data,
+      //     orderSummary: orderSummary,
+      //   })
+      // );
+      return {
+        cartProducts: res.data,
+        orderSummary: orderSummary,
+      };
     } catch (error) {
       console.log("error", error);
-      return error;
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -79,10 +82,11 @@ export const removeFromCartRequest = createAsyncThunk(
   "cart/removeFromCart",
   async (data1, { dispatch }) => {
     let id = data1[0];
-    let token = data1[1];
-    let toast = data1[2];
+    let cartProductId = data1[1];
+    let token = data1[2];
+    let toast = data1[3];
     try {
-      let res = await axios.delete(`/cart/delete/${id}`, {
+      let res = await axios.delete(`/cart/delete/${id}/${cartProductId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const orderSummary = getCartTotal(res.data.products);
@@ -168,13 +172,13 @@ export const cartSlice = createSlice({
         total: 0,
       };
     },
-    getCartDataSuccess: (state, action) => {
-      state.cartProducts = [...action.payload.cartProducts];
-      state.orderSummary = {
-        ...state.orderSummary,
-        ...action.payload.orderSummary,
-      };
-    },
+    // getCartDataSuccess: (state, action) => {
+    //   state.cartProducts = [...action.payload.cartProducts];
+    //   state.orderSummary = {
+    //     ...state.orderSummary,
+    //     ...action.payload.orderSummary,
+    //   };
+    // },
     addToCartSuccess: (state, action) => {
       const { cartProducts, orderSummary } = action.payload;
       state.cartProducts = [...cartProducts];
@@ -193,6 +197,25 @@ export const cartSlice = createSlice({
       const couponDetails = action.payload;
       state.orderSummary = { ...state.orderSummary, ...couponDetails };
     },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(getCartProducts.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getCartProducts.fulfilled, (state, action) => {
+      state.loading = false;
+      state.cartProducts = [...action.payload.cartProducts];
+      state.orderSummary = {
+        ...state.orderSummary,
+        ...action.payload.orderSummary,
+      };
+      state.error = false;
+    });
+    builder.addCase(getCartProducts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
   },
 });
 

@@ -6,16 +6,16 @@ import { useEffect } from "react";
 import { getCartProducts } from "../redux/Reducers/cartReducer";
 
 function Cart() {
-  const token = useSelector((state) => state.auth.token)
+  const token = useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
   const toast = useToast();
 
   useEffect(() => {
-    let payload = [token, toast]
+    let payload = [token, toast];
     dispatch(getCartProducts(payload));
   }, []);
-  
+
   return (
     <>
       <Box

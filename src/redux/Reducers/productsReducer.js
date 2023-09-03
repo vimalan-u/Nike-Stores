@@ -34,7 +34,7 @@ export const setAllFilters = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );

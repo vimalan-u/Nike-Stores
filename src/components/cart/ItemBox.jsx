@@ -1,11 +1,4 @@
-import {
-  Box,
-  Divider,
-  Flex,
-  Image,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Divider, Flex, Image, Text, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { numberWithCommas, setToast } from "../../utils/extraFunctions";
 import { BagItemBtn, QuantityBtn } from "./BagItemBtn";
@@ -25,6 +18,7 @@ export const ItemBox = ({
   quantity,
   index,
   data,
+  cartProductId,
 }) => {
   const dispatch = useDispatch();
   const toast = useToast();
@@ -32,7 +26,7 @@ export const ItemBox = ({
   const token = useSelector((state) => state.auth.token);
 
   const handleRemoveItem = () => {
-    const payload = [index, token, toast];
+    const payload = [index, cartProductId, token, toast];
     dispatch(removeFromCartRequest(payload));
   };
 
@@ -42,9 +36,13 @@ export const ItemBox = ({
       navigate("/auth");
     } else {
       try {
-        let payload = [data, token];
+        let payload = [data, token, toast];
         let res = await dispatch(addFavourite(payload)).unwrap();
-        setToast(toast, res.message ? res.message : "Item added to the favourites", "success");
+        setToast(
+          toast,
+          res.message ? res.message : "Item added to the favourites",
+          "success"
+        );
       } catch (rejectedValueOrSerializedError) {
         if (
           rejectedValueOrSerializedError.response.data.message ===
@@ -64,24 +62,21 @@ export const ItemBox = ({
 
   const handleQuantityChange = (id, operation) => {
     if (quantity === 1 && operation === "reduce") {
-      const payload = [id, token, toast];
-      return dispatch(removeFromCartRequest(payload));
+      const payload = [id, cartProductId, token, toast];
+      dispatch(removeFromCartRequest(payload));
+      return dispatch(getCartProducts(payload1));
     }
-    const payload = [operation,
-      data,
-      token,
-      toast,
-    ];
+    const payload = [operation, data, token, toast];
 
     dispatch(addToCartRequest(payload));
-    let payload1 = [token, toast]
+    let payload1 = [token, toast];
     dispatch(getCartProducts(payload1));
-    return
+    return;
   };
 
   const handleQuantityChange1 = ({ target: { name } }) => {
     if (quantity === 1 && name === "reduce") {
-      const payload = [index, toast];
+      const payload = [index, cartProductId, toast];
       return dispatch(removeFromCartRequest(payload));
     }
     const payload = [data, toast, name];

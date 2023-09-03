@@ -23,7 +23,6 @@ import {
   getProductsData,
   resetProductData,
 } from "../redux/Reducers/productsReducer";
-import { setItemSession } from "../utils/sessionStorage";
 
 function Products() {
   const { colorMode } = useColorMode();
@@ -38,6 +37,7 @@ function Products() {
   const resetFilter = () => {
     setIsFilter(!isFilter);
     dispatch(resetProductData());
+    dispatch(getProductsData());
     setToast(toast, "Filter Reset Successfully", "success");
   };
 
@@ -151,6 +151,20 @@ function Products() {
         <Box minH={"400px"}>
           {loading ? (
             <Loading />
+          ) : error === "Rejected" ? (
+            <Box
+              width={"100%"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              border={"1pxx solid red"}
+              marginTop={"20%"}
+            >
+              <Text fontSize={"20px"} fontWeight={500} textAlign={"center"}>
+                Products not found! Change the filter or click on the reset
+                button to see products.
+              </Text>
+            </Box>
           ) : error ? (
             <Error />
           ) : (
@@ -165,19 +179,15 @@ function Products() {
                 "repeat(3, 1fr)",
               ]}
             >
-              {products?.map(
-                (product, index) => (
-                  (
-                    <ProductDisplayBox
-                      {...product}
-                      key={index}
-                      onClick={() => {
-                        handleSingleProduct(product);
-                      }}
-                    />
-                  )
-                )
-              )}
+              {products?.map((product, index) => (
+                <ProductDisplayBox
+                  {...product}
+                  key={index}
+                  onClick={() => {
+                    handleSingleProduct(product);
+                  }}
+                />
+              ))}
             </Grid>
           )}
         </Box>

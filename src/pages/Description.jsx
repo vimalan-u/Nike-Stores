@@ -29,30 +29,30 @@ function Description() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
   const param = useParams();
   const token = useSelector((state) => state.auth.token);
+
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const handleAddToCart = (productData) => {
     if (mySize === false) {
       setToast(toast, "Please select a Size", "error");
     } else {
-      if(token.length>0){
+      if (token.length > 0) {
         let payload = [
           "add",
           { ...productData, size: mySize, quantity: 1 },
           token,
           toast,
-        ]
+        ];
         dispatch(addToCartRequest(payload));
         navigate("/cart");
-      }else{
+      } else {
         setToast(toast, "Please Login First", "error");
       }
-
     }
   };
 
@@ -80,7 +80,7 @@ function Description() {
             "info"
           );
         } else {
-          setToast(toast, "Something went wrong", "error");
+          setToast(toast, "Something went wrong!", "error");
         }
       }
     }

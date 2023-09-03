@@ -10,7 +10,7 @@ const Footer = () => {
     navigate("/contactus")
   }
   return (
-    <Box h={"300px"} bg={"black"} color={"white"} mt={"40px"}>
+    <Box h={"300px"} bg={"black"} color={"white"} mt={"40px"} mb={0}>
       <Grid
         h={"220px"}
         p={"10px"}
