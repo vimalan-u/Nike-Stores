@@ -2,7 +2,7 @@
 
 <h3 align="center">It's a MERN Stack E-commerce web application with all the major functionalities.</h3>
 
-<h3 align="center">Note:- This project is currently under development</h3>
+<h3 align="center">Note:- This project is currently under development.</h3>
 
 <br />
 
