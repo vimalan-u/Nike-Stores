@@ -185,7 +185,7 @@ function Home() {
       </Box>
       <Box>
         {clothData?.map((data, index) => (
-          <ClothSection handleSection={"handleSection"} key={index} {...data} />
+          <ClothSection handleSection={() => navigate(`/description/${data.id}`)} key={index} {...data} />
         ))}
       </Box>
     </Box>

@@ -6,18 +6,63 @@ import { useDispatch } from "react-redux";
 import { setAllFilters } from "../../redux/Reducers/productsReducer";
 
 export const LeftSideFilter = () => {
-  const init = {
-    Gender: { Men: false, Women: false, Kids: false },
-    Category: { Cloths: false, Shoes: false },
-    Size: { Small: false, Medium: false, Large: false },
-    Colour: {
-      Black: false,
-      White: false,
-      Green: false,
-      Red: false,
-      Mix: false,
-    },
-  };
+
+  const url = window.location.href.split('/ecom-client/')[1]
+
+  let init;
+  if (url === "men") {
+    init = {
+      Gender: { Men: true, Women: false, Kids: false },
+      Category: { Cloths: false, Shoes: false },
+      Size: { Small: false, Medium: false, Large: false },
+      Colour: {
+        Black: false,
+        White: false,
+        Green: false,
+        Red: false,
+        Mix: false,
+      },
+    };
+  } else if (url === "women") {
+    init = {
+      Gender: { Men: false, Women: true, Kids: false },
+      Category: { Cloths: false, Shoes: false },
+      Size: { Small: false, Medium: false, Large: false },
+      Colour: {
+        Black: false,
+        White: false,
+        Green: false,
+        Red: false,
+        Mix: false,
+      },
+    };
+  } else if (url === "kids") {
+    init = {
+      Gender: { Men: false, Women: false, Kids: true },
+      Category: { Cloths: false, Shoes: false },
+      Size: { Small: false, Medium: false, Large: false },
+      Colour: {
+        Black: false,
+        White: false,
+        Green: false,
+        Red: false,
+        Mix: false,
+      },
+    };
+  } else {
+    init = {
+      Gender: { Men: false, Women: false, Kids: false },
+      Category: { Cloths: false, Shoes: false },
+      Size: { Small: false, Medium: false, Large: false },
+      Colour: {
+        Black: false,
+        White: false,
+        Green: false,
+        Red: false,
+        Mix: false,
+      },
+    };
+  }
 
   // Create a ref to track the initial load
   const initialLoadRef = useRef(true);
@@ -48,7 +93,7 @@ export const LeftSideFilter = () => {
     });
   };
 
-  const handleFilterApply = (e) => {};
+  const handleFilterApply = (e) => { };
 
   const filterProducts = async () => {
     try {
@@ -68,12 +113,12 @@ export const LeftSideFilter = () => {
 
   return (
     <Accordion allowMultiple>
-      <FilterSection
+      {url === "men" || "women" || "kids" && <FilterSection
         change={handleFilterChange}
         apply={handleFilterApply}
         title={"Gender"}
         item={["Men", "Women", "Kids"]}
-      />
+      />}
       <FilterSection
         change={handleFilterChange}
         apply={handleFilterApply}

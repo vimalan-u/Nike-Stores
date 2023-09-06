@@ -46,7 +46,16 @@ function Products() {
   };
 
   useEffect(() => {
-    dispatch(getProductsData());
+    const url = window.location.href.split('/ecom-client/')[1]
+    if (url === "men") {
+      dispatch(getProductsData("men"));
+    } else if (url === "women") {
+      dispatch(getProductsData("men"));
+    } else if (url === "kids") {
+      dispatch(getProductsData("kids"));
+    } else {
+      dispatch(getProductsData("sale"));
+    }
   }, []);
 
   return (
@@ -69,10 +78,10 @@ function Products() {
             {location.pathname === "sale"
               ? "On Sale Products"
               : location.pathname === "newin"
-              ? "New Products"
-              : location.pathname === "goingout"
-              ? "Going Out Products"
-              : "Total Products"}{" "}
+                ? "New Products"
+                : location.pathname === "goingout"
+                  ? "Going Out Products"
+                  : "Total Products"}{" "}
             [{products.length}]
           </Text>
         </Center>

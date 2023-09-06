@@ -14,7 +14,7 @@ export const ClothSection = ({ heading, description, img, gender, handleSection 
             <HomeDescText>{description}</HomeDescText>
 
             <Grid
-                onClick={() => { handleSection(gender) }}
+                onClick={() => {handleSection()}}
                 gap={['10px', '10px', '10px', '10px', '20px']}
                 templateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)", "repeat(4, 1fr)", "repeat(4, 1fr)"]}
             >

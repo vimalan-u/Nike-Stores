@@ -30,9 +30,9 @@ export const Router = () => {
           <Route path="/login" element={<LoginCard />} />
           <Route path="/signup" element={<SignupCard />} />
           <Route path="/sale" element={<Products />} />
-          <Route path="/newin" element={<Products />} />
-          <Route path="/summershop" element={<Products />} />
-          <Route path="/goingout" element={<Products />} />
+          <Route path="/men" element={<Products />} />
+          <Route path="/women" element={<Products />} />
+          <Route path="/kids" element={<Products />} />
           <Route path="/products" element={<Products />} />
           <Route path="/description/:id" element={<Description />} />
           <Route path="/resetpassword" element={<ForgetPassword />} />

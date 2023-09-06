@@ -74,27 +74,21 @@ export const SideDrawer = () => {
                 />
                 <Divider />
                 <DrawerCategory
-                  name={"newin"}
-                  text={"NEW IN"}
-                  link={"/newin"}
+                  name={"men"}
+                  text={"MEN"}
+                  link={"/men"}
                 />
                 <Divider />
                 <DrawerCategory
-                  name={"newin"}
-                  text={"SUMMER SHOP"}
-                  link={"/newin"}
+                  name={"women"}
+                  text={"WOMEN"}
+                  link={"/women"}
                 />
                 <Divider />
                 <DrawerCategory
-                  name={"summershop"}
-                  text={"SUMMER SHOP"}
-                  link={"/summershop"}
-                />
-                <Divider />
-                <DrawerCategory
-                  name={"goingout"}
-                  text={"GOING OUT"}
-                  link={"/goingout"}
+                  name={"kids"}
+                  text={"KIDS"}
+                  link={"/kids"}
                 />
                 <Divider />
               </VStack>
