@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function NotFound() {
   const navigate = useNavigate();
   return (
-    <Box textAlign="center" py={10} px={6}>
+    <Box textAlign="center" height={"65vh"} py={10} px={6}>
       <Heading
         display="inline-block"
         as="h2"

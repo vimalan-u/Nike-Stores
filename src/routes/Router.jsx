@@ -72,7 +72,7 @@ export const Router = () => {
               <Contact />
             </Private>
           } />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} /> 
         </Routes>
 
         <Footer />

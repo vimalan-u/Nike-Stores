@@ -83,9 +83,14 @@ export default function LoginCard() {
     }
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
+      // window.open(
+      //   `http://localhost:8000/auth/google/callback`,
+      //   "_self"
+      // );
+
     setToast(toast, "This Functionality Is Under Development", "success");
-  }
+  };
 
   return (
     <>
@@ -200,7 +205,10 @@ export default function LoginCard() {
                   >
                     Login
                   </Button>
-                  <GoogleButton name={"Login"} handleGoogleLogin={handleGoogleLogin} />
+                  <GoogleButton
+                    name={"Login"}
+                    handleGoogleLogin={handleGoogleLogin}
+                  />
                 </Stack>
                 <Stack>
                   <Box
