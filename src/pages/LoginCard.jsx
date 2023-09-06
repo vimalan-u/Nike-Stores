@@ -17,9 +17,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoginSuccess, resetpassword } from "../redux/Reducers/authReducer";
 import { setToast } from "../utils/extraFunctions";
+import GoogleButton from "../components/googleButton/GoogleButton";
 
 export default function LoginCard() {
-  const [signUpcreds, setsignUpcreds] = useState({});
+  const [signUpcreds, setsignUpcreds] = useState({ email: "", password: "" });
   const [reset, setreset] = useState(false);
   const [resetemail, setresetemail] = useState("");
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export default function LoginCard() {
 
   const handleSubmit = async () => {
     if (signUpcreds.email === "" || signUpcreds.password === "") {
-      setToast(toast, "Please Fill All The Fields", "error");
+      return setToast(toast, "Please Fill All The Fields", "error");
     }
     try {
       const res = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
@@ -81,6 +82,10 @@ export default function LoginCard() {
       console.error(rejectedValueOrSerializedError);
     }
   };
+
+  const handleGoogleLogin = () => {
+    setToast(toast, "This Functionality Is Under Development", "success");
+  }
 
   return (
     <>
@@ -191,9 +196,11 @@ export default function LoginCard() {
                       boxShadow: "xl",
                     }}
                     onClick={handleSubmit}
+                    mb={-2}
                   >
                     Login
                   </Button>
+                  <GoogleButton name={"Login"} handleGoogleLogin={handleGoogleLogin} />
                 </Stack>
                 <Stack>
                   <Box

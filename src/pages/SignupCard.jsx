@@ -22,7 +22,7 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
-  const [signUpcreds, setsignUpcreds] = useState({});
+  const [signUpcreds, setsignUpcreds] = useState({ name: "", email: "", password: "" });
   const navigate = useNavigate();
 
   const toast = useToast();
