@@ -1,1 +1,0 @@
-import{k as i,D as t,o as r,j as c,m,q as o}from"./index-6dab30cb.js";var d=i(function(a,s){const e=t("Heading",a),{className:l,...n}=r(a);return c.jsx(m.h2,{ref:s,className:o("chakra-heading",a.className),...n,__css:e})});d.displayName="Heading";export{d as H};
