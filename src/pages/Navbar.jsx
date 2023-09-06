@@ -20,7 +20,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { nikeLogo } from "../constants/images";
-import { Category, NavIcon } from "../components/navbar/CategoryAndIcon";
+import { Category, NavIcon, SearchBox } from "../components/navbar/CategoryAndIcon";
 import { SideDrawer } from "../components/navbar/SideDrawer";
 import { FiLogOut } from "react-icons/fi";
 import Coupon from "./Coupon";
@@ -71,6 +71,17 @@ export const Navbar = () => {
 
         <Spacer />
 
+
+        {/*
+
+        //Add this search box using debouncing
+        
+        <Center position={"relative"} mr={"10px"}>
+          <SearchBox />
+        </Center> 
+        
+        */}
+
         <Center position={"relative"} mr={"10px"}>
           <Link to={"/favourite"}>
             <NavIcon iconName={RiHeartLine} />
@@ -105,7 +116,7 @@ export const Navbar = () => {
         </Center>
         {!isLargerThan800 && <Box display={["flex", "flex", "none", "none", "none"]}>
           <Center mr={"10px"}>
-            <SideDrawer/>
+            <SideDrawer />
             {/* {token ? (
             <SideDrawer handlePath={"handlePath"} />
 
