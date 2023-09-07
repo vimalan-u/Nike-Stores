@@ -84,12 +84,12 @@ export default function LoginCard() {
   };
 
   const handleGoogleLogin = async () => {
-      // window.open(
-      //   `http://localhost:8000/auth/google/callback`,
-      //   "_self"
-      // );
+      window.open(
+        `http://localhost:8000/auth/google/callback`,
+        "_self"
+      );
 
-    setToast(toast, "This Functionality Is Under Development", "success");
+    // setToast(toast, "This Functionality Is Under Development", "success");
   };
 
   return (
