@@ -92,31 +92,7 @@ export default function LoginCard() {
   //     `https://nike-clone-tcmw.onrender.com/auth/google/callback`,
   //     "_self"
   //   );
-  //   googleLoginSuccess();
   // };
-
-  // async function googleLoginSuccess() {
-  //   try {
-  //     const res = await dispatch(getGoolgeLoginSuccess()).unwrap();
-  //     console.log("res", res);
-  //     setToast(toast, "Login successfully", "success");
-  //     if (location.state && location.state.from) {
-  //       navigate(location.state.from, { replace: true });
-  //     } else {
-  //       navigate("/");
-  //     }
-  //   } catch (rejectedValueOrSerializedError) {
-  //     console.log("error", rejectedValueOrSerializedError);
-  //     setToast(
-  //       toast,
-  //       rejectedValueOrSerializedError.message
-  //         ? rejectedValueOrSerializedError.message
-  //         : "Not Authorized",
-  //       "error"
-  //     );
-  //     console.error(rejectedValueOrSerializedError);
-  //   }
-  // }
 
   return (
     <>
