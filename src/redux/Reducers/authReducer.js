@@ -30,6 +30,23 @@ export const getLoginSuccess = createAsyncThunk(
   }
 );
 
+export const getGoolgeLoginSuccess = createAsyncThunk(
+  "authentication/getGoolgeLoginSuccess",
+  async ({ rejectWithValue }) => {
+    try {
+      const url = `http://localhost:5173/ecom-client/auth/login/success`;
+      const { data } = await axios.get(url, { withCredentials: true });
+      console.log("data", data);
+      setItem("token", data.token);
+      let userdata = JSON.stringify(data.user);
+      setItem("user", userdata);
+      return resdata;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const resetpassword = createAsyncThunk(
   "authentication/resetpassword",
   async (data, { rejectWithValue }) => {
@@ -77,6 +94,23 @@ export const authSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(getLoginSuccess.rejected, (state, action) => {
+      state.isLogin = false;
+      state.error = action.payload.message;
+      state.token = "";
+      state.user = {};
+      state.loading = false;
+    });
+
+    builder.addCase(getGoolgeLoginSuccess.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getGoolgeLoginSuccess.fulfilled, (state, action) => {
+      state.token = getItem("token");
+      state.isLogin = true;
+      state.user = JSON.parse(getItem("user"));
+      state.loading = false;
+    });
+    builder.addCase(getGoolgeLoginSuccess.rejected, (state, action) => {
       state.isLogin = false;
       state.error = action.payload.message;
       state.token = "";

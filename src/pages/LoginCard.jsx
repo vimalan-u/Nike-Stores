@@ -15,7 +15,11 @@ import {
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getLoginSuccess, resetpassword } from "../redux/Reducers/authReducer";
+import {
+  getGoolgeLoginSuccess,
+  getLoginSuccess,
+  resetpassword,
+} from "../redux/Reducers/authReducer";
 import { setToast } from "../utils/extraFunctions";
 import GoogleButton from "../components/googleButton/GoogleButton";
 
@@ -83,14 +87,36 @@ export default function LoginCard() {
     }
   };
 
-  const handleGoogleLogin = async () => {
-      // window.open(
-      //   `http://localhost:8000/auth/google/callback`,
-      //   "_self"
-      // );
+  // const handleGoogleLogin = async () => {
+  //    window.open(
+  //     `https://nike-clone-tcmw.onrender.com/auth/google/callback`,
+  //     "_self"
+  //   );
+  //   googleLoginSuccess();
+  // };
 
-    setToast(toast, "This Functionality Is Under Development", "success");
-  };
+  // async function googleLoginSuccess() {
+  //   try {
+  //     const res = await dispatch(getGoolgeLoginSuccess()).unwrap();
+  //     console.log("res", res);
+  //     setToast(toast, "Login successfully", "success");
+  //     if (location.state && location.state.from) {
+  //       navigate(location.state.from, { replace: true });
+  //     } else {
+  //       navigate("/");
+  //     }
+  //   } catch (rejectedValueOrSerializedError) {
+  //     console.log("error", rejectedValueOrSerializedError);
+  //     setToast(
+  //       toast,
+  //       rejectedValueOrSerializedError.message
+  //         ? rejectedValueOrSerializedError.message
+  //         : "Not Authorized",
+  //       "error"
+  //     );
+  //     console.error(rejectedValueOrSerializedError);
+  //   }
+  // }
 
   return (
     <>
@@ -205,10 +231,10 @@ export default function LoginCard() {
                   >
                     Login
                   </Button>
-                  <GoogleButton
+                  {/* <GoogleButton
                     name={"Login"}
                     handleGoogleLogin={handleGoogleLogin}
-                  />
+                  /> */}
                 </Stack>
                 <Stack>
                   <Box

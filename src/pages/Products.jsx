@@ -28,6 +28,7 @@ function Products() {
   const { colorMode } = useColorMode();
   const [isFilter, setIsFilter] = useState(true);
   const { products, loading, error } = useSelector((state) => state.product);
+  const url = window.location.href.split('/ecom-client/')[1]
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -46,17 +47,16 @@ function Products() {
   };
 
   useEffect(() => {
-    const url = window.location.href.split('/ecom-client/')[1]
     if (url === "men") {
       dispatch(getProductsData("men"));
     } else if (url === "women") {
-      dispatch(getProductsData("men"));
+      dispatch(getProductsData("women"));
     } else if (url === "kids") {
       dispatch(getProductsData("kids"));
     } else {
       dispatch(getProductsData("sale"));
     }
-  }, []);
+  }, [url]);
 
   return (
     <>

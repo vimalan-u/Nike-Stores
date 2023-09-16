@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 import { setAllFilters } from "../../redux/Reducers/productsReducer";
 
 export const LeftSideFilter = () => {
-
-  const url = window.location.href.split('/ecom-client/')[1]
+  const url = window.location.href.split("/ecom-client/")[1];
+  console.log("url: ", url);
 
   let init;
   if (url === "men") {
@@ -93,7 +93,7 @@ export const LeftSideFilter = () => {
     });
   };
 
-  const handleFilterApply = (e) => { };
+  const handleFilterApply = (e) => {};
 
   const filterProducts = async () => {
     try {
@@ -105,7 +105,7 @@ export const LeftSideFilter = () => {
         rejectedValueOrSerializedError.message
           ? rejectedValueOrSerializedError.message
           : "Products not found! Change the filter or click on the reset button to see products.",
-        "info",
+        "info"
       );
       console.error(rejectedValueOrSerializedError);
     }
@@ -113,12 +113,14 @@ export const LeftSideFilter = () => {
 
   return (
     <Accordion allowMultiple>
-      {url === "men" || "women" || "kids" && <FilterSection
-        change={handleFilterChange}
-        apply={handleFilterApply}
-        title={"Gender"}
-        item={["Men", "Women", "Kids"]}
-      />}
+      {(url === "sale") && (
+        <FilterSection
+          change={handleFilterChange}
+          apply={handleFilterApply}
+          title={"Gender"}
+          item={["Men", "Women", "Kids"]}
+        />
+      )}
       <FilterSection
         change={handleFilterChange}
         apply={handleFilterApply}
