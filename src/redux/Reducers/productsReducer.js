@@ -21,7 +21,7 @@ export const setAllFilters = createAsyncThunk(
   "product/getFilterdProductsData",
   async (filterData, { getState, rejectWithValue }) => {
     try {
-      console.log("filterData", filterData);
+      // console.log("filterData", filterData);
       const res = await axios.post("/product/getfilterdproducts", {
         data: filterData,
       });

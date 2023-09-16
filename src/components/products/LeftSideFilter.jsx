@@ -7,7 +7,7 @@ import { setAllFilters } from "../../redux/Reducers/productsReducer";
 
 export const LeftSideFilter = () => {
   const url = window.location.href.split("/ecom-client/")[1];
-  console.log("url: ", url);
+  // console.log("url: ", url);
 
   let init;
   if (url === "men") {

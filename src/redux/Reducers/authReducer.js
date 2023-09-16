@@ -36,7 +36,7 @@ export const getGoolgeLoginSuccess = createAsyncThunk(
     try {
       const url = `http://localhost:5173/ecom-client/auth/login/success`;
       const { data } = await axios.get(url, { withCredentials: true });
-      console.log("data", data);
+      // console.log("data", data);
       setItem("token", data.token);
       let userdata = JSON.stringify(data.user);
       setItem("user", userdata);
