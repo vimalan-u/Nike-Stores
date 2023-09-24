@@ -81,3 +81,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* YourComponent.css */
+
+/* Add a class for the glossy text */
+.glossy-text {
+  position: relative;
+  display: inline-block;
+  font-size: 20px; /* Adjust the font size as needed */
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Create the glossy effect using ::before pseudo-element */
+.glossy-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.8)
+  ); /* Adjust the gradient as needed */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Change the text color to glossy black on hover */
+.glossy-text:hover::before {
+  opacity: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1)
+  ); /* Glossy black color */
+}

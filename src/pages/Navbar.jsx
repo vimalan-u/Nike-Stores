@@ -20,32 +20,39 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { nikeLogo } from "../constants/images";
-import { Category, NavIcon, SearchBox } from "../components/navbar/CategoryAndIcon";
+import {
+  Category,
+  NavIcon,
+  SearchBox,
+} from "../components/navbar/CategoryAndIcon";
 import { SideDrawer } from "../components/navbar/SideDrawer";
 import { FiLogOut } from "react-icons/fi";
 import Coupon from "./Coupon";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart2, BsFillCaretDownFill } from "react-icons/bs";
-import { useMediaQuery } from '@chakra-ui/react'
+import { useMediaQuery } from "@chakra-ui/react";
 import { removeItem } from "../utils/cookiestorage";
 import { logoutApi } from "../redux/Reducers/authReducer";
 import { AiOutlineUserAdd } from "react-icons/ai";
-
+import { useEffect } from "react";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
   const { orderSummary } = useSelector((state) => state.cart) || 0;
   const user = useSelector((state) => state.auth.user) || "Test";
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [isLargerThan800] = useMediaQuery('(min-width: 720px)')
+  const [isLargerThan800] = useMediaQuery("(min-width: 420px)");
+  const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
+
+  useEffect(() => {}, []);
 
   const handleLogoutBtn = () => {
-    removeItem("token")
-    removeItem("user")
-    dispatch(logoutApi())
-    navigate("/")
+    removeItem("token");
+    removeItem("user");
+    dispatch(logoutApi());
+    navigate("/");
   };
   return (
     <>
@@ -61,16 +68,11 @@ export const Navbar = () => {
         <Box display={["none", "none", "flex", "flex", "flex"]}>
           <Category name={"sale"} text={"SALE"} link={"/sale"} />
           <Category name={"men"} text={"MEN"} link={"/men"} />
-          <Category
-            name={"women"}
-            text={"WOMEN"}
-            link={"/women"}
-          />
+          <Category name={"women"} text={"WOMEN"} link={"/women"} />
           <Category name={"kids"} text={"KIDS"} link={"/kids"} />
         </Box>
 
         <Spacer />
-
 
         {/*
 
@@ -82,13 +84,13 @@ export const Navbar = () => {
         
         */}
 
-        <Center position={"relative"} mr={"10px"}>
+        <Center position={"relative"} mt={isLargerThan780 ? 2 : 0} mr={"10px"}>
           <Link to={"/favourite"}>
             <NavIcon iconName={RiHeartLine} />
           </Link>
         </Center>
 
-        <Center position={"relative"} mr={"10px"}>
+        <Center position={"relative"} mt={isLargerThan780 ? 2 : 0} mr={"10px"}>
           <Link to={"/cart"}>
             <NavIcon iconName={RiShoppingBagLine} />
             <Box
@@ -114,10 +116,11 @@ export const Navbar = () => {
             </Box>
           </Link>
         </Center>
-        {!isLargerThan800 && <Box display={["flex", "flex", "none", "none", "none"]}>
-          <Center mr={"10px"}>
-            <SideDrawer />
-            {/* {token ? (
+        {!isLargerThan800 && (
+          <Box display={["flex", "flex", "none", "none", "none"]}>
+            <Center mr={"10px"}>
+              <SideDrawer />
+              {/* {token ? (
             <SideDrawer handlePath={"handlePath"} />
 
             ) : (
@@ -137,99 +140,151 @@ export const Navbar = () => {
                 </Flex>
               </Button>
             )} */}
-          </Center>
-        </Box>}
+            </Center>
+          </Box>
+        )}
 
-        {isLargerThan800 && <Flex alignItems={"center"} marginTop={"-10px"}>
-          <Menu>
-            {token ? (
-              <MenuButton
-                as={Button}
-                transition="all 0.3s"
-                _hover={{
-                  bg: "transparent",
-                }}
-                _focus={{ boxShadow: "none" }}
-                size="sm"
-                bg={"transparent"}
-                rightIcon={<BsFillCaretDownFill />}
-              >
-                {user.firstName}
-              </MenuButton>
-            ) : (
-              <Button
-                size="sm"
-                bg={"transparent"}
-                _hover={{
-                  bg: "transparent",
-                }}
-                transition="all 0.3s"
-                _focus={{ boxShadow: "none" }}
-                borderRadius={10}
-              >
-                <Flex flexDirection={"row"} gap={"5px"}>
-                  <Text onClick={() => navigate("/login")}>Login</Text>|
-                  <Text onClick={() => navigate("/signup")}>Sign Up</Text>
-                </Flex>
-              </Button>
-            )}
-            {
-              <MenuList zIndex={2}>
-                <Flex flexDirection={"column"} gap={"5px"} fontSize={"17px"}>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/favourite");
+        {isLargerThan800 && (
+          <Flex
+            _hover={{
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              border: "1px solid #ccc",
+              borderRadius: "10px",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+              textAlign: "center",
+              transition: "color 0.5s ease-out",
+              fontWeight: "bold",
+            }}
+            backgroundColor={"rgba(255, 255, 255, 0.07)"}
+            border={"1px solid #ccc"}
+            borderRadius={"10px"}
+            alignItems={"center"}
+            mt={isLargerThan780 ? 1 : 0}
+          >
+            <Menu>
+              {token ? (
+                <MenuButton
+                  as={Button}
+                  transition="all 0.7s"
+                  _hover={{
+                    bg: "transparent",
+                    textColor: "rgba(0, 0, 0, 1.1)",
+                    transition: "textColor 0.7s ease-out",
+                    fontWeight: "bold",
+                  }}
+                  _focus={{ boxShadow: "none" }}
+                  size="sm"
+                  bg={"transparent"}
+                  rightIcon={<BsFillCaretDownFill />}
+                >
+                  <Text
+                    _hover={{
+                      textColor: "rgba(0, 0, 0, 1.1)",
+                      transition: "textColor 0.5s ease-out",
+                      fontSize: "22px",
+                      fontWeight: "bold",
                     }}
-                    icon={<FaRegHeart />}
                   >
-                    Wishlist
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/orders");
-                    }}
-                    icon={<RiLuggageCartLine />}
-                  >
-                    Orders
-                  </MenuItem>
+                    {user.firstName}
+                  </Text>
+                </MenuButton>
+              ) : (
+                <Button
+                  size="sm"
+                  bg={"transparent"}
+                  _hover={{
+                    bg: "transparent",
+                  }}
+                  transition="all 0.3s"
+                  _focus={{ boxShadow: "none" }}
+                  borderRadius={10}
+                >
+                  <Flex gap={"5px"}>
+                    <Text
+                      _hover={{
+                        color: "rgba(0, 0, 0, 1.1)",
+                        transition: "color 0.5s ease-out",
+                      }}
+                      fontWeight="bold"
+                      flexDirection={"row"}
+                      onClick={() => navigate("/login")}
+                    >
+                      Login
+                    </Text>
+                    |
+                    <Text
+                      _hover={{
+                        color: "rgba(0, 0, 0, 1.1)",
+                        transition: "color 0.5s ease-out",
+                      }}
+                      fontWeight="bold"
+                      flexDirection={"row"}
+                      onClick={() => navigate("/signup")}
+                    >
+                      Sign Up
+                    </Text>
+                  </Flex>
+                </Button>
+              )}
+              {
+                <MenuList zIndex={2}>
+                  <Flex flexDirection={"column"} gap={"5px"} fontSize={"17px"}>
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/favourite");
+                      }}
+                      icon={<FaRegHeart />}
+                    >
+                      Wishlist
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/orders");
+                      }}
+                      icon={<RiLuggageCartLine />}
+                    >
+                      Orders
+                    </MenuItem>
 
-                  <Coupon />
+                    <Coupon />
 
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/cart");
-                    }}
-                    icon={<BsCart2 />}
-                  >
-                    Cart
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/userprofile");
-                    }}
-                    icon={<AiOutlineUserAdd />}
-                  >
-                    User Profile
-                  </MenuItem>
-                  <Divider />
-                  {
-                    token ?
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/cart");
+                      }}
+                      icon={<BsCart2 />}
+                    >
+                      Cart
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/userprofile");
+                      }}
+                      icon={<AiOutlineUserAdd />}
+                    >
+                      User Profile
+                    </MenuItem>
+                    <Divider />
+                    {token ? (
                       <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
                         Logout
                       </MenuItem>
-                      :
-                      (
-                        <>
-                          <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
-                          <MenuItem onClick={() => navigate("/signup")}>Sign Up</MenuItem>
-                        </>
-                      )
-                  }
-                </Flex>
-              </MenuList>
-            }
-          </Menu>
-        </Flex>}
+                    ) : (
+                      <>
+                        <MenuItem onClick={() => navigate("/login")}>
+                          Login
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate("/signup")}>
+                          Sign Up
+                        </MenuItem>
+                      </>
+                    )}
+                  </Flex>
+                </MenuList>
+              }
+            </Menu>
+          </Flex>
+        )}
       </Flex>
       <Box h={["10px", "20px", "30px", "40px", "40px"]}></Box>
     </>

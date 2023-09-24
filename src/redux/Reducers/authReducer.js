@@ -12,6 +12,7 @@ const initialState = {
   loading: true,
   resetemail: "",
   dark: false,
+  isAdmin: false,
 };
 
 export const getLoginSuccess = createAsyncThunk(
@@ -92,6 +93,7 @@ export const authSlice = createSlice({
       state.isLogin = true;
       state.user = JSON.parse(getItem("user"));
       state.loading = false;
+      state.isAdmin = !!action.payload.user.isAdmin === true ? true : false;
     });
     builder.addCase(getLoginSuccess.rejected, (state, action) => {
       state.isLogin = false;

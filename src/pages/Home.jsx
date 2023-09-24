@@ -1,4 +1,12 @@
-import { Box, Button, Heading, HStack, Image, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  HStack,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,28 +14,19 @@ import { ClothSection } from "../components/home/ClothSection";
 import { Error } from "../components/loading/Error.jsx";
 import { Loading } from "../components/loading/Loading.jsx";
 import { getClothData } from "../redux/Reducers/homeReducer";
+import HomeProductLoader from "../components/Loaders/HomeProductLoader";
 
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error, clothData } = useSelector((state) => state.home);
-  const [isLargerThan420] = useMediaQuery('(min-width: 420px)')
+  const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
   useEffect(() => {
     dispatch(getClothData());
   }, []);
 
-  return loading ? (
-    <Loading />
-  ) : error ? (
-    <Error />
-  ) : (
+  return (
     <Box width={"100%"}>
-      {isLargerThan420 && <Box width={"89%"} m="auto" objectFit={"contain"}>
-        <Image
-          src="https://media.boohoo.com/i/boohooamplience/080823-LUCIO-AMMEND-DESK?$homesplash_desktop_full$&_1x$&fmt=webp"
-          alt="banner"
-        />
-      </Box>}
       <Box
         width={"89%"}
         m={"auto"}
@@ -48,8 +47,15 @@ function Home() {
           </Heading>
           <Text>UP TO 70% OFF EVERYTHING!</Text>
         </Box>
-        <HStack mt={[3, 3, 4, 4, 5]}>
+        <HStack
+          width={"75%"}
+          align={"center"}
+          justify={"space-around"}
+          mt={[3, 3, 4, 4, 5]}
+          gap={10}
+        >
           <Button
+            width={"35%"}
             bgColor={"black"}
             color={"white"}
             p={"6px 20px"}
@@ -63,6 +69,7 @@ function Home() {
             Shop
           </Button>
           <Button
+            width={"35%"}
             bgColor={"black"}
             color={"white"}
             p={"6px 20px"}
@@ -118,8 +125,26 @@ function Home() {
             flexDirection={"column"}
             justifyContent={"flex-end"}
           >
-            <Text>{"Valentine's Day Looks"}</Text>
-            <Text fontSize={"24px"}>Partner Up and Reach those Goals</Text>
+            <Text
+              _hover={{
+                color: "rgba(0, 0, 0, 1.1)",
+                transition: "color 0.5s ease-out",
+              }}
+              fontWeight="bold"
+            >
+              {"Valentine's Day Looks"}
+            </Text>
+
+            <Text
+              _hover={{
+                color: "rgba(0, 0, 0, 1.1)",
+                transition: "color 0.5s ease-out",
+              }}
+              fontWeight="bold"
+              fontSize={"24px"}
+            >
+              Partner Up and Reach those Goals
+            </Text>
             <HStack mt={5}>
               <Button
                 fontWeight={0}
@@ -166,8 +191,25 @@ function Home() {
             flexDirection={"column"}
             justifyContent={"flex-end"}
           >
-            <Text>Early Access</Text>
-            <Text fontSize={"24px"}>Top Selling</Text>
+            <Text
+              _hover={{
+                color: "rgba(0, 0, 0, 1.1)",
+                transition: "color 0.5s ease-out",
+              }}
+              fontWeight="bold"
+            >
+              Early Access
+            </Text>
+            <Text
+              _hover={{
+                color: "rgba(0, 0, 0, 1.1)",
+                transition: "color 0.5s ease-out",
+              }}
+              fontWeight="bold"
+              fontSize={"24px"}
+            >
+              Top Selling
+            </Text>
             <HStack mt={5}>
               <Button
                 fontWeight={0}
@@ -184,9 +226,19 @@ function Home() {
         </Box>
       </Box>
       <Box>
-        {clothData?.map((data, index) => (
-          <ClothSection handleSection={() => navigate(`/description/${data.id}`)} key={index} {...data} />
-        ))}
+        {clothData?.map((data, index) =>
+          loading ? (
+            <HomeProductLoader />
+          ) : error ? (
+            <Error />
+          ) : (
+            <ClothSection
+              handleSection={() => navigate(`/description/${data.id}`)}
+              key={index}
+              {...data}
+            />
+          )
+        )}
       </Box>
     </Box>
   );
