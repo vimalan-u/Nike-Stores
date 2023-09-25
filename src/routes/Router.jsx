@@ -20,6 +20,7 @@ const UserPage = lazy(() => import("../pages/UserPage"));
 const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
+const AdminLayout = lazy(() => import("../srcADMIN/pages/AdminLayout"));
 const AdminDashboard = lazy(() => import("../srcADMIN/pages/Dashboard.admin"));
 const AdminAllUsers = lazy(() => import("../srcADMIN/pages/AllUsers.admin"));
 const AdminProfile = lazy(() => import("../srcADMIN/pages/Profile.admin"));
@@ -35,14 +36,26 @@ const AdminUpdateProduct = lazy(() =>
 
 export const Router = () => {
   const location = useLocation();
-  // Determine which navbar component to render based on the current path
   console.log("location.pathname", location.pathname);
   const NavbarComponent =
     location.pathname === "/" ? <NavbarFetureimages /> : <Navbar />;
+
+  const isAdminRoute =
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/admindashboard" ||
+    location.pathname === "/adminallusers" ||
+    location.pathname === "/adminprofile" ||
+    location.pathname === "/adminallproducts" ||
+    location.pathname === "/adminaddproducts" ||
+    location.pathname === "/adminaupdateproduct";
   return (
     <ErrorBoundary>
       <Suspense fallback={<div>Loading...</div>}>
-        {NavbarComponent}
+        {isAdminRoute ? null : location.pathname === "/" ? (
+          <NavbarFetureimages />
+        ) : (
+          <Navbar />
+        )}
 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -103,7 +116,9 @@ export const Router = () => {
             path="/admindashboard"
             element={
               <PrivateAdmin>
-                <AdminDashboard />
+                <AdminLayout>
+                  <AdminDashboard />
+                </AdminLayout>
               </PrivateAdmin>
             }
           />
@@ -112,7 +127,9 @@ export const Router = () => {
             path="/adminallusers"
             element={
               <PrivateAdmin>
-                <AdminAllUsers />
+                <AdminLayout>
+                  <AdminAllUsers />
+                </AdminLayout>
               </PrivateAdmin>
             }
           />
@@ -121,7 +138,9 @@ export const Router = () => {
             path="/adminprofile"
             element={
               <PrivateAdmin>
-                <AdminProfile />
+                <AdminLayout>
+                  <AdminProfile />
+                </AdminLayout>
               </PrivateAdmin>
             }
           />
@@ -129,7 +148,9 @@ export const Router = () => {
             path="/adminallproducts"
             element={
               <PrivateAdmin>
-                <AdminAllProducts />
+                <AdminLayout>
+                  <AdminAllProducts />
+                </AdminLayout>
               </PrivateAdmin>
             }
           />
@@ -137,7 +158,9 @@ export const Router = () => {
             path="/adminaddproducts"
             element={
               <PrivateAdmin>
-                <AdminAddProducts />
+                <AdminLayout>
+                  <AdminAddProducts />
+                </AdminLayout>
               </PrivateAdmin>
             }
           />
@@ -145,7 +168,9 @@ export const Router = () => {
             path="/adminaupdateproduct"
             element={
               <PrivateAdmin>
-                <AdminUpdateProduct />
+                <AdminLayout>
+                  <AdminUpdateProduct />
+                </AdminLayout>
               </PrivateAdmin>
             }
           />
