@@ -1,16 +1,18 @@
 import { Center, Icon, Text, useColorMode, Box, Input } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from 'react-icons/ai';
 
 
 export const Category = ({ text, link, name }) => {
     const { colorMode } = useColorMode();
+    const location = useLocation()
     return (
         <Center
             h={'60px'}
             cursor={'pointer'}
             paddingX={'15px'}
-            _hover={{ borderBottom: `2px solid ${colorMode === 'light' ? 'black' : 'white'}` }}
+            _hover={{ borderBottom: location.pathname === "/" ? "2px solid white" : `2px solid ${colorMode === 'light' ? 'black' : 'white'}` }}
+            fontSize={"17px"}
         >
             <Link
                 to={link}
@@ -38,11 +40,13 @@ export const DrawerCategory = ({ text, link, name }) => {
 
 
 export const NavIcon = ({ iconName }) => {
+    const location = useLocation()
     return (
         <Icon
             as={iconName}
             w={'28px'}
             h={'28px'}
+            color={location.pathname === "/" && "white"}
             mr={'10px'}
         />
     );

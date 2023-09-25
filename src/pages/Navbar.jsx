@@ -18,7 +18,7 @@ import {
   RiShoppingBagLine,
 } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { nikeLogo } from "../constants/images";
 import {
   Category,
@@ -38,6 +38,7 @@ import { useEffect } from "react";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { token } = useSelector((state) => state.auth);
   const { orderSummary } = useSelector((state) => state.cart) || 0;
   const user = useSelector((state) => state.auth.user) || "Test";
@@ -46,7 +47,7 @@ export const Navbar = () => {
   const [isLargerThan800] = useMediaQuery("(min-width: 420px)");
   const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const handleLogoutBtn = () => {
     removeItem("token");
@@ -65,7 +66,7 @@ export const Navbar = () => {
 
         <Spacer />
 
-        <Box display={["none", "none", "flex", "flex", "flex"]}>
+        <Box display={["none", "none", "flex", "flex", "flex"]} fontWeight={"bold"} textColor={location.pathname === "/" && "white"}>
           <Category name={"sale"} text={"SALE"} link={"/sale"} />
           <Category name={"men"} text={"MEN"} link={"/men"} />
           <Category name={"women"} text={"WOMEN"} link={"/women"} />
@@ -90,7 +91,7 @@ export const Navbar = () => {
           </Link>
         </Center>
 
-        <Center position={"relative"} mt={isLargerThan780 ? 2 : 0} mr={"10px"}>
+        <Center position={"relative"} mt={isLargerThan780 ? 2 : 0} mr={"22px"}>
           <Link to={"/cart"}>
             <NavIcon iconName={RiShoppingBagLine} />
             <Box
@@ -116,35 +117,15 @@ export const Navbar = () => {
             </Box>
           </Link>
         </Center>
-        {!isLargerThan800 && (
+        {!isLargerThan780 && (
           <Box display={["flex", "flex", "none", "none", "none"]}>
             <Center mr={"10px"}>
               <SideDrawer />
-              {/* {token ? (
-            <SideDrawer handlePath={"handlePath"} />
-
-            ) : (
-              <Button
-                size="sm"
-                bg={"transparent"}
-                _hover={{
-                  bg: "transparent",
-                }}
-                transition="all 0.3s"
-                _focus={{ boxShadow: "none" }}
-                borderRadius={10}
-              >
-                <Flex flexDirection={"row"} gap={"5px"}>
-                  <Text onClick={() => navigate("/login")}>Login</Text>|
-                  <Text onClick={() => navigate("/signup")}>Sign Up</Text>
-                </Flex>
-              </Button>
-            )} */}
             </Center>
           </Box>
         )}
 
-        {isLargerThan800 && (
+        {isLargerThan780 && (
           <Flex
             _hover={{
               backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -176,6 +157,9 @@ export const Navbar = () => {
                   size="sm"
                   bg={"transparent"}
                   rightIcon={<BsFillCaretDownFill />}
+                  fontWeight={"bold"}
+                  textColor={location.pathname === "/" && "white"}
+                  _active={{ background: "transparent" }}
                 >
                   <Text
                     _hover={{
