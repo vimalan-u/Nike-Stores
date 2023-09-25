@@ -127,33 +127,13 @@ const NavbarFetureimages = () => {
             </Link>
           </Center>
 
-          {!isLargerThan420 && (
+          {!isLargerThan780 && (
             <Box
               mt={isLargerThan780 ? 2 : 3}
               display={["flex", "flex", "none", "none", "none"]}
             >
               <Center mr={"5px"}>
                 <SideDrawer />
-                {/* {token ? (
-            <SideDrawer handlePath={"handlePath"} />
-
-            ) : (
-              <Button
-                size="sm"
-                bg={"transparent"}
-                _hover={{
-                  bg: "transparent",
-                }}
-                transition="all 0.3s"
-                _focus={{ boxShadow: "none" }}
-                borderRadius={10}
-              >
-                <Flex flexDirection={"row"} gap={"5px"}>
-                  <Text onClick={() => navigate("/login")}>Login</Text>|
-                  <Text onClick={() => navigate("/signup")}>Sign Up</Text>
-                </Flex>
-              </Button>
-            )} */}
               </Center>
             </Box>
           )}
