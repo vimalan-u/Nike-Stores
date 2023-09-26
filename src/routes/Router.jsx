@@ -20,7 +20,7 @@ const UserPage = lazy(() => import("../pages/UserPage"));
 const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
-const AdminLayout = lazy(() => import("../srcADMIN/pages/AdminLayout"));
+const AdminSidebarLayout = lazy(() => import("../srcADMIN/pages/AdminSidebarLayout"));
 const AdminDashboard = lazy(() => import("../srcADMIN/pages/Dashboard.admin"));
 const AdminAllUsers = lazy(() => import("../srcADMIN/pages/AllUsers.admin"));
 const AdminProfile = lazy(() => import("../srcADMIN/pages/Profile.admin"));
@@ -116,9 +116,9 @@ export const Router = () => {
             path="/admindashboard"
             element={
               <PrivateAdmin>
-                <AdminLayout>
+                <AdminSidebarLayout>
                   <AdminDashboard />
-                </AdminLayout>
+                </AdminSidebarLayout>
               </PrivateAdmin>
             }
           />
@@ -127,9 +127,9 @@ export const Router = () => {
             path="/adminallusers"
             element={
               <PrivateAdmin>
-                <AdminLayout>
+                <AdminSidebarLayout>
                   <AdminAllUsers />
-                </AdminLayout>
+                </AdminSidebarLayout>
               </PrivateAdmin>
             }
           />
@@ -138,9 +138,9 @@ export const Router = () => {
             path="/adminprofile"
             element={
               <PrivateAdmin>
-                <AdminLayout>
+                <AdminSidebarLayout>
                   <AdminProfile />
-                </AdminLayout>
+                </AdminSidebarLayout>
               </PrivateAdmin>
             }
           />
@@ -148,9 +148,9 @@ export const Router = () => {
             path="/adminallproducts"
             element={
               <PrivateAdmin>
-                <AdminLayout>
+                <AdminSidebarLayout>
                   <AdminAllProducts />
-                </AdminLayout>
+                </AdminSidebarLayout>
               </PrivateAdmin>
             }
           />
@@ -158,9 +158,9 @@ export const Router = () => {
             path="/adminaddproducts"
             element={
               <PrivateAdmin>
-                <AdminLayout>
+                <AdminSidebarLayout>
                   <AdminAddProducts />
-                </AdminLayout>
+                </AdminSidebarLayout>
               </PrivateAdmin>
             }
           />
@@ -168,9 +168,9 @@ export const Router = () => {
             path="/adminaupdateproduct"
             element={
               <PrivateAdmin>
-                <AdminLayout>
+                <AdminSidebarLayout>
                   <AdminUpdateProduct />
-                </AdminLayout>
+                </AdminSidebarLayout>
               </PrivateAdmin>
             }
           />

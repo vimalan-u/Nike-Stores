@@ -50,7 +50,6 @@ function Home() {
         <HStack
           width={["90%", "90%", "80%", "80%", "70%"]}
           align={"center"}
-          border={"1px solid red"}
           justifyContent={["flex-start", "flex-start", "flex-start", "space-around", "space-around"]}
           mt={[3, 3, 4, 4, 5]}
           gap={10}

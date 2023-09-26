@@ -30,6 +30,7 @@ import {
   FiBell,
   FiChevronDown,
   FiUsers,
+  FiLogOut,
 } from "react-icons/fi";
 import { GiCaptainHatProfile, GiUpgrade } from "react-icons/gi";
 import { BiCategoryAlt, BiAddToQueue } from "react-icons/bi";
@@ -64,15 +65,15 @@ const SidebarContent = ({ onClose, ...rest }) => {
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Box w={"80px"} fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          <Link to={"/"}>
+          <Link to={"/admindashboard"}>
             <Image src={nikeLogo} />
           </Link>
         </Box>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <Link to={link.to}>
-          <NavItem key={link.name} icon={link.icon}>
+        <Link key={link.name} to={link.to}>
+          <NavItem icon={link.icon}>
             {link.name}
           </NavItem>
         </Link>
@@ -254,7 +255,7 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                 All Users
               </MenuItem>
               <MenuDivider />
-              <MenuItem onClick={handleLogoutBtn}>Sign out</MenuItem>
+              <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
@@ -263,7 +264,7 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
   );
 };
 
-const AdminSidebar = ({ children }) => {
+const AdminSidebarLayout = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { token } = useSelector((state) => state.auth);
   const user = useSelector((state) => state.auth.user) || "Admin";
@@ -309,4 +310,4 @@ const AdminSidebar = ({ children }) => {
   );
 };
 
-export default AdminSidebar;
+export default AdminSidebarLayout;
