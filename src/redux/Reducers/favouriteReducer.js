@@ -19,21 +19,21 @@ export const addFavourite = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
       const resdata = await response.data;
-      // console.log("resdata: ", resdata);
-      // setToast(
-      //   toast,
-      //   resdata.message ? resdata.message : "Item added to the favourites",
-      //   "success"
-      // );
+      console.log("resdata: ", resdata);
+      setToast(
+        toast,
+        resdata.message ? resdata.message : "Item added to the favourites",
+        "success"
+      );
       return resdata;
     } catch (error) {
-      // setToast(
-      //   toast,
-      //   error.response.data.message
-      //     ? error.response.data.message
-      //     : "Something Went Wrong!",
-      //   "info"
-      // );
+      setToast(
+        toast,
+        error.response.data.message
+          ? error.response.data.message
+          : "Something Went Wrong!",
+        "info"
+      );
       return rejectWithValue(error.response.data);
     }
   }
