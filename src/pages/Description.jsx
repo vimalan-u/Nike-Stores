@@ -1,10 +1,14 @@
 import {
+  Badge,
   Box,
+  Circle,
   Divider,
   Grid,
   ListItem,
   Text,
   UnorderedList,
+  useColorModeValue,
+  useMediaQuery,
   useToast,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +23,7 @@ import { Loading } from "../components/loading/Loading";
 import { Error } from "../components/loading/Error";
 import { addFavourite } from "../redux/Reducers/favouriteReducer";
 import { addToCartRequest } from "../redux/Reducers/cartReducer";
+import ReviewBox from "../components/products/ReviewBox";
 
 function Description() {
   useEffect(() => {
@@ -29,6 +34,7 @@ function Description() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isLargerThan995] = useMediaQuery("(min-width: 995px)");
 
   const param = useParams();
   const token = useSelector((state) => state.auth.token);
@@ -162,6 +168,20 @@ function Description() {
           <ListItem>Colour: {data?.color}</ListItem>
           <ListItem>Rating: {data?.rating}</ListItem>
         </UnorderedList>
+
+        {isLargerThan995 && <>
+          <Divider my={"18px"} />
+
+          <Box display="flex" alignItems="baseline" mb={[5, 5, 5, 3, 3]}>
+            <Badge rounded="full" px="2" fontSize="0.8em" color="#303030">
+              <Text fontSize={"16px"} color={useColorModeValue('gray.800', 'white')}>
+                Customer Reviews
+              </Text>
+            </Badge>
+          </Box>
+
+          <ReviewBox />
+        </>}
       </Box>
     </Grid>
   );

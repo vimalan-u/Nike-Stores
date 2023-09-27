@@ -15,20 +15,42 @@ function HomeProductLoader() {
         ]}
         mt={3}
       >
-        {Array(4)
-          .fill()
-          .map((_, index) => (
-            <GridItem
-              cursor={"pointer"}
-              borderRadius={"15px"}
-              overflow={"hidden"}
-              key={index}
-              width="280px"
-              height="320px"
-            >
-              <Skeleton height="100%" width="100%" />
-            </GridItem>
-          ))}
+        <GridItem
+          cursor={"pointer"}
+          borderRadius={"15px"}
+          overflow={"hidden"}
+          width="280px"
+          height="320px"
+        >
+          <Skeleton height="100%" width="100%" />
+        </GridItem>
+        <GridItem
+          cursor={"pointer"}
+          borderRadius={"15px"}
+          overflow={"hidden"}
+          width="280px"
+          height="320px"
+        >
+          <Skeleton height="100%" width="100%" />
+        </GridItem>
+        <GridItem
+          cursor={"pointer"}
+          borderRadius={"15px"}
+          overflow={"hidden"}
+          width="280px"
+          height="320px"
+        >
+          <Skeleton height="100%" width="100%" />
+        </GridItem>
+        <GridItem
+          cursor={"pointer"}
+          borderRadius={"15px"}
+          overflow={"hidden"}
+          width="280px"
+          height="320px"
+        >
+          <Skeleton height="100%" width="100%" />
+        </GridItem>
       </Grid>
     </Box>
   );
