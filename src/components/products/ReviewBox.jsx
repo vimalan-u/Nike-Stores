@@ -8,10 +8,11 @@ import CustomerReviewCard from './CustomerReviewCard'
 
 
 function ReviewBox() {
+    const bg = useColorModeValue('white', 'gray.800')
     return (
         <Flex w="full" alignItems="center" justifyContent="center">
             <Box
-                bg={useColorModeValue('white', 'gray.800')}
+                bg={bg}
                 w="full"
                 borderWidth="1px"
                 rounded="lg"

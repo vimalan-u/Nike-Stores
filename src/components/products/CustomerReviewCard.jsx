@@ -13,8 +13,9 @@ import { shortStringReview } from "../../utils/extraFunctions";
 export default function CustomerReviewCard(props) {
     const { name, reviewdescription, numReviews, ...rest } = props;
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+    const bg = useColorModeValue("white", "navy.700")
     return (
-        <Box background={useColorModeValue("white", "navy.700")} p='14px' w="full">
+        <Box background={bg} p='14px' w="full">
             <Flex align={"flex-start"} direction={"row"}>
                 <Avatar h='60px' w='60px' borderRadius='8px' me='20px' />
                 <Flex align={"flex-start"} direction={"column"} gap={3} w="full">
@@ -29,7 +30,7 @@ export default function CustomerReviewCard(props) {
                                 {name}
                             </Text>
                         </Box>
-                        <StarRating  numReviews={numReviews} />
+                        <StarRating numReviews={numReviews} />
                     </Stack>
                     <Box
                         borderWidth="1px"

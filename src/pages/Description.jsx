@@ -13,7 +13,6 @@ import {
   IconButton,
   FormControl,
   FormLabel,
-  Input,
   Stack,
   Modal,
   ModalOverlay,
@@ -42,6 +41,7 @@ import ReviewBox from "../components/products/ReviewBox";
 import { MdAdd } from "react-icons/md";
 
 function Description() {
+  const [isLargerThan995] = useMediaQuery("(min-width: 995px)");
   const [mySize, setMySize] = useState(false);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -64,8 +64,8 @@ function Description() {
     '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
     '14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
   );
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isLargerThan995] = useMediaQuery("(min-width: 995px)");
+  const color = useColorModeValue('gray.800', 'white')
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   let handleInputChange = (e) => {
     setReviewValue({
@@ -204,12 +204,12 @@ function Description() {
           <ListItem>Rating: {data?.rating}</ListItem>
         </UnorderedList>
 
-        {isLargerThan995 && <>
+        {!!isLargerThan995 && (<>
           <Divider my={"18px"} />
 
           <Box display="flex" alignItems="baseline" justifyContent={"space-between"} mb={[5, 5, 5, 3, 3]}>
             <Badge rounded="full" px="2" fontSize="0.8em" color="#303030">
-              <Text fontSize={"16px"} color={useColorModeValue('gray.800', 'white')}>
+              <Text fontSize={"16px"} color={color}>
                 Customer Reviews
               </Text>
             </Badge>
@@ -286,7 +286,7 @@ function Description() {
           </Box>
 
           <ReviewBox />
-        </>}
+        </>)}
       </Box>
     </Grid >
   );
