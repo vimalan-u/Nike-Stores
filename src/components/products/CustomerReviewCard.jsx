@@ -3,14 +3,12 @@ import {
     Avatar,
     Box,
     Flex,
-    Icon,
-    Image,
-    Link,
     Stack,
     Text,
     useColorModeValue,
 } from "@chakra-ui/react";
 import StarRating from "./StarRating";
+import { shortStringReview } from "../../utils/extraFunctions";
 
 export default function CustomerReviewCard(props) {
     const { name, reviewdescription, numReviews, ...rest } = props;
@@ -37,16 +35,19 @@ export default function CustomerReviewCard(props) {
                         borderWidth="1px"
                         rounded="lg"
                         shadow="lg"
-                        p={"3"}
+                        p={"2"}
                         pt={"2"}
-                        w="full"
+                        w="sm"
+                        maxW={"sm"}
+                        ml={"-10px"}
+                        maxH={"150px"}
                     >
                         <Text
                             color={textColorPrimary}
                             fontWeight='500'
                             fontSize='md'
                         >
-                            {reviewdescription}
+                            {shortStringReview(reviewdescription)}
                         </Text>
                     </Box>
 

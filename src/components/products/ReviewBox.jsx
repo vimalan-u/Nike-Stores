@@ -1,16 +1,9 @@
 import {
     Flex,
-    Circle,
     Box,
-    Image,
-    Badge,
     useColorModeValue,
-    Icon,
-    chakra,
-    Tooltip,
 } from '@chakra-ui/react'
-import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
-import { FiShoppingCart } from 'react-icons/fi'
+
 import CustomerReviewCard from './CustomerReviewCard'
 
 
@@ -26,10 +19,10 @@ function ReviewBox() {
                 p="6"
             >
                 <Flex direction={"column"} justifyContent="space-between" alignContent="center">
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"35"} data={[]} />
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"25"} data={[]} />
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"12"} data={[]} />
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"150"} data={[]} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"35"} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"25"} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"12"} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"150"} />
                 </Flex>
             </Box>
         </Flex>

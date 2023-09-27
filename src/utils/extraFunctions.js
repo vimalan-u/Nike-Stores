@@ -37,3 +37,7 @@ export const numberWithCommas = (x) => {
 export const shortString = (text, limit = 15) => {
   return text.slice(0, limit) + (text.length > limit ? "..." : "");
 };
+
+export const shortStringReview = (text, limit = 100) => {
+  return text.slice(0, limit) + (text.length > limit ? "..." : "");
+};
