@@ -13,7 +13,7 @@ import {
 import StarRating from "./StarRating";
 
 export default function CustomerReviewCard(props) {
-    const { name, reviewdescription, ...rest } = props;
+    const { name, reviewdescription, numReviews, ...rest } = props;
     const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
     return (
         <Box background={useColorModeValue("white", "navy.700")} p='14px' w="full">
@@ -31,7 +31,7 @@ export default function CustomerReviewCard(props) {
                                 {name}
                             </Text>
                         </Box>
-                        <StarRating />
+                        <StarRating  numReviews={numReviews} />
                     </Stack>
                     <Box
                         borderWidth="1px"

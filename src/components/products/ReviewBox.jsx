@@ -26,10 +26,10 @@ function ReviewBox() {
                 p="6"
             >
                 <Flex direction={"column"} justifyContent="space-between" alignContent="center">
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} data={[]} />
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} data={[]} />
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} data={[]} />
-                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} data={[]} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"35"} data={[]} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"25"} data={[]} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"12"} data={[]} />
+                    <CustomerReviewCard name={"Venketesh Rushi"} reviewdescription={"Currently Working On Review Functionality"} numReviews={"150"} data={[]} />
                 </Flex>
             </Box>
         </Flex>

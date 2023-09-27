@@ -1,7 +1,6 @@
 import {
   Badge,
   Box,
-  Circle,
   Divider,
   Grid,
   ListItem,
@@ -10,6 +9,12 @@ import {
   useColorModeValue,
   useMediaQuery,
   useToast,
+  Menu,
+  MenuButton,
+  MenuList,
+  Flex,
+  Button,
+  Icon,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { numberWithCommas, setToast } from "../utils/extraFunctions";
@@ -24,6 +29,7 @@ import { Error } from "../components/loading/Error";
 import { addFavourite } from "../redux/Reducers/favouriteReducer";
 import { addToCartRequest } from "../redux/Reducers/cartReducer";
 import ReviewBox from "../components/products/ReviewBox";
+import { MdAdd, MdInfoOutline } from "react-icons/md";
 
 function Description() {
   useEffect(() => {
@@ -42,6 +48,10 @@ function Description() {
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // const navbarIcon = useColorModeValue('gray.400', 'white');
+  // let menuBg = useColorModeValue('white', 'navy.800');
+  // const textColor = useColorModeValue('secondaryGray.900', 'white');
 
   const handleAddToCart = (productData) => {
     if (mySize === false) {
@@ -177,6 +187,39 @@ function Description() {
               <Text fontSize={"16px"} color={useColorModeValue('gray.800', 'white')}>
                 Customer Reviews
               </Text>
+              {/* <Menu>
+                <MenuButton p='0px'>
+                  <Icon
+                    mt='6px'
+                    as={MdAdd}
+                    color={navbarIcon}
+                    w='18px'
+                    h='18px'
+                    me='10px'
+                  />
+                </MenuButton>
+                <MenuList
+                  boxShadow={shadow}
+                  p='20px'
+                  me={{ base: "30px", md: "unset" }}
+                  borderRadius='20px'
+                  bg={menuBg}
+                  border='none'
+                  mt='22px'
+                  minW={{ base: "unset" }}
+                  maxW={{ base: "360px", md: "unset" }}>
+                  <Flex flexDirection='column'>
+                    <Button
+                      w='100%'
+                      h='44px'
+                      variant='no-hover'
+                      color={textColor}
+                      bg='transparent'>
+                      ADD
+                    </Button>
+                  </Flex>
+                </MenuList>
+              </Menu> */}
             </Badge>
           </Box>
 

@@ -10,13 +10,13 @@ function StarRating({ rating, numReviews }) {
             {Array(5)
                 .fill('')
                 .map((_, i) => {
-                    const roundedRating = Math.round(rating * 2) / 2
+                    const roundedRating = Math.round((numReviews/10) * 2) / 2
                     if (roundedRating - i >= 1) {
                         return (
                             <BsStarFill
                                 key={i}
                                 style={{ marginLeft: '1' }}
-                                color={i < rating ? 'teal.500' : 'gray.300'}
+                                color={i < (numReviews/10) ? 'teal.500' : 'gray.300'}
                             />
                         )
                     }
