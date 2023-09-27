@@ -1,1 +1,0 @@
-import{aQ as a,f as C}from"./index-b883cab5.js";function P(c){const{value:s,defaultValue:d,onChange:f,shouldUpdate:p=(t,u)=>t!==u}=c,l=a(f),r=a(p),[i,h]=C.useState(d),o=s!==void 0,e=o?s:i,v=a(t=>{const n=typeof t=="function"?t(e):t;r(e,n)&&(o||h(n),l(n))},[o,l,e,r]);return[e,v]}export{P as u};
