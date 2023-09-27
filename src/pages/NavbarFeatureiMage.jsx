@@ -18,11 +18,13 @@ import {
 import Navbar from "./Navbar";
 import { SideDrawer } from "../components/navbar/SideDrawer";
 import { nikeLogo } from "../constants/images";
+import { useSelector } from "react-redux";
 
 const NavbarFetureimages = () => {
   const [isLargerThan420] = useMediaQuery("(min-width: 450px)");
   const [isLargerThan580] = useMediaQuery("(min-width: 580px)");
   const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
+  const { orderSummary } = useSelector((state) => state.cart) || 0;
   return (
     <>
       {isLargerThan420 ? (
