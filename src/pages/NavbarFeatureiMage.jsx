@@ -1,59 +1,33 @@
 import {
   Box,
-  Button,
   Flex,
   useMediaQuery,
   Text,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Divider,
   Center,
   Image,
   Spacer,
 } from "@chakra-ui/react";
 import {
-  Category,
   NavIcon,
-  SearchBox,
 } from "../components/navbar/CategoryAndIcon";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   RiHeartLine,
-  RiLuggageCartLine,
   RiShoppingBagLine,
 } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
-import { FiLogOut } from "react-icons/fi";
-import Coupon from "./Coupon";
-import { FaRegHeart } from "react-icons/fa";
-import { BsCart2, BsFillCaretDownFill } from "react-icons/bs";
-import { removeItem } from "../utils/cookiestorage";
-import { logoutApi } from "../redux/Reducers/authReducer";
-import { AiOutlineUserAdd } from "react-icons/ai";
 import Navbar from "./Navbar";
 import { SideDrawer } from "../components/navbar/SideDrawer";
 import { nikeLogo } from "../constants/images";
+import { useSelector } from "react-redux";
 
 const NavbarFetureimages = () => {
   const [isLargerThan420] = useMediaQuery("(min-width: 450px)");
   const [isLargerThan580] = useMediaQuery("(min-width: 580px)");
   const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
-  const { token } = useSelector((state) => state.auth);
   const { orderSummary } = useSelector((state) => state.cart) || 0;
-  const user = useSelector((state) => state.auth.user) || "Test";
-  const dispatch = useDispatch();
-
-  const handleLogoutBtn = () => {
-    removeItem("token");
-    removeItem("user");
-    dispatch(logoutApi());
-    navigate("/");
-  };
   return (
     <>
-      {!!isLargerThan420 ? (
+      {isLargerThan420 ? (
         <Box
           width="100%"
           m="auto"

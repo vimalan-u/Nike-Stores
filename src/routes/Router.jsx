@@ -36,9 +36,6 @@ const AdminUpdateProduct = lazy(() =>
 
 export const Router = () => {
   const location = useLocation();
-  console.log("location.pathname", location.pathname);
-  const NavbarComponent =
-    location.pathname === "/" ? <NavbarFetureimages /> : <Navbar />;
 
   const isAdminRoute =
     location.pathname.startsWith("/admin") ||
