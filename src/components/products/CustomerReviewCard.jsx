@@ -38,7 +38,7 @@ export default function CustomerReviewCard(props) {
                         shadow="lg"
                         p={"2"}
                         pt={"2"}
-                        w="sm"
+                        w="full"
                         maxW={"sm"}
                         ml={"-10px"}
                         maxH={"150px"}

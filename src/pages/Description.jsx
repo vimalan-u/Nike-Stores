@@ -48,8 +48,8 @@ function Description() {
   const [error, setError] = useState(false);
   let [reviewValue, setReviewValue] = useState({
     ratingnum: 1,
-    reviewdes: ""
-  })
+    reviewdes: "",
+  });
   const param = useParams();
   const token = useSelector((state) => state.auth.token);
   const toast = useToast();
@@ -61,22 +61,22 @@ function Description() {
   }, []);
 
   const shadow = useColorModeValue(
-    '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
-    '14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
+    "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",
+    "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
-  const color = useColorModeValue('gray.800', 'white')
+  const color = useColorModeValue("gray.800", "white");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   let handleInputChange = (e) => {
     setReviewValue({
       ...reviewValue,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   let handleSubmitReview = () => {
-    console.log(reviewValue)
-  }
+    console.log(reviewValue);
+  };
 
   const handleAddToCart = (productData) => {
     if (mySize === false) {
@@ -203,92 +203,93 @@ function Description() {
           <ListItem>Colour: {data?.color}</ListItem>
           <ListItem>Rating: {data?.rating}</ListItem>
         </UnorderedList>
+        {!!isLargerThan995 && (
+          <>
+            <Divider my={"18px"} />
 
-        {!!isLargerThan995 && (<>
-          <Divider my={"18px"} />
-
-          <Box display="flex" alignItems="baseline" justifyContent={"space-between"} mb={[5, 5, 5, 3, 3]}>
-            <Badge rounded="full" px="2" fontSize="0.8em" color="#303030">
-              <Text fontSize={"16px"} color={color}>
-                Customer Reviews
-              </Text>
-            </Badge>
-            <IconButton
-              icon={<MdAdd />}
-              variant='outline'
-              onClick={onOpen}
-            />
-            <Modal isOpen={isOpen} onClose={onClose} isCentered>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Add Review</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Box
-                    rounded={'lg'}
-                    bg={useColorModeValue('white', 'gray.700')}
-                    p={8}
-                    shadow={shadow}
-                  >
-                    <Stack spacing={4}>
-                      <FormControl id="ratingnum">
-                        <FormLabel>Rating</FormLabel>
-                        <Select
-                          name="ratingnum"
-                          value={reviewValue.ratingnum}
-                          onChange={handleInputChange}
-                          placeholder='Select option'>
-                          <option value='1'>1</option>
-                          <option value='2'>2</option>
-                          <option value='3'>3</option>
-                          <option value='4'>4</option>
-                          <option value='5'>5</option>
-                        </Select>
-                      </FormControl>
-                      <FormControl id="reviewdes">
-                        <FormLabel>Review Description</FormLabel>
-                        <Textarea
-                          maxLength={"100"}
-                          value={reviewValue.reviewdes}
-                          onChange={handleInputChange}
-                          placeholder='Enter your review description here...'
-                          size='sm'
-                          name="reviewdes"
-                        />
-                      </FormControl>
-                      <Stack spacing={10}>
-
+            <Box
+              display="flex"
+              alignItems="baseline"
+              justifyContent={"space-between"}
+              mb={[5, 5, 5, 3, 3]}
+            >
+              <Badge rounded="full" px="2" fontSize="0.8em" color="#303030">
+                <Text fontSize={"16px"} color={color}>
+                  Customer Reviews
+                </Text>
+              </Badge>
+              <IconButton icon={<MdAdd />} variant="outline" onClick={onOpen} />
+              <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Add Review</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Box
+                      rounded={"lg"}
+                      bg={useColorModeValue("white", "gray.700")}
+                      p={8}
+                      shadow={shadow}
+                    >
+                      <Stack spacing={4}>
+                        <FormControl id="ratingnum">
+                          <FormLabel>Rating</FormLabel>
+                          <Select
+                            name="ratingnum"
+                            value={reviewValue.ratingnum}
+                            onChange={handleInputChange}
+                            placeholder="Select option"
+                          >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </Select>
+                        </FormControl>
+                        <FormControl id="reviewdes">
+                          <FormLabel>Review Description</FormLabel>
+                          <Textarea
+                            maxLength={"100"}
+                            value={reviewValue.reviewdes}
+                            onChange={handleInputChange}
+                            placeholder="Enter your review description here..."
+                            size="sm"
+                            name="reviewdes"
+                          />
+                        </FormControl>
+                        <Stack spacing={10}></Stack>
                       </Stack>
-                    </Stack>
-                  </Box>
-                </ModalBody>
-                <ModalFooter>
-                  <Button
-                    color={"white"}
-                    bgColor={"rgb(0,0,0)"}
-                    _hover={{
-                      boxShadow: "xl",
-                    }}
-                    pt={5}
-                    pb={5}
-                    mr={3}
-                    textAlign={"center"}
-                    onClick={handleSubmitReview}
-                  >
-                    ADD
-                  </Button>
-                  <Button colorScheme='blue' mr={3} onClick={onClose}>
-                    Close
-                  </Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-          </Box>
+                    </Box>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color={"white"}
+                      bgColor={"rgb(0,0,0)"}
+                      _hover={{
+                        boxShadow: "xl",
+                      }}
+                      pt={5}
+                      pb={5}
+                      mr={3}
+                      textAlign={"center"}
+                      onClick={handleSubmitReview}
+                    >
+                      ADD
+                    </Button>
+                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+            </Box>
 
-          <ReviewBox />
-        </>)}
+            <ReviewBox />
+          </>
+        )}
       </Box>
-    </Grid >
+    </Grid>
   );
 }
 export default Description;
