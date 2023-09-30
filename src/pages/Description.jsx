@@ -42,12 +42,13 @@ import { MdAdd } from "react-icons/md";
 
 function Description() {
   const [isLargerThan995] = useMediaQuery("(min-width: 995px)");
+  const [isLargerThan768] = useMediaQuery("(max-width: 768px)");
   const [mySize, setMySize] = useState(false);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   let [reviewValue, setReviewValue] = useState({
-    ratingnum: 1,
+    ratingnum: 5,
     reviewdes: "",
   });
   const param = useParams();

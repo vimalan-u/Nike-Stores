@@ -7,6 +7,7 @@ import {
   Spacer,
   Text,
   useColorMode,
+  useMediaQuery,
   useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -23,12 +24,14 @@ import {
   getProductsData,
   resetProductData,
 } from "../redux/Reducers/productsReducer";
+import { SearchBox } from "../components/navbar/CategoryAndIcon";
 
 function Products() {
   const { colorMode } = useColorMode();
   const [isFilter, setIsFilter] = useState(true);
   const { products, loading, error } = useSelector((state) => state.product);
-  const url = window.location.href.split('/ecom-client/')[1]
+  const url = window.location.href.split("/ecom-client/")[1];
+  const [isLargerThan768] = useMediaQuery("(max-width: 995px)");
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -75,13 +78,13 @@ function Products() {
             fontSize={["20px", "25px"]}
             fontWeight={500}
           >
-            {location.pathname === "sale"
-              ? "On Sale Products"
-              : location.pathname === "newin"
-                ? "New Products"
-                : location.pathname === "goingout"
-                  ? "Going Out Products"
-                  : "Total Products"}{" "}
+            {location.pathname === "/men"
+              ? "Mens Products"
+              : location.pathname === "/women"
+              ? "Womens Products"
+              : location.pathname === "/kids"
+              ? "Kids Products"
+              : "Total Products"}{" "}
             [{products.length}]
           </Text>
         </Center>
@@ -92,7 +95,9 @@ function Products() {
             w={"100%"}
             my={["10px", "10px", "0px", "0px", "0px"]}
             px={["8px", "8px", "20px", "20px", "20px"]}
+            align={"center"}
           >
+            {!isLargerThan768 && <SearchBox />}
             <Button
               color={"white"}
               bgColor={"rgb(0,0,0)"}
