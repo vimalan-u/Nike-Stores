@@ -1,0 +1,1 @@
+import{j as t,c as e,T as r}from"./index-ed7b805f.js";const o=()=>t.jsx(e,{my:"140px",children:t.jsx(r,{fontSize:"20px",fontWeight:500,textAlign:"center",children:"Something went Wrong!"})});export{o as E};
