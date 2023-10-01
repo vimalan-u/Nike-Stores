@@ -2,6 +2,7 @@ import axios from "axios";
 import { Bar } from "react-chartjs-2";
 
 function OrderChart() {
+  console.log("order chart")
 //   const getOrderData = async () => {
 //     try {
 //       let response = await axios("/admin/getorders");
