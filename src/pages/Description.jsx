@@ -59,7 +59,7 @@ function Description() {
 
   useEffect(() => {
     getSingleProduct();
-  }, []);
+  }, [param]);
 
   const shadow = useColorModeValue(
     "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",

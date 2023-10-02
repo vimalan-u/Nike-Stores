@@ -15,7 +15,7 @@ export const LeftSideFilter = () => {
       Gender: { Men: true, Women: false, Kids: false },
       Category: { Cloths: false, Shoes: false },
       Size: { Small: false, Medium: false, Large: false },
-      Colour: {
+      Color: {
         Black: false,
         White: false,
         Green: false,
@@ -28,7 +28,7 @@ export const LeftSideFilter = () => {
       Gender: { Men: false, Women: true, Kids: false },
       Category: { Cloths: false, Shoes: false },
       Size: { Small: false, Medium: false, Large: false },
-      Colour: {
+      Color: {
         Black: false,
         White: false,
         Green: false,
@@ -41,7 +41,7 @@ export const LeftSideFilter = () => {
       Gender: { Men: false, Women: false, Kids: true },
       Category: { Cloths: false, Shoes: false },
       Size: { Small: false, Medium: false, Large: false },
-      Colour: {
+      Color: {
         Black: false,
         White: false,
         Green: false,
@@ -54,7 +54,7 @@ export const LeftSideFilter = () => {
       Gender: { Men: false, Women: false, Kids: false },
       Category: { Cloths: false, Shoes: false },
       Size: { Small: false, Medium: false, Large: false },
-      Colour: {
+      Color: {
         Black: false,
         White: false,
         Green: false,
@@ -136,7 +136,7 @@ export const LeftSideFilter = () => {
       <FilterSection
         change={handleFilterChange}
         apply={handleFilterApply}
-        title={"Colour"}
+        title={"Color"}
         item={["Black", "White", "Green", "Red", "Blue"]}
       />
     </Accordion>

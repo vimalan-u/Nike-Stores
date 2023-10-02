@@ -34,7 +34,7 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { removeItem } from "../utils/cookiestorage";
 import { logoutApi } from "../redux/Reducers/authReducer";
 import { AiOutlineUserAdd } from "react-icons/ai";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -44,10 +44,11 @@ export const Navbar = () => {
   const user = useSelector((state) => state.auth.user) || "Test";
   const dispatch = useDispatch();
 
-  const [isLargerThan800] = useMediaQuery("(min-width: 420px)");
+  const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
   const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
+  const [isLargerThan768] = useMediaQuery("(max-width: 995px)");
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const handleLogoutBtn = () => {
     removeItem("token");
@@ -58,15 +59,21 @@ export const Navbar = () => {
   return (
     <>
       <Flex h={"60px"} py="1" flexDirection={"row"} px={"20px"}>
-        <Box w={"80px"}>
-          <Link to={"/"}>
-            <Image src={nikeLogo} />
-          </Link>
-        </Box>
+        {!isLargerThan768 && (
+          <Box w={"80px"}>
+            <Link to={"/"}>
+              <Image src={nikeLogo} />
+            </Link>
+          </Box>
+        )}
 
         <Spacer />
 
-        <Box display={["none", "none", "flex", "flex", "flex"]} fontWeight={"bold"} textColor={location.pathname === "/" && "white"}>
+        <Box
+          display={["none", "none", "flex", "flex", "flex"]}
+          fontWeight={"bold"}
+          textColor={location.pathname === "/" && "white"}
+        >
           <Category name={"sale"} text={"SALE"} link={"/sale"} />
           <Category name={"men"} text={"MEN"} link={"/men"} />
           <Category name={"women"} text={"WOMEN"} link={"/women"} />
@@ -75,28 +82,22 @@ export const Navbar = () => {
 
         <Spacer />
 
-        {/*
-
-        //Add this search box using debouncing
-        
-        <Center position={"relative"} mr={"10px"}>
+        <Center position={"relative"} mr={"30px"} mt={1}>
           <SearchBox />
-        </Center> 
-        
-        */}
+        </Center>
 
-        <Center position={"relative"} mt={isLargerThan780 ? 2 : 0} mr={"10px"}>
+        <Center position={"relative"} mt={isLargerThan780 ? 2 : 3} mr={"10px"}>
           <Link to={"/favourite"}>
             <NavIcon iconName={RiHeartLine} />
           </Link>
         </Center>
 
-        <Center position={"relative"} mt={isLargerThan780 ? 2 : 0} mr={"22px"}>
+        <Center position={"relative"} mt={isLargerThan780 ? 2 : 3} mr={"22px"}>
           <Link to={"/cart"}>
             <NavIcon iconName={RiShoppingBagLine} />
             <Box
               position={"absolute"}
-              top={0}
+              top={-1}
               right={-0.4}
               borderRadius={"50%"}
               width={"25px"}
@@ -119,7 +120,7 @@ export const Navbar = () => {
         </Center>
         {!isLargerThan780 && (
           <Box display={["flex", "flex", "none", "none", "none"]}>
-            <Center mr={"10px"}>
+            <Center mr={"10px"} mt={2}>
               <SideDrawer />
             </Center>
           </Box>

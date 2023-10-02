@@ -20,34 +20,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ProductDisplayBox } from "../components/products/ProductDisplayBox";
 import { Loading } from "../components/loading/Loading";
 import { Error } from "../components/loading/Error";
-import {
-  getProductsData,
-  resetProductData,
-} from "../redux/Reducers/productsReducer";
-import { SearchBox } from "../components/navbar/CategoryAndIcon";
+import { getProductsData } from "../redux/Reducers/productsReducer";
 
 function Products() {
   const { colorMode } = useColorMode();
   const [isFilter, setIsFilter] = useState(true);
   const { products, loading, error } = useSelector((state) => state.product);
   const url = window.location.href.split("/ecom-client/")[1];
-  const [isLargerThan768] = useMediaQuery("(max-width: 995px)");
 
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const resetFilter = () => {
-    setIsFilter(!isFilter);
-    dispatch(resetProductData());
-    dispatch(getProductsData());
-    setToast(toast, "Filter Reset Successfully", "success");
-  };
-
-  const handleSingleProduct = (data) => {
-    navigate(`/description/${data.id}`);
-  };
 
   useEffect(() => {
     if (url === "men") {
@@ -60,6 +44,27 @@ function Products() {
       dispatch(getProductsData("sale"));
     }
   }, [url]);
+
+  const resetFilter = () => {
+    setIsFilter(!isFilter);
+    if (url === "men") {
+      dispatch(getProductsData("men"));
+      setToast(toast, "Filter Reset Successfully", "success");
+    } else if (url === "women") {
+      dispatch(getProductsData("women"));
+      setToast(toast, "Filter Reset Successfully", "success");
+    } else if (url === "kids") {
+      dispatch(getProductsData("kids"));
+      setToast(toast, "Filter Reset Successfully", "success");
+    } else {
+      dispatch(getProductsData("sale"));
+      setToast(toast, "Filter Reset Successfully", "success");
+    }
+  };
+
+  const handleSingleProduct = (data) => {
+    navigate(`/description/${data.id}`);
+  };
 
   return (
     <>
@@ -97,7 +102,6 @@ function Products() {
             px={["8px", "8px", "20px", "20px", "20px"]}
             align={"center"}
           >
-            {!isLargerThan768 && <SearchBox />}
             <Button
               color={"white"}
               bgColor={"rgb(0,0,0)"}

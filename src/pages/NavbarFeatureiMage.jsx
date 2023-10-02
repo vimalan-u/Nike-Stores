@@ -7,14 +7,9 @@ import {
   Image,
   Spacer,
 } from "@chakra-ui/react";
-import {
-  NavIcon,
-} from "../components/navbar/CategoryAndIcon";
+import { NavIcon, SearchBox } from "../components/navbar/CategoryAndIcon";
 import { Link } from "react-router-dom";
-import {
-  RiHeartLine,
-  RiShoppingBagLine,
-} from "react-icons/ri";
+import { RiHeartLine, RiShoppingBagLine } from "react-icons/ri";
 import Navbar from "./Navbar";
 import { SideDrawer } from "../components/navbar/SideDrawer";
 import { nikeLogo } from "../constants/images";
@@ -24,6 +19,7 @@ const NavbarFetureimages = () => {
   const [isLargerThan420] = useMediaQuery("(min-width: 450px)");
   const [isLargerThan580] = useMediaQuery("(min-width: 580px)");
   const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
+  const [isLargerThan768] = useMediaQuery("(max-width: 995px)");
   const { orderSummary } = useSelector((state) => state.cart) || 0;
   return (
     <>
@@ -52,13 +48,19 @@ const NavbarFetureimages = () => {
         </Box>
       ) : (
         <Flex h={"60px"} py="1" flexDirection={"row"} px={"20px"}>
-          <Box w={"80px"}>
-            <Link to={"/"}>
-              <Image src={nikeLogo} />
-            </Link>
-          </Box>
+          {!isLargerThan768 && (
+            <Box w={"80px"}>
+              <Link to={"/"}>
+                <Image src={nikeLogo} />
+              </Link>
+            </Box>
+          )}
 
           <Spacer />
+
+          <Center position={"relative"} mr={"30px"} mt={1}>
+            <SearchBox />
+          </Center>
 
           <Center
             position={"relative"}
@@ -79,7 +81,7 @@ const NavbarFetureimages = () => {
               <NavIcon iconName={RiShoppingBagLine} />
               <Box
                 position={"absolute"}
-                top={0}
+                top={-1}
                 right={-0.4}
                 borderRadius={"50%"}
                 width={"25px"}
