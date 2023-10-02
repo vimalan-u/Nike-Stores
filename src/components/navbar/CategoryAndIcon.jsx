@@ -359,7 +359,7 @@ export const SearchBox = () => {
                       image={ele.img[0]}
                       title={ele.title}
                       gender={ele.gender}
-                      rating={ele.rating}
+                      rating={ele.ratings[0].rating}
                       price={ele.price}
                       size={ele.size}
                       category={ele.category}

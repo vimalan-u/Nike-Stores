@@ -4,7 +4,8 @@ import { numberWithCommas, shortString } from "../../utils/extraFunctions";
 import { DescText, PriceText } from "./DescText";
 
 
-export const ProductDisplayBox = ({ title, description, color, rating, price, size, gender, img, onClick }) => {
+export const ProductDisplayBox = ({ title, description, color, ratings, price, size, gender, img, onClick }) => {
+    console.log("ratings",ratings)
     return (
         <>
             <Flex onClick={onClick} flexDirection={'column'} cursor="pointer" mb={'10px'}>
@@ -27,7 +28,7 @@ export const ProductDisplayBox = ({ title, description, color, rating, price, si
                         >
                             <AiOutlineStar />
                         </Box>
-                        <Text fontSize={['13px', '15px', '17px', '17px', '18px']}>{rating}</Text>
+                        <Text fontSize={['13px', '15px', '17px', '17px', '18px']}>{ratings[0].rating}</Text>
                     </Flex>
 
                     <DescText>{shortString(description, 20)}</DescText>

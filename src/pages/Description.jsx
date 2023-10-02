@@ -39,6 +39,7 @@ import { addFavourite } from "../redux/Reducers/favouriteReducer";
 import { addToCartRequest } from "../redux/Reducers/cartReducer";
 import ReviewBox from "../components/products/ReviewBox";
 import { MdAdd } from "react-icons/md";
+import CollectStarsFromUser from "../components/products/CollectStarsFromUser";
 
 function Description() {
   const [isLargerThan995] = useMediaQuery("(min-width: 995px)");
@@ -48,9 +49,10 @@ function Description() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   let [reviewValue, setReviewValue] = useState({
-    ratingnum: 5,
+    rating: 0,
     reviewdes: "",
   });
+
   const param = useParams();
   const token = useSelector((state) => state.auth.token);
   const toast = useToast();
@@ -133,6 +135,7 @@ function Description() {
     try {
       let res = await axios.get(`/product/getsingleproduct/${param.id}`);
       let res1 = await res.data;
+      console.log("data", res.data);
       setData(res.data);
       setLoading(false);
     } catch (error) {
@@ -202,7 +205,10 @@ function Description() {
           <ListItem>Gender: {data?.gender}</ListItem>
           <ListItem>Category: {data?.category}</ListItem>
           <ListItem>Colour: {data?.color}</ListItem>
-          <ListItem>Rating: {data?.rating}</ListItem>
+          {/* <ListItem>
+            Rating:{" "}
+            {data?.ratings[0].rating}
+          </ListItem> */}
         </UnorderedList>
         {!!isLargerThan995 && (
           <>
@@ -234,8 +240,11 @@ function Description() {
                     >
                       <Stack spacing={4}>
                         <FormControl id="ratingnum">
-                          <FormLabel>Rating</FormLabel>
-                          <Select
+                          <FormLabel>
+                            Please share your thoughts about this product. How
+                            would you rate your experience using it?
+                          </FormLabel>
+                          {/* <Select
                             name="ratingnum"
                             value={reviewValue.ratingnum}
                             onChange={handleInputChange}
@@ -246,10 +255,17 @@ function Description() {
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
-                          </Select>
+                          </Select> */}
+                          <CollectStarsFromUser
+                            reviewValue={reviewValue}
+                            setRating={setReviewValue}
+                          />
                         </FormControl>
                         <FormControl id="reviewdes">
-                          <FormLabel>Review Description</FormLabel>
+                          <FormLabel>
+                            Feel free to share your thoughts about this product
+                            right here. How has your experience been so far?
+                          </FormLabel>
                           <Textarea
                             maxLength={"100"}
                             value={reviewValue.reviewdes}
