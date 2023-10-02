@@ -1,1 +1,0 @@
-import{j as t,aU as e}from"./index-ed7b805f.js";import{C as n}from"./chunk-5MKCW436-e5ca90b3.js";const i=()=>t.jsx(n,{my:"140px",display:"flex",justifyContent:"center",height:"30vh",children:t.jsx(e,{size:"xl"})});export{i as L};

@@ -1,1 +1,0 @@
-import{o as c,f as e,j as u,B as f}from"./index-ed7b805f.js";var m=c((n,r)=>{const{icon:o,children:t,isRound:l,"aria-label":s,...i}=n,a=o||t,d=e.isValidElement(a)?e.cloneElement(a,{"aria-hidden":!0,focusable:!1}):null;return u.jsx(f,{padding:"0",borderRadius:l?"full":void 0,ref:r,"aria-label":s,...i,children:d})});m.displayName="IconButton";export{m as I};
