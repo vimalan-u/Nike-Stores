@@ -67,7 +67,7 @@ export default function SearchedProductList({
               ₹ {numberWithCommas(price)}
             </Text>
           </Flex>
-          {/* <Flex
+          <Flex
             me={{ base: "4px", md: "32px", xl: "10px", "3xl": "32px" }}
             align="center"
           >
@@ -75,10 +75,10 @@ export default function SearchedProductList({
             <Text fontWeight="700" fontSize="md" color={textColor}>
               {color}
             </Text>
-          </Flex> */}
-          {/* <Text ms="auto" fontWeight="700" fontSize="sm" color={textColorDate}>
+          </Flex>
+          <Text ms="auto" fontWeight="700" fontSize="sm" color={textColorDate}>
             {gender}
-          </Text> */}
+          </Text>
         </Flex>
       </Flex>
     </Box>

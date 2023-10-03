@@ -2,7 +2,7 @@ import { Flex, Box, useColorModeValue } from "@chakra-ui/react";
 
 import CustomerReviewCard from "./CustomerReviewCard";
 
-function ReviewBox() {
+function ReviewBox({ data }) {
   const bg = useColorModeValue("white", "gray.800");
   const scrollbarColor = useColorModeValue("gray.800", "white");
   return (
@@ -16,16 +16,19 @@ function ReviewBox() {
           overflow={"auto"}
           sx={{
             "&::-webkit-scrollbar": {
-              display:"none"
+              display: "none",
             },
           }}
         >
-          <CustomerReviewCard
-            name={"Venketesh Rushi"}
-            reviewdescription={"Currently Working On Review Functionality"}
-            numReviews={"35"}
-          />
-          <CustomerReviewCard
+          {data?.ratings.map((ele) => (
+            <CustomerReviewCard
+              name={"Venketesh Rushi"}
+              reviewdescription={ele.reviewdes}
+              numReviews={ele.rating} 
+            />
+          ))}
+
+          {/* <CustomerReviewCard
             name={"Venketesh Rushi"}
             reviewdescription={"Currently Working On Review Functionality"}
             numReviews={"25"}
@@ -39,7 +42,7 @@ function ReviewBox() {
             name={"Venketesh Rushi"}
             reviewdescription={"Currently Working On Review Functionality"}
             numReviews={"150"}
-          />
+          /> */}
         </Flex>
       </Box>
     </Flex>

@@ -135,7 +135,7 @@ function Description() {
     try {
       let res = await axios.get(`/product/getsingleproduct/${param.id}`);
       let res1 = await res.data;
-      console.log("data", res.data);
+      console.log("data1", res1);
       setData(res.data);
       setLoading(false);
     } catch (error) {
@@ -205,10 +205,13 @@ function Description() {
           <ListItem>Gender: {data?.gender}</ListItem>
           <ListItem>Category: {data?.category}</ListItem>
           <ListItem>Colour: {data?.color}</ListItem>
-          {/* <ListItem>
+          <ListItem>
             Rating:{" "}
-            {data?.ratings[0].rating}
-          </ListItem> */}
+            {Object.keys(data).length > 0
+              ? data?.ratings.reduce((acc, curr) => acc + curr.rating, 0) /
+                (data.ratings.length)
+              : 0}
+          </ListItem>
         </UnorderedList>
         {!!isLargerThan995 && (
           <>
@@ -302,7 +305,7 @@ function Description() {
               </Modal>
             </Box>
 
-            <ReviewBox />
+            <ReviewBox data={data} />
           </>
         )}
       </Box>

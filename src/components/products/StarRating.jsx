@@ -10,7 +10,8 @@ function StarRating({ rating, numReviews }) {
             {Array(5)
                 .fill('')
                 .map((_, i) => {
-                    const roundedRating = Math.round((numReviews/10) * 2) / 2
+                    // const roundedRating = Math.round((numReviews/10) * 2) / 2
+                    const roundedRating = numReviews;
                     if (roundedRating - i >= 1) {
                         return (
                             <BsStarFill
