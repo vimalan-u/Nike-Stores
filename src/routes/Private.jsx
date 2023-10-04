@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 export const Private = ({ children }) => {
   const token = useSelector((state) => state.auth.token);
 
-  return token.length > 0 ? <Navigate to={"/auth"} /> : children;
+  return token.length > 0 ? children : <Navigate to={"/auth"} />;
 };
 
 export const PrivateAdmin = ({ children }) => {

@@ -20,11 +20,11 @@ export const addFavourite = createAsyncThunk(
       });
       const resdata = await response.data;
       console.log("resdata: ", resdata);
-      setToast(
-        toast,
-        resdata.message ? resdata.message : "Item added to the favourites",
-        "success"
-      );
+      // setToast(
+      //   toast,
+      //   resdata.message ? resdata.message : "Item added to the favourites",
+      //   "success"
+      // );
       return resdata;
     } catch (error) {
       setToast(

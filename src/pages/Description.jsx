@@ -106,7 +106,7 @@ function Description() {
       navigate("/login");
     } else {
       try {
-        let payload = [data, token];
+        let payload = [data, token, toast];
         let res = await dispatch(addFavourite(payload)).unwrap();
         setToast(
           toast,
@@ -209,7 +209,7 @@ function Description() {
             Rating:{" "}
             {Object.keys(data).length > 0
               ? data?.ratings.reduce((acc, curr) => acc + curr.rating, 0) /
-                (data.ratings.length)
+                data.ratings.length
               : 0}
           </ListItem>
         </UnorderedList>

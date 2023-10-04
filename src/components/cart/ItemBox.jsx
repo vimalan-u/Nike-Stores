@@ -44,6 +44,7 @@ export const ItemBox = ({
           "success"
         );
       } catch (rejectedValueOrSerializedError) {
+        console.log("error item box of favorite", rejectedValueOrSerializedError)
         if (
           rejectedValueOrSerializedError.response.data.message ===
           "Already present in the Favourite"
