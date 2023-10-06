@@ -13,6 +13,7 @@ import {
 } from "../../redux/Reducers/favouriteReducer";
 
 export const FavouriteItemBox = ({
+  favoriteId,
   id,
   title,
   description,
@@ -27,7 +28,7 @@ export const FavouriteItemBox = ({
 
   const handleDeleteRequest = async () => {
     try {
-      let payload = [id, token];
+      let payload = [favoriteId, token];
       await dispatch(deleteFavorite(payload)).unwrap();
       await dispatch(getFavourite(token)).unwrap();
       setToast(toast, "Product removed from favourites", "success");

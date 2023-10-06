@@ -135,7 +135,6 @@ function Description() {
     try {
       let res = await axios.get(`/product/getsingleproduct/${param.id}`);
       let res1 = await res.data;
-      console.log("data1", res1);
       setData(res.data);
       setLoading(false);
     } catch (error) {

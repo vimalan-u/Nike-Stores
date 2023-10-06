@@ -5,6 +5,7 @@ function HomeProductLoader() {
   return (
     <Box m={"60px auto 60px"} w={["94%", "94%", "94%", "94%", "80%"]}>
       <Grid
+        mt={3}
         gap={["10px", "10px", "10px", "10px", "20px"]}
         templateColumns={[
           "repeat(2, 1fr)",
@@ -13,14 +14,12 @@ function HomeProductLoader() {
           "repeat(4, 1fr)",
           "repeat(4, 1fr)",
         ]}
-        mt={3}
       >
         <GridItem
           cursor={"pointer"}
           borderRadius={"15px"}
           overflow={"hidden"}
-          width="280px"
-          height="320px"
+          aspectRatio={4 / 5}
         >
           <Skeleton height="100%" width="100%" />
         </GridItem>
@@ -28,8 +27,7 @@ function HomeProductLoader() {
           cursor={"pointer"}
           borderRadius={"15px"}
           overflow={"hidden"}
-          width="280px"
-          height="320px"
+          aspectRatio={4 / 5}
         >
           <Skeleton height="100%" width="100%" />
         </GridItem>
@@ -37,8 +35,7 @@ function HomeProductLoader() {
           cursor={"pointer"}
           borderRadius={"15px"}
           overflow={"hidden"}
-          width="280px"
-          height="320px"
+          aspectRatio={4 / 5}
         >
           <Skeleton height="100%" width="100%" />
         </GridItem>
@@ -46,8 +43,7 @@ function HomeProductLoader() {
           cursor={"pointer"}
           borderRadius={"15px"}
           overflow={"hidden"}
-          width="280px"
-          height="320px"
+          aspectRatio={4 / 5}
         >
           <Skeleton height="100%" width="100%" />
         </GridItem>

@@ -19,7 +19,6 @@ export const addFavourite = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
       const resdata = await response.data;
-      console.log("resdata: ", resdata);
       // setToast(
       //   toast,
       //   resdata.message ? resdata.message : "Item added to the favourites",
