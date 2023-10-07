@@ -25,8 +25,8 @@ export default function Order() {
   const [data, setData] = useState([]);
 
   const handleOrdersGetRequest = async (token) => {
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       let { data } = await axios.get("/order/getorders", {
         headers: { Authorization: `Bearer ${token}` },
       });
