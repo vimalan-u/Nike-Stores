@@ -55,6 +55,7 @@ function Description() {
 
   const param = useParams();
   const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -77,8 +78,19 @@ function Description() {
     });
   };
 
-  let handleSubmitReview = () => {
+  let handleSubmitReview = async () => {
     console.log(reviewValue);
+    try {
+      let addReview = await axios.post("/product/addReview", {
+        id: data.id,
+        rating: reviewValue.rating,
+        reviewdes: reviewValue.reviewdes,
+        userid: user.id,
+      });
+      console.log("addreview", addReview);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleAddToCart = (productData) => {
@@ -243,8 +255,9 @@ function Description() {
                       <Stack spacing={4}>
                         <FormControl id="ratingnum">
                           <FormLabel>
-                            Please share your thoughts about this product. How
-                            would you rate your experience using it?
+                            Please share your thoughts about this {data.title}{" "}
+                            Product. How would you rate your experience using
+                            it?
                           </FormLabel>
                           {/* <Select
                             name="ratingnum"

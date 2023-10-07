@@ -19,8 +19,11 @@ const ForgetPassword = lazy(() => import("../pages/ForgetPassword"));
 const UserPage = lazy(() => import("../pages/UserPage"));
 const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+const ShowUserOnMap = lazy(() => import("../srcADMIN/pages/ShowUserOnMap"));
 
-const AdminSidebarLayout = lazy(() => import("../srcADMIN/pages/AdminSidebarLayout"));
+const AdminSidebarLayout = lazy(() =>
+  import("../srcADMIN/pages/AdminSidebarLayout")
+);
 const AdminDashboard = lazy(() => import("../srcADMIN/pages/Dashboard.admin"));
 const AdminAllUsers = lazy(() => import("../srcADMIN/pages/AllUsers.admin"));
 const AdminProfile = lazy(() => import("../srcADMIN/pages/Profile.admin"));
@@ -108,6 +111,17 @@ export const Router = () => {
             }
           />
           <Route path="*" element={<NotFound />} />
+
+          <Route
+            path="/showusersonmap"
+            element={
+              <PrivateAdmin>
+                <AdminSidebarLayout>
+                  <ShowUserOnMap />
+                </AdminSidebarLayout>
+              </PrivateAdmin>
+            }
+          />
 
           <Route
             path="/admindashboard"

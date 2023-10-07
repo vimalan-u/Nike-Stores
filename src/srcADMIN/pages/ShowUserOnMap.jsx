@@ -6,11 +6,11 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { Loading } from "../../components/loading/Loading";
-import { Box, Button, Heading, Tooltip } from "@chakra-ui/react";
 
 const containerStyle = {
-  width: "100%",
-  height: "100vh",
+    height: "100%",
+    margin: 0,
+    padding: 0;
 };
 
 const indiaCenter = {
@@ -72,13 +72,11 @@ const cities = [
 
 const indiaZoom = 5;
 
-function Dashboard() {
+function ShowUserOnMap() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyAvp3DMVxXmWgRkMMbj41qvl_gs3ddvP14",
   });
-
-  const [showMap, setShowMap] = useState(false);
 
   const [selectedCity, setSelectedCity] = useState(null);
 
@@ -90,62 +88,33 @@ function Dashboard() {
     setSelectedCity(null);
   };
 
-  const handleShowMap = () => {
-    setShowMap(!showMap);
-  };
-
-  return (
-    <>
-      {!showMap ? (
-        isLoaded ? (
-          <>
-            <Heading>Go Back To Dashboard Component Page.</Heading>
-            <Button mt={3} mb={3} onClick={handleShowMap}>
-              GO BACK TO ADMIN DASHBOARD
-            </Button>
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={indiaCenter}
-              zoom={indiaZoom}
-            >
-              {cities.map((city, index) => (
-                <Marker
-                  key={index}
-                  position={city.position}
-                  onClick={() => handleMarkerClick(city)}
-                />
-              ))}
-              {selectedCity && (
-                <InfoWindow
-                  position={selectedCity.position}
-                  onCloseClick={handleCloseInfoWindow}
-                >
-                  <div>
-                    <h3>{selectedCity.name}</h3>
-                  </div>
-                </InfoWindow>
-              )}
-            </GoogleMap>
-          </>
-        ) : (
-          <Loading />
-        )
-      ) : (
-        <>
-          <Heading>Welcome To Dashboard</Heading>
-          <Tooltip
-            hasArrow
-            label="CLICK ON THIS BUTTON SEE MAP FUNCTINALITY. TESTING GOOGLE MAPS"
-            aria-label="A tooltip"
-          >
-            <Button mt={10} onClick={handleShowMap}>
-              SEE GOOGLE MAP
-            </Button>
-          </Tooltip>
-        </>
+  return isLoaded ? (
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={indiaCenter}
+      zoom={indiaZoom}
+    >
+      {cities.map((city, index) => (
+        <Marker
+          key={index}
+          position={city.position}
+          onClick={() => handleMarkerClick(city)}
+        />
+      ))}
+      {selectedCity && (
+        <InfoWindow
+          position={selectedCity.position}
+          onCloseClick={handleCloseInfoWindow}
+        >
+          <div>
+            <h3>{selectedCity.name}</h3>
+          </div>
+        </InfoWindow>
       )}
-    </>
+    </GoogleMap>
+  ) : (
+    <Loading />
   );
 }
 
-export default React.memo(Dashboard);
+export default React.memo(ShowUserOnMap);
