@@ -138,7 +138,7 @@ function Dashboard() {
             label="CLICK ON THIS BUTTON SEE MAP FUNCTINALITY. TESTING GOOGLE MAPS"
             aria-label="A tooltip"
           >
-            <Button mt={10} onClick={handleShowMap}>
+            <Button mt={7} onClick={handleShowMap}>
               SEE GOOGLE MAP
             </Button>
           </Tooltip>
