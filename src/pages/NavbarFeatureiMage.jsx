@@ -51,7 +51,11 @@ const NavbarFetureimages = () => {
           {!isLargerThan768 && (
             <Box w={"80px"}>
               <Link to={"/"}>
-                <Image src={nikeLogo} />
+                {/* <Image src={nikeLogo} loading="lazy"/> */}
+                <picture>
+                  <source srcSet={nikeLogo} type="image/webp" />
+                  <img src={nikeLogo} alt="Nike Logo" loading="lazy" />
+                </picture>
               </Link>
             </Box>
           )}

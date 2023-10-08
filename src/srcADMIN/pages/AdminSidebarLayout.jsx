@@ -41,6 +41,7 @@ import { nikeLogo } from "../../constants/images";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../../utils/cookiestorage";
 import { logoutApi } from "../../redux/Reducers/authReducer";
+import Footer from "../../pages/Footer";
 
 const LinkItems = [
   { name: "Dashboard", icon: FiHome, to: "/admindashboard" },
@@ -73,9 +74,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       </Flex>
       {LinkItems.map((link) => (
         <Link key={link.name} to={link.to}>
-          <NavItem icon={link.icon}>
-            {link.name}
-          </NavItem>
+          <NavItem icon={link.icon}>{link.name}</NavItem>
         </Link>
       ))}
     </Box>
@@ -255,7 +254,9 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                 All Users
               </MenuItem>
               <MenuDivider />
-              <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>Sign out</MenuItem>
+              <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
+                Sign out
+              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>
@@ -303,8 +304,15 @@ const AdminSidebarLayout = ({ children }) => {
         handleLogoutBtn={handleLogoutBtn}
         navigate={navigate}
       />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
+      <Box
+        ml={{ base: 0, md: 60 }}
+        p="4"
+        minH={"100%"}
+      >
+        <Box minH={"70vh"}>{children}</Box>
+        <Box minH={"100%"}>
+          <Footer />
+        </Box>
       </Box>
     </Box>
   );

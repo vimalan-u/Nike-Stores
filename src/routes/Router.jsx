@@ -3,6 +3,7 @@ import { Private, PrivateAdmin } from "./Private";
 import { Suspense, lazy } from "react";
 import ErrorBoundary from "../pages/ErrorBoundary";
 import NavbarFetureimages from "../pages/NavbarFeatureiMage";
+import FreeCoupon from "../pages/FreeCoupon";
 
 const Cart = lazy(() => import("../pages/Cart"));
 const Checkout = lazy(() => import("../pages/Checkout"));
@@ -19,7 +20,6 @@ const ForgetPassword = lazy(() => import("../pages/ForgetPassword"));
 const UserPage = lazy(() => import("../pages/UserPage"));
 const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
-const ShowUserOnMap = lazy(() => import("../srcADMIN/pages/ShowUserOnMap"));
 
 const AdminSidebarLayout = lazy(() =>
   import("../srcADMIN/pages/AdminSidebarLayout")
@@ -58,6 +58,15 @@ export const Router = () => {
         )}
 
         <Routes>
+          <Route
+            path="/freecoupon"
+            element={
+              <Private>
+                <FreeCoupon />
+              </Private>
+            }
+          />
+
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginCard />} />
           <Route path="/signup" element={<SignupCard />} />
@@ -102,26 +111,8 @@ export const Router = () => {
               </Private>
             }
           />
-          <Route
-            path="/contactus"
-            element={
-              <Private>
-                <Contact />
-              </Private>
-            }
-          />
+          <Route path="/contactus" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
-
-          <Route
-            path="/showusersonmap"
-            element={
-              <PrivateAdmin>
-                <AdminSidebarLayout>
-                  <ShowUserOnMap />
-                </AdminSidebarLayout>
-              </PrivateAdmin>
-            }
-          />
 
           <Route
             path="/admindashboard"
@@ -187,7 +178,7 @@ export const Router = () => {
           />
         </Routes>
 
-        <Footer />
+        {!isAdminRoute && <Footer />}
       </Suspense>
     </ErrorBoundary>
   );

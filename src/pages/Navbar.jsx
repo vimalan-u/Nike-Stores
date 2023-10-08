@@ -170,7 +170,8 @@ export const Navbar = () => {
                       fontWeight: "bold",
                     }}
                   >
-                    {user.firstName}
+                    {user.firstName.charAt(0).toUpperCase() +
+                      user.firstName.slice(1)}
                   </Text>
                 </MenuButton>
               ) : (

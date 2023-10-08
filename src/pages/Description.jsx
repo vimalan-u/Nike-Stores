@@ -81,7 +81,7 @@ function Description() {
   let handleSubmitReview = async () => {
     console.log(reviewValue);
     try {
-      let addReview = await axios.post("/product/addReview", {
+      let addReview = await axios.post("/product/addreview", {
         id: data.id,
         rating: reviewValue.rating,
         reviewdes: reviewValue.reviewdes,

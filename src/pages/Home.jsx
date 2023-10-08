@@ -50,7 +50,13 @@ function Home() {
         <HStack
           width={["90%", "90%", "80%", "80%", "70%"]}
           align={"center"}
-          justifyContent={["flex-start", "flex-start", "flex-start", "space-around", "space-around"]}
+          justifyContent={[
+            "flex-start",
+            "flex-start",
+            "flex-start",
+            "space-around",
+            "space-around",
+          ]}
           mt={[3, 3, 4, 4, 5]}
           gap={10}
         >
@@ -65,8 +71,9 @@ function Home() {
             _hover={{
               bgColor: "black",
             }}
+            onClick={() => navigate("/sale")}
           >
-            Shop
+            SHOP NOW
           </Button>
           <Button
             width={"35%"}
@@ -79,8 +86,9 @@ function Home() {
             _hover={{
               bgColor: "black",
             }}
+            onClick={() => navigate("/contactus")}
           >
-            Watch
+            CONTACT US!
           </Button>
         </HStack>
       </Box>

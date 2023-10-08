@@ -57,7 +57,10 @@ export const SideDrawer = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Hi {user?.firstName}</DrawerHeader>
+          <DrawerHeader>
+            Welcome{" "}
+            {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}
+          </DrawerHeader>
           <Divider />
           <DrawerBody>
             <VStack justify={"space-between"} height={"100%"}>
@@ -66,31 +69,17 @@ export const SideDrawer = () => {
                 mt={"40px"}
                 onClick={onClose}
                 align={"flex-start"}
+                mb={5}
               >
-                <DrawerCategory
-                  name={"/"}
-                  text={"SALE"}
-                  link={"/sale"}
-                />
+                <DrawerCategory name={"/"} text={"Home"} link={"/"} />
                 <Divider />
-                <DrawerCategory
-                  name={"men"}
-                  text={"MEN"}
-                  link={"/men"}
-                />
+                <DrawerCategory name={"sale"} text={"SALE"} link={"/sale"} />
                 <Divider />
-                <DrawerCategory
-                  name={"women"}
-                  text={"WOMEN"}
-                  link={"/women"}
-                />
+                <DrawerCategory name={"men"} text={"MEN"} link={"/men"} />
                 <Divider />
-                <DrawerCategory
-                  name={"kids"}
-                  text={"KIDS"}
-                  link={"/kids"}
-                />
+                <DrawerCategory name={"women"} text={"WOMEN"} link={"/women"} />
                 <Divider />
+                <DrawerCategory name={"kids"} text={"KIDS"} link={"/kids"} />
               </VStack>
               {!token ? (
                 <VStack width={"100%"}>
@@ -105,7 +94,6 @@ export const SideDrawer = () => {
                     width={"100%"}
                     onClick={handleLoginBtn}
                     leftIcon={<AiOutlineLogin />}
-
                   >
                     Login
                   </Button>
@@ -127,7 +115,13 @@ export const SideDrawer = () => {
                 </VStack>
               ) : (
                 <VStack width={"100%"}>
-                  <Flex width={"100%"} flexDirection={"column"} gap={"5px"} fontSize={"17px"} mb={3}>
+                  <Flex
+                    width={"100%"}
+                    flexDirection={"column"}
+                    gap={"5px"}
+                    fontSize={"17px"}
+                    mb={3}
+                  >
                     <Divider />
                     <Button
                       onClick={() => {
