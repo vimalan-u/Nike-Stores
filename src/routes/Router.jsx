@@ -58,15 +58,6 @@ export const Router = () => {
         )}
 
         <Routes>
-          <Route
-            path="/freecoupon"
-            element={
-              <Private>
-                <FreeCoupon />
-              </Private>
-            }
-          />
-
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginCard />} />
           <Route path="/signup" element={<SignupCard />} />
@@ -174,6 +165,14 @@ export const Router = () => {
                   <AdminUpdateProduct />
                 </AdminSidebarLayout>
               </PrivateAdmin>
+            }
+          />
+          <Route
+            path="/freecoupon"
+            element={
+              <Private>
+                <FreeCoupon />
+              </Private>
             }
           />
         </Routes>

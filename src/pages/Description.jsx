@@ -24,6 +24,7 @@ import {
   useDisclosure,
   Select,
   Textarea,
+  HStack,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { numberWithCommas, setToast } from "../utils/extraFunctions";
@@ -40,16 +41,17 @@ import { addToCartRequest } from "../redux/Reducers/cartReducer";
 import ReviewBox from "../components/products/ReviewBox";
 import { MdAdd } from "react-icons/md";
 import CollectStarsFromUser from "../components/products/CollectStarsFromUser";
+import StarRating from "../components/products/StarRating";
 
 function Description() {
   const [isLargerThan995] = useMediaQuery("(min-width: 995px)");
-  const [isLargerThan768] = useMediaQuery("(max-width: 768px)");
+  const [isLargerThan1024] = useMediaQuery("(min-width: 1025px)");
   const [mySize, setMySize] = useState(false);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   let [reviewValue, setReviewValue] = useState({
-    rating: 0,
+    rating: 5,
     reviewdes: "",
   });
 
@@ -79,17 +81,28 @@ function Description() {
   };
 
   let handleSubmitReview = async () => {
-    console.log(reviewValue);
-    try {
-      let addReview = await axios.post("/product/addreview", {
-        id: data.id,
-        rating: reviewValue.rating,
-        reviewdes: reviewValue.reviewdes,
-        userid: user.id,
-      });
-      console.log("addreview", addReview);
-    } catch (error) {
-      console.log(error);
+    if (token.length > 0) {
+      if (reviewValue.reviewdes === "") {
+        setToast(toast, "Please add description.", "error");
+        return;
+      }
+      try {
+        let addReview = await axios.post("/product/addreview", {
+          id: data.id,
+          rating: reviewValue.rating,
+          reviewdes: reviewValue.reviewdes,
+          userid: user.id,
+        });
+        console.log("addreview", addReview);
+        setReviewValue({ rating: 5, reviewdes: "" });
+        onClose();
+        setToast(toast, "Review added successfuly.", "success");
+        getSingleProduct();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setToast(toast, "Please Login First", "error");
     }
   };
 
@@ -217,14 +230,17 @@ function Description() {
           <ListItem>Category: {data?.category}</ListItem>
           <ListItem>Colour: {data?.color}</ListItem>
           <ListItem>
-            Rating:{" "}
-            {Object.keys(data).length > 0
-              ? data?.ratings.reduce((acc, curr) => acc + curr.rating, 0) /
-                data.ratings.length
-              : 0}
+            <HStack direction={["column", "row"]} spacing="5px">
+              <Text>Rating:</Text>
+              {Object.keys(data).length > 0 ? (
+                <StarRating numReviews={data.ratings.length} />
+              ) : (
+                <StarRating numReviews={0} />
+              )}
+            </HStack>
           </ListItem>
         </UnorderedList>
-        {!!isLargerThan995 && (
+        {isLargerThan1024 && (
           <>
             <Divider my={"18px"} />
 
@@ -259,22 +275,24 @@ function Description() {
                             Product. How would you rate your experience using
                             it?
                           </FormLabel>
-                          {/* <Select
+                          <Select
                             name="ratingnum"
-                            value={reviewValue.ratingnum}
+                            value={reviewValue.rating}
                             onChange={handleInputChange}
                             placeholder="Select option"
                           >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </Select> */}
-                          <CollectStarsFromUser
+                            <option defaultValue value={5}>
+                              5
+                            </option>
+                            <option value={4}>4</option>
+                            <option value={3}>3</option>
+                            <option value={2}>2</option>
+                            <option value={1}>1</option>
+                          </Select>
+                          {/* <CollectStarsFromUser
                             reviewValue={reviewValue}
                             setRating={setReviewValue}
-                          />
+                          /> */}
                         </FormControl>
                         <FormControl id="reviewdes">
                           <FormLabel>
@@ -316,7 +334,6 @@ function Description() {
                 </ModalContent>
               </Modal>
             </Box>
-
             <ReviewBox data={data} />
           </>
         )}

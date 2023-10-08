@@ -27,22 +27,6 @@ function ReviewBox({ data }) {
               numReviews={ele.rating} 
             />
           ))}
-
-          {/* <CustomerReviewCard
-            name={"Venketesh Rushi"}
-            reviewdescription={"Currently Working On Review Functionality"}
-            numReviews={"25"}
-          />
-          <CustomerReviewCard
-            name={"Venketesh Rushi"}
-            reviewdescription={"Currently Working On Review Functionality"}
-            numReviews={"12"}
-          />
-          <CustomerReviewCard
-            name={"Venketesh Rushi"}
-            reviewdescription={"Currently Working On Review Functionality"}
-            numReviews={"150"}
-          /> */}
         </Flex>
       </Box>
     </Flex>
