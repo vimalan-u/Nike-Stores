@@ -10,10 +10,7 @@ export default function CollectStarsFromUser({
 }) {
   // count:  number of stars you want, pass as props
   //size: size of star that you want
-  console.log("reviewValue", reviewValue);
   const [hover, setHover] = useState(null);
-  console.log("hover", hover);
-  console.log("count", count);
   return (
     <HStack spacing={"2px"}>
       {[...Array(5)].map((star, index) => {

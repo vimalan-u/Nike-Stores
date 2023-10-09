@@ -26,13 +26,10 @@ const AdminSidebarLayout = lazy(() =>
 );
 const AdminDashboard = lazy(() => import("../srcADMIN/pages/Dashboard.admin"));
 const AdminAllUsers = lazy(() => import("../srcADMIN/pages/AllUsers.admin"));
-const AdminProfile = lazy(() => import("../srcADMIN/pages/Profile.admin"));
 const AdminAllProducts = lazy(() =>
   import("../srcADMIN/pages/AllProducts.admin")
 );
-const AdminAddProducts = lazy(() =>
-  import("../srcADMIN/pages/AddProduct.admin")
-);
+const ViewUsersOnMap = lazy(() => import("../srcADMIN/pages/ViewUsersOnMap"));
 const AdminUpdateProduct = lazy(() =>
   import("../srcADMIN/pages/UpdateProduct.admin")
 );
@@ -128,16 +125,6 @@ export const Router = () => {
           />
 
           <Route
-            path="/adminprofile"
-            element={
-              <PrivateAdmin>
-                <AdminSidebarLayout>
-                  <AdminProfile />
-                </AdminSidebarLayout>
-              </PrivateAdmin>
-            }
-          />
-          <Route
             path="/adminallproducts"
             element={
               <PrivateAdmin>
@@ -148,21 +135,21 @@ export const Router = () => {
             }
           />
           <Route
-            path="/adminaddproducts"
+            path="/adminaupdateproduct/:id"
             element={
               <PrivateAdmin>
                 <AdminSidebarLayout>
-                  <AdminAddProducts />
+                  <AdminUpdateProduct />
                 </AdminSidebarLayout>
               </PrivateAdmin>
             }
           />
           <Route
-            path="/adminaupdateproduct"
+            path="/adminviewmap"
             element={
               <PrivateAdmin>
                 <AdminSidebarLayout>
-                  <AdminUpdateProduct />
+                  <ViewUsersOnMap />
                 </AdminSidebarLayout>
               </PrivateAdmin>
             }

@@ -93,7 +93,6 @@ function Description() {
           reviewdes: reviewValue.reviewdes,
           userid: user.id,
         });
-        console.log("addreview", addReview);
         setReviewValue({ rating: 5, reviewdes: "" });
         onClose();
         setToast(toast, "Review added successfuly.", "success");

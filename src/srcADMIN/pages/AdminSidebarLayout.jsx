@@ -29,10 +29,8 @@ import {
   FiMenu,
   FiBell,
   FiChevronDown,
-  FiUsers,
   FiLogOut,
 } from "react-icons/fi";
-import { GiCaptainHatProfile, GiUpgrade } from "react-icons/gi";
 import { BiCategoryAlt, BiAddToQueue } from "react-icons/bi";
 import { FaRegAddressBook } from "react-icons/fa";
 
@@ -45,11 +43,9 @@ import Footer from "../../pages/Footer";
 
 const LinkItems = [
   { name: "Dashboard", icon: FiHome, to: "/admindashboard" },
-  { name: "Profile", icon: GiCaptainHatProfile, to: "/adminprofile" },
-  { name: "All Products", icon: BiCategoryAlt, to: "/adminallproducts" },
-  { name: "Add Products", icon: BiAddToQueue, to: "/adminaddproducts" },
-  { name: "Update Product", icon: GiUpgrade, to: "/adminaupdateproduct" },
-  { name: "All Users", icon: FaRegAddressBook, to: "/adminallusers" },
+  { name: "Products", icon: BiCategoryAlt, to: "/adminallproducts" },
+  { name: "Customers", icon: FaRegAddressBook, to: "/adminallusers" },
+  { name: "View Users On Map", icon: BiAddToQueue, to: "/adminviewmap" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -200,46 +196,10 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                   transition: "background 0.5s ease-out",
                 }}
                 onClick={() => {
-                  navigate("/adminprofile");
-                }}
-              >
-                Profile
-              </MenuItem>
-              <MenuItem
-                bgColor={"transparent"}
-                _hover={{
-                  bgColor: "gray.700",
-                  transition: "background 0.5s ease-out",
-                }}
-                onClick={() => {
                   navigate("/adminallproducts");
                 }}
               >
-                All Products
-              </MenuItem>
-              <MenuItem
-                bgColor={"transparent"}
-                _hover={{
-                  bgColor: "gray.700",
-                  transition: "background 0.5s ease-out",
-                }}
-                onClick={() => {
-                  navigate("/adminaddproducts");
-                }}
-              >
-                Add Products
-              </MenuItem>
-              <MenuItem
-                bgColor={"transparent"}
-                _hover={{
-                  bgColor: "gray.700",
-                  transition: "background 0.5s ease-out",
-                }}
-                onClick={() => {
-                  navigate("/adminaupdateproduct");
-                }}
-              >
-                Update Product
+                Products
               </MenuItem>
               <MenuItem
                 bgColor={"transparent"}
@@ -251,7 +211,19 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                   navigate("/adminallusers");
                 }}
               >
-                All Users
+                Customers
+              </MenuItem>
+              <MenuItem
+                bgColor={"transparent"}
+                _hover={{
+                  bgColor: "gray.700",
+                  transition: "background 0.5s ease-out",
+                }}
+                onClick={() => {
+                  navigate("/adminviewmap");
+                }}
+              >
+                View Users On Map
               </MenuItem>
               <MenuDivider />
               <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
@@ -304,11 +276,7 @@ const AdminSidebarLayout = ({ children }) => {
         handleLogoutBtn={handleLogoutBtn}
         navigate={navigate}
       />
-      <Box
-        ml={{ base: 0, md: 60 }}
-        p="4"
-        minH={"100%"}
-      >
+      <Box ml={{ base: 0, md: 60 }} p="4" minH={"100%"}>
         <Box minH={"70vh"}>{children}</Box>
         <Box minH={"100%"}>
           <Footer />
