@@ -59,7 +59,7 @@ export const SideDrawer = () => {
           <DrawerCloseButton />
           <DrawerHeader>
             Welcome{" "}
-            {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}
+            {/* {user.firstName} */}
           </DrawerHeader>
           <Divider />
           <DrawerBody>

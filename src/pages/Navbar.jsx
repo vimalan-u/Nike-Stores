@@ -48,7 +48,7 @@ export const Navbar = () => {
   const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
   const [isLargerThan768] = useMediaQuery("(max-width: 995px)");
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const handleLogoutBtn = () => {
     removeItem("token");
@@ -144,7 +144,7 @@ export const Navbar = () => {
             mt={isLargerThan780 ? 1 : 0}
           >
             <Menu>
-              {token ? (
+              {token.length > 0 ? (
                 <MenuButton
                   as={Button}
                   transition="all 0.7s"
