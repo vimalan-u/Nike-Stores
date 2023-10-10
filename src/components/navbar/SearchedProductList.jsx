@@ -35,7 +35,7 @@ export default function SearchedProductList({
       px="24px"
       py="21px"
       transition="0.2s linear"
-      width={["full", "full", "full", "xs", "xs"]}
+      width={["full", "full", "full", "xl", "xxl"]}
     >
       <Flex direction={{ base: "column" }} justify="center" bg={bg}>
         <Flex position="relative" align="center">
@@ -66,13 +66,14 @@ export default function SearchedProductList({
             >
               ₹ {numberWithCommas(price)}
             </Text>
-          </Flex>
-          <Flex
-            me={{ base: "4px", md: "32px", xl: "10px", "3xl": "32px" }}
-            align="center"
-          >
-            <Icon as={FaEthereum} color={textColor} width="9px" me="7px" />
-            <Text fontWeight="700" fontSize="md" color={textColor}>
+            <Text
+              color="secondaryGray.600"
+              fontSize={{
+                base: "sm",
+              }}
+              fontWeight="400"
+              me="14px"
+            >
               {color}
             </Text>
           </Flex>

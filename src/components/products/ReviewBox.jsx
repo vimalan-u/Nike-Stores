@@ -20,11 +20,12 @@ function ReviewBox({ data }) {
             },
           }}
         >
-          {data?.ratings.map((ele) => (
+          {data?.ratings?.map((ele) => (
             <CustomerReviewCard
+              key={ele.reviewdes}
               name={"Venketesh Rushi"}
               reviewdescription={ele.reviewdes}
-              numReviews={ele.rating} 
+              numReviews={ele.rating}
             />
           ))}
         </Flex>

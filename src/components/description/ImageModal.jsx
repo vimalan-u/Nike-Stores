@@ -18,7 +18,7 @@ export const ImageModal = ({ img }) => {
 
   return (
     <>
-      <Grid templateColumns={"repeat(2, 1fr)"} maxH={"xl"} gap={"10px"}>
+      <Grid templateColumns={"repeat(2, 1fr)"} maxH={"xxl"} gap={"10px"}>
         {img?.map((image, index) => (
           <Box key={index}>
             <Image src={image} onClick={onOpen} cursor={"pointer"} />

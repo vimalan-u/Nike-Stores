@@ -88,7 +88,7 @@ function Description() {
       }
       try {
         let addReview = await axios.post("/product/addreview", {
-          id: data.id,
+          id: +param.id,
           rating: reviewValue.rating,
           reviewdes: reviewValue.reviewdes,
           userid: user.id,
