@@ -43,6 +43,7 @@ const colors = {
     cadet: "#8998a8",
     dark: "#243156",
     gray: "#a0acb9",
+    gray1: "#2d3748",
     green: "#36c537",
     light: "#e9ebee",
     pure: "#fafafb",

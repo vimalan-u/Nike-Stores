@@ -13,15 +13,13 @@ import {
   MdBarChart,
   MdFileCopy,
 } from "react-icons/md";
+
 import OrderChart from "../../srcADMIN/components/Dashboard/OrderChart";
 import MiniStatistics from "../../srcADMIN/components/Dashboard/MiniStatistics";
 
 function Dashboard() {
-
   const brandColor = useColorModeValue("brand.500", "white");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
-
-
   return (
     <Box>
       <SimpleGrid

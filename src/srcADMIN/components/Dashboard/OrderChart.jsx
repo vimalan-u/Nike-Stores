@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Chart as ChartComponent } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -51,32 +51,13 @@ export const data = {
     {
       label: "ORDERS",
       data: labels.map(() => Math.random() * 1000),
-      pointStyle: "circle",
     },
     {
       label: "USERS",
       data: labels.map(() => Math.random() * 1000),
-      pointStyle: "circle",
     },
   ],
 };
-
-function createGradient(ctx, area) {
-  const colorStart = colors[Math.floor(Math.random() * colors.length)];
-  const colorMid = colors.filter((color) => color !== colorStart)[
-    Math.floor(Math.random() * (colors.length - 1))
-  ];
-  const colorEnd = colors.filter(
-    (color) => color !== colorStart && color !== colorMid
-  )[Math.floor(Math.random() * (colors.length - 2))];
-
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-  gradient.addColorStop(0, colorStart);
-  gradient.addColorStop(0.5, colorMid);
-  gradient.addColorStop(1, colorEnd);
-
-  return gradient;
-}
 
 function OrderChart() {
   const theme = useTheme();
@@ -92,22 +73,49 @@ function OrderChart() {
     if (!chart) {
       return;
     }
+    function getRandomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function createGradient(ctx, area) {
+      const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
+      gradient.addColorStop(0, getRandomColor());
+      gradient.addColorStop(0.5, getRandomColor());
+      gradient.addColorStop(1, getRandomColor());
+
+      return gradient;
+    }
 
     const updatedData = {
       ...data,
       datasets: data.datasets.map((dataset) => ({
         ...dataset,
-        backgroundColor: createGradient(chart.ctx, chart.chartArea),
-        borderColor: theme.colors.gray[800],
+        borderColor: createGradient(chart.ctx, chart.chartArea),
       })),
     };
-
+    // const chartOptions = {
+    //   scales: {
+    //     y: {
+    //       beginAtZero: true,
+    //       color: '#fff', // Set y-axis label text color to white
+    //     },
+    //     x: {
+    //       color: '#fff', // Set x-axis label text color to white
+    //     },
+    //   },
+    // };
     setChartData(updatedData);
+    // chart.options = chartOptions;
   }, [theme]);
 
   return (
-    <Box bg={"#13141c"} p={4} borderRadius="md" boxShadow="md">
-      <ChartComponent ref={chartRef} type="line" data={chartData} />
+    <Box bg={"#13141c"} width={"xxl"} p={4} borderRadius="md" boxShadow="md">
+      <Line ref={chartRef} data={chartData} />
     </Box>
   );
 }
