@@ -13,6 +13,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import {
+  RiAdminFill,
   RiHeartLine,
   RiLuggageCartLine,
   RiShoppingBagLine,
@@ -251,7 +252,16 @@ export const Navbar = () => {
                       User Profile
                     </MenuItem>
                     <Divider />
-                    {token ? (
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/admindashboard");
+                      }}
+                      icon={<RiAdminFill />}
+                    >
+                      Admin Dashboard
+                    </MenuItem>
+                    <Divider />
+                    {token.length > 0 ? (
                       <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
                         Logout
                       </MenuItem>

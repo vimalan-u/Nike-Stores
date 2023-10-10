@@ -19,13 +19,10 @@ import {
   MenuItem,
   MenuList,
   Image,
+  Divider,
 } from "@chakra-ui/react";
 import {
   FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
   FiBell,
   FiChevronDown,
@@ -33,6 +30,7 @@ import {
 } from "react-icons/fi";
 import { BiCategoryAlt, BiAddToQueue } from "react-icons/bi";
 import { FaRegAddressBook } from "react-icons/fa";
+import { HiOutlineLogin } from "react-icons/hi";
 
 import { Link, useNavigate } from "react-router-dom";
 import { nikeLogo } from "../../constants/images";
@@ -46,6 +44,7 @@ const LinkItems = [
   { name: "Products", icon: BiCategoryAlt, to: "/adminallproducts" },
   { name: "Customers", icon: FaRegAddressBook, to: "/adminallusers" },
   { name: "View Users On Map", icon: BiAddToQueue, to: "/adminviewmap" },
+  { name: "User Dashboard", icon: HiOutlineLogin, to: "/" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -163,7 +162,8 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm"> {user.firstName}</Text>
+                  <Text fontSize="sm">{user.firstName.charAt(0).toUpperCase() +
+                    user.firstName.slice(1)}</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>
@@ -224,6 +224,21 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                 }}
               >
                 View Users On Map
+              </MenuItem>
+              <Divider />
+              <MenuItem
+                bgColor={"transparent"}
+                _hover={{
+                  bgColor: "gray.700",
+                  transition: "background 0.5s ease-out",
+                }}
+                onClick={() => {
+                  navigate("/");
+                }}
+                icon={<HiOutlineLogin />}
+              >
+
+                User Dashboard
               </MenuItem>
               <MenuDivider />
               <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
