@@ -13,8 +13,8 @@ import {
   MdBarChart,
   MdFileCopy,
 } from "react-icons/md";
-import OrderChart from "../components/dashboard/OrderChart";
-import MiniStatistics from "../components/dashboard/MiniStatistics";
+import OrderChart from "../../srcADMIN/components/Dashboard/OrderChart";
+import MiniStatistics from "../../srcADMIN/components/Dashboard/MiniStatistics";
 
 function Dashboard() {
 
