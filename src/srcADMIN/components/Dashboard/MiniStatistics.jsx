@@ -1,18 +1,22 @@
+import React from "react";
 import {
   Flex,
   Stat,
   StatLabel,
   StatNumber,
   useColorModeValue,
-  Text,
-  Box
+  Box,
+  Icon
 } from "@chakra-ui/react";
-import React from "react";
+
 
 export default function MiniStatistics(props) {
-  const { startContent, endContent, name, growth, value } = props;
+  const { name, value, icon } = props;
+
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "secondaryGray.600";
+  const brandColor = useColorModeValue("brand.500", "white");
+  const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
 
   return (
     <Box py="15px">
@@ -22,9 +26,16 @@ export default function MiniStatistics(props) {
         align={{ base: "center", xl: "start" }}
         justify={{ base: "center", xl: "center" }}
       >
-        {startContent}
 
-        <Stat my="auto" ms={startContent ? "18px" : "0px"}>
+        <Icon
+          w="32px"
+          h="32px"
+          as={icon}
+          color={brandColor}
+        />
+
+
+        <Stat my="auto" ms={icon ? "18px" : "0px"}>
           <StatLabel
             lineHeight="100%"
             color={textColorSecondary}
@@ -42,20 +53,7 @@ export default function MiniStatistics(props) {
           >
             {value}
           </StatNumber>
-          {growth ? (
-            <Flex align="center">
-              <Text color="green.500" fontSize="xs" fontWeight="700" me="5px">
-                {growth}
-              </Text>
-              <Text color="secondaryGray.600" fontSize="xs" fontWeight="400">
-                since last month
-              </Text>
-            </Flex>
-          ) : null}
         </Stat>
-        <Flex ms="auto" w="max-content">
-          {endContent}
-        </Flex>
       </Flex>
     </Box>
   );

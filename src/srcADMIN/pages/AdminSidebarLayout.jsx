@@ -69,14 +69,15 @@ const SidebarContent = ({ onClose, ...rest }) => {
       </Flex>
       {LinkItems.map((link) => (
         <Link key={link.name} to={link.to}>
-          <NavItem icon={link.icon}>{link.name}</NavItem>
+          <NavItem icon={link.icon} name={link.to}>{link.name}</NavItem>
         </Link>
       ))}
     </Box>
   );
 };
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, name, children, ...rest }) => {
+  let url = window.location.pathname.split("/")[2]
   return (
     <Box style={{ textDecoration: "none" }} _focus={{ boxShadow: "none" }}>
       <Flex
@@ -87,9 +88,10 @@ const NavItem = ({ icon, children, ...rest }) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
+          bg: "gray.700",
           color: "white",
         }}
+        bg={`/${url}` === name && "gray.800"}
         {...rest}
       >
         {icon && (
