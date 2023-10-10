@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -7,6 +7,7 @@ import {
 } from "@react-google-maps/api";
 import { Loading } from "../../components/loading/Loading";
 import { Heading } from "@chakra-ui/react";
+import axios from "axios";
 
 const containerStyle = {
   width: "100%",
@@ -79,6 +80,21 @@ function ViewUsersOnMap() {
   });
 
   const [selectedCity, setSelectedCity] = useState(null);
+  const [usersLocation, setUsersLocation] = useState([]);
+
+  useEffect(() => {
+    getUsersLocation();
+  }, []);
+
+  async function getUsersLocation() {
+    try {
+      let response = await axios("/auth/getlocation");
+      console.log("users location", response);
+      setUsersLocation(response.data.location);
+    } catch (error) {
+      console.error("Error fetching user location:", error);
+    }
+  }
 
   const handleMarkerClick = (city) => {
     setSelectedCity(city);
@@ -90,20 +106,32 @@ function ViewUsersOnMap() {
 
   return isLoaded ? (
     <>
-      <Heading size='md' mb={5}>YOU CAN SEE USERS ON THE MAP.</Heading>
+      <Heading size="md" mb={5}>
+        YOU CAN SEE USERS ON THE MAP.
+      </Heading>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={indiaCenter}
         zoom={indiaZoom}
       >
-        {cities.map((city, index) => (
-          <Marker
-            key={index}
-            position={city.position}
-            onClick={() => handleMarkerClick(city)}
-          />
-        ))}
-        {selectedCity && (
+        {usersLocation.length > 0 &&
+          usersLocation.map(
+            (city, index) => (
+              console.log(typeof city.lat),
+              (
+                <Marker
+                  key={index}
+                  // position={city.position}
+                  position={{
+                    lat: city.lat || parseFloat(city.lat),
+                    lng: city.long || parseFloat(city.long),
+                  }}
+                  onClick={() => handleMarkerClick(city)}
+                />
+              )
+            )
+          )}
+        {/* {selectedCity && (
           <InfoWindow
             position={selectedCity.position}
             onCloseClick={handleCloseInfoWindow}
@@ -112,7 +140,7 @@ function ViewUsersOnMap() {
               <h3>{selectedCity.name}</h3>
             </div>
           </InfoWindow>
-        )}
+        )} */}
       </GoogleMap>
     </>
   ) : (
