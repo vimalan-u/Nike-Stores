@@ -6,9 +6,8 @@ import {
   StatNumber,
   useColorModeValue,
   Box,
-  Icon
+  Icon,
 } from "@chakra-ui/react";
-
 
 export default function MiniStatistics(props) {
   const { name, value, icon } = props;
@@ -16,7 +15,7 @@ export default function MiniStatistics(props) {
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "secondaryGray.600";
   const brandColor = useColorModeValue("brand.500", "white");
-  const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+  const boxBg = useColorModeValue("whiteAlpha.100", "secondaryGray.300");
 
   return (
     <Box py="15px">
@@ -26,14 +25,7 @@ export default function MiniStatistics(props) {
         align={{ base: "center", xl: "start" }}
         justify={{ base: "center", xl: "center" }}
       >
-
-        <Icon
-          w="32px"
-          h="32px"
-          as={icon}
-          color={brandColor}
-        />
-
+        <Icon w="32px" h="32px" as={icon} color={brandColor} />
 
         <Stat my="auto" ms={icon ? "18px" : "0px"}>
           <StatLabel

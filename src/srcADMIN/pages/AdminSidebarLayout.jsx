@@ -53,7 +53,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       transition="3s ease"
       bg={useColorModeValue("white", "gray.900")}
       borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      borderRightColor={useColorModeValue("gray.900", "gray.700")}
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
@@ -68,8 +68,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <Link key={link.name} to={link.to}>
-          <NavItem icon={link.icon} name={link.to}>{link.name}</NavItem>
+        <Link key={link.name} to={link.to} onClick={() => onClose()}>
+          <NavItem icon={link.icon} name={link.to}>
+            {link.name}
+          </NavItem>
         </Link>
       ))}
     </Box>
@@ -77,7 +79,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 const NavItem = ({ icon, name, children, ...rest }) => {
-  let url = window.location.pathname.split("/")[2]
+  let url = window.location.pathname.split("/")[2];
   return (
     <Box style={{ textDecoration: "none" }} _focus={{ boxShadow: "none" }}>
       <Flex
@@ -92,6 +94,9 @@ const NavItem = ({ icon, name, children, ...rest }) => {
           color: "white",
         }}
         bg={`/${url}` === name && "gray.800"}
+        color={
+          `/${url}` === name ? "white" : useColorModeValue("gray.900", "white")
+        }
         {...rest}
       >
         {icon && (
@@ -119,7 +124,7 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
       alignItems="center"
       bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      borderBottomColor={useColorModeValue("gray.900", "gray.700")}
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
@@ -164,8 +169,10 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">{user.firstName.charAt(0).toUpperCase() +
-                    user.firstName.slice(1)}</Text>
+                  <Text fontSize="sm">
+                    {user.firstName.charAt(0).toUpperCase() +
+                      user.firstName.slice(1)}
+                  </Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>
@@ -239,7 +246,6 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                 }}
                 icon={<HiOutlineLogin />}
               >
-
                 User Dashboard
               </MenuItem>
               <MenuDivider />
@@ -293,7 +299,7 @@ const AdminSidebarLayout = ({ children }) => {
         handleLogoutBtn={handleLogoutBtn}
         navigate={navigate}
       />
-      <Box ml={{ base: 0, md: 60 }} p="4" minH={"100%"}>
+      <Box ml={{ base: 0, md: 60 }} p="4" minH={"100%"} borderRadius={"13px"}>
         <Box minH={"70vh"}>{children}</Box>
         <Box minH={"100%"}>
           <Footer />
