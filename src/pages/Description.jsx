@@ -87,12 +87,15 @@ function Description() {
         return;
       }
       try {
-        let addReview = await axios.post("/product/addreview", {
+        let response = await axios.post("/product/addreview", {
           id: +param.id,
           rating: reviewValue.rating,
           reviewdes: reviewValue.reviewdes,
           userid: user.id,
         });
+
+        console.log("review added", response);
+
         setReviewValue({ rating: 5, reviewdes: "" });
         onClose();
         setToast(toast, "Review added successfuly.", "success");
@@ -158,7 +161,9 @@ function Description() {
     setLoading(true);
     try {
       let res = await axios.get(`/product/getsingleproduct/${param.id}`);
-      let res1 = await res.data;
+      console.log("product data", res.data.ratings);
+      let reviewedUserDetails = res?.data?.ratings;
+      
       setData(res.data);
       setLoading(false);
     } catch (error) {

@@ -24,8 +24,27 @@ export default function ProductCard(props) {
     navigate(`/adminaupdateproduct/${id}`);
   };
   return (
-    <Box bg={bg} p="14px">
-      <Flex align="flex-start" direction={{ base: "column", md: "row" }}>
+    <Box
+      bg={brandColor}
+      p="15px"
+      mb={10}
+      sx={{
+        background: " rgba(26,32,44, 1)",
+        borderRadius: "16px",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+        backdropFilter: "blur(0px)",
+        WebkitBackdropFilter: "blur(0px)",
+        border: "1px solid rgba(255, 255, 255, 0.22)",
+        color: "#fff !important",
+      }}
+    >
+      <Flex
+        justify="space-around"
+        align="flex-start"
+        rowGap={10}
+        direction={{ base:"column-reverse",  lg: "row" }}
+        minW={"lg"}
+      >
         <Image
           h="100px"
           w="100px"
@@ -62,11 +81,22 @@ export default function ProductCard(props) {
         <Button
           onClick={() => handleProduct(product.id)}
           variant="no-hover"
-          mt={"-5px"}
-          me="16px"
-          ms="auto"
+          rounded={"lg"}
           p="0px !important"
           cursor={"pointer"}
+          border={"1px solid black"}
+          ml={[180,480,200,0,0]}
+          mt={-7}
+          sx={{
+            background: "#1A202C",
+            borderRadius: "16px",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(50px)",
+            WebkitBackdropFilter: "blur(0px)",
+            border: "1px solid rgba(255, 255, 255, 0.22)",
+            color: "#fff !important",
+
+          }}
         >
           <Icon as={MdEdit} color="secondaryGray.500" h="18px" w="18px" />
         </Button>

@@ -23,7 +23,12 @@ function ReviewBox({ data }) {
           {data?.ratings?.map((ele) => (
             <CustomerReviewCard
               key={ele.reviewdes}
-              name={"Venketesh Rushi"}
+              name={
+                ele?.userName?.split(" ").length > 1
+                  ? ele.userName.split(" null")[0].charAt(0).toUpperCase() +
+                    ele.userName.split(" null")[0].slice(1)
+                  : "Venketesh Rushi"
+              }
               reviewdescription={ele.reviewdes}
               numReviews={ele.rating}
             />
