@@ -6,6 +6,7 @@ import {
   Center,
   Image,
   Spacer,
+  Icon,
 } from "@chakra-ui/react";
 import { NavIcon, SearchBox } from "../components/navbar/CategoryAndIcon";
 import { Link } from "react-router-dom";
@@ -72,7 +73,13 @@ const NavbarFetureimages = () => {
             mr={"10px"}
           >
             <Link to={"/favourite"}>
-              <NavIcon iconName={RiHeartLine} />
+              <Icon
+                w={"28px"}
+                h={"28px"}
+                color={location.pathname === "/" && "white"}
+                mr={"10px"}
+                as={RiHeartLine}
+              />
             </Link>
           </Center>
 
@@ -82,7 +89,13 @@ const NavbarFetureimages = () => {
             mr={"10px"}
           >
             <Link to={"/cart"}>
-              <NavIcon iconName={RiShoppingBagLine} />
+              <Icon
+                w={"28px"}
+                h={"28px"}
+                color={location.pathname === "/" && "white"}
+                mr={"10px"}
+                as={RiShoppingBagLine}
+              />
               <Box
                 position={"absolute"}
                 top={-1}

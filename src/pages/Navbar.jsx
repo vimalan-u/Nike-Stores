@@ -49,7 +49,7 @@ export const Navbar = () => {
   const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
   const [isLargerThan768] = useMediaQuery("(max-width: 995px)");
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const handleLogoutBtn = () => {
     removeItem("token");
@@ -120,7 +120,7 @@ export const Navbar = () => {
           </Link>
         </Center>
         {!isLargerThan780 && (
-          <Box display={["flex", "flex", "none", "none", "none"]}>
+          <Box display={["flex", "flex", "flex", "none", "none"]}>
             <Center mr={"10px"} mt={2}>
               <SideDrawer />
             </Center>

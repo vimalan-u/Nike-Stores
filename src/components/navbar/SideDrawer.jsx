@@ -10,6 +10,7 @@ import {
   Flex,
   Icon,
   useDisclosure,
+  useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +19,7 @@ import { DrawerCategory } from "./CategoryAndIcon";
 import { FiLogOut } from "react-icons/fi";
 import { removeItem } from "../../utils/cookiestorage";
 import { logoutApi } from "../../redux/Reducers/authReducer";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 import { VscSignIn } from "react-icons/vsc";
 import { FaRegHeart } from "react-icons/fa";
@@ -29,6 +30,9 @@ import Coupon from "../../pages/Coupon";
 export const SideDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useSelector((state) => state.auth.user) || "Admin";
+  const [isLargerThan780] = useMediaQuery("(min-width: 780px)");
+  let location = useLocation();
+
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,15 +56,18 @@ export const SideDrawer = () => {
 
   return (
     <>
-      <Icon w={"28px"} h={"28px"} mr={"10px"} onClick={onOpen} as={BiMenu} />
+      <Icon
+        w={"28px"}
+        h={"28px"}
+        mr={"10px"}
+        onClick={onOpen}
+        as={BiMenu}
+      />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>
-            Welcome{" "}
-            {/* {user.firstName} */}
-          </DrawerHeader>
+          <DrawerHeader>Welcome {/* {user.firstName} */}</DrawerHeader>
           <Divider />
           <DrawerBody>
             <VStack justify={"space-between"} height={"100%"}>
