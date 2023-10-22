@@ -40,7 +40,7 @@ export default function AllProducts() {
 
   return (
     <Box mb={{ base: "0px", "2xl": "20px" }}>
-      <Text
+      {/* <Text
         color={textColorPrimary}
         fontWeight="bold"
         fontSize="2xl"
@@ -49,12 +49,13 @@ export default function AllProducts() {
         textAlign={"left"}
       >
         All Products
-      </Text>
+      </Text> */}
       <Box
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
         flexDirection={"column"}
+        mt={5}
       >
         {loading ? (
           <Loading />

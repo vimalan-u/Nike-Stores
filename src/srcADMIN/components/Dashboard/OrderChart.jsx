@@ -114,7 +114,21 @@ function OrderChart() {
   }, [theme]);
 
   return (
-    <Box bg={"#13141c"} width={"xxl"} p={4} borderRadius="md" boxShadow="md">
+    <Box
+      bg={"#13141c"}
+      width={"full"}
+      p={4}
+      borderRadius="md"
+      boxShadow="md"
+      sx={{
+        background: "rgba(255, 255, 255, 0.02)",
+        borderRadius: "16px",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+        backdropFilter: "blur(0px)",
+        WebkitBackdropFilter: "blur(0px)",
+        border: "1px solid rgba(255, 255, 255, 0.42)",
+      }}
+    >
       <Line ref={chartRef} data={chartData} />
     </Box>
   );

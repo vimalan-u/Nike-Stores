@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { RiHeartLine, RiShoppingBagLine } from "react-icons/ri";
 import Navbar from "./Navbar";
 import { SideDrawer } from "../components/navbar/SideDrawer";
-import { nikeLogo } from "../constants/images";
+import { homeImage, nikeLogo } from "../constants/images";
 import { useSelector } from "react-redux";
 
 const NavbarFetureimages = () => {
@@ -39,7 +39,7 @@ const NavbarFetureimages = () => {
             left="0"
             width="100%"
             height="100%"
-            background={`url('https://media.boohoo.com/i/boohooamplience/2209_TRANSV2_ROTATE_REFRESH_DESKTOP_EN?$homesplash_desktop_full$&_1x$&fmt=webp')`}
+            backgroundImage={`url(${homeImage})`}
             backgroundSize="100% 100%"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"

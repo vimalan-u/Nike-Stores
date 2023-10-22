@@ -8,6 +8,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  HStack,
   Icon,
   useDisclosure,
   useMediaQuery,
@@ -56,13 +57,7 @@ export const SideDrawer = () => {
 
   return (
     <>
-      <Icon
-        w={"28px"}
-        h={"28px"}
-        mr={"10px"}
-        onClick={onOpen}
-        as={BiMenu}
-      />
+      <Icon w={"28px"} h={"28px"} mr={"10px"} onClick={onOpen} as={BiMenu} />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
@@ -79,13 +74,49 @@ export const SideDrawer = () => {
                 mb={5}
               >
                 <DrawerCategory name={"/"} text={"Home"} link={"/"} />
-                <Divider />
+                <Divider
+                  sx={{
+                    background: "rgba(255, 255, 255, 0)",
+                    borderRadius: "16px",
+                    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255, 255, 255, 1)",
+                  }}
+                />
                 <DrawerCategory name={"sale"} text={"SALE"} link={"/sale"} />
-                <Divider />
+                <Divider
+                  sx={{
+                    background: "rgba(255, 255, 255, 0)",
+                    borderRadius: "16px",
+                    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255, 255, 255, 1)",
+                  }}
+                />
                 <DrawerCategory name={"men"} text={"MEN"} link={"/men"} />
-                <Divider />
+                <Divider
+                  sx={{
+                    background: "rgba(255, 255, 255, 0)",
+                    borderRadius: "16px",
+                    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255, 255, 255, 1)",
+                  }}
+                />
                 <DrawerCategory name={"women"} text={"WOMEN"} link={"/women"} />
-                <Divider />
+                <Divider
+                  sx={{
+                    background: "rgba(255, 255, 255, 0)",
+                    borderRadius: "16px",
+                    boxShadow: "0 4px 250px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(50px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255, 255, 255, 1)",
+                  }}
+                />
                 <DrawerCategory name={"kids"} text={"KIDS"} link={"/kids"} />
               </VStack>
               {!token ? (
@@ -126,59 +157,77 @@ export const SideDrawer = () => {
                     width={"100%"}
                     flexDirection={"column"}
                     gap={"5px"}
-                    fontSize={"17px"}
+                    fontSize={"16px"}
                     mb={3}
                   >
                     <Divider />
-                    <Button
-                      onClick={() => {
-                        navigate("/favourite");
-                      }}
-                      leftIcon={<FaRegHeart />}
-                    >
-                      Wishlist
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        navigate("/orders");
-                      }}
-                      leftIcon={<RiLuggageCartLine />}
-                    >
-                      Orders
-                    </Button>
+                    {[
+                      {
+                        route: "/favourite",
+                        icon: FaRegHeart,
+                        text: "Wishlist",
+                      },
+                      {
+                        route: "/orders",
+                        icon: RiLuggageCartLine,
+                        text: "Orders",
+                      },
+                      { route: "/cart", icon: BsCart2, text: "Cart" },
+                      {
+                        route: "/userprofile",
+                        icon: AiOutlineUserAdd,
+                        text: "User Profile",
+                      },
+                    ].map(({ route, icon: IconComponent, text }, index) => (
+                      <HStack
+                        key={index}
+                        width="100%"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        pr={3}
+                        pl={3}
+                        sx={{
+                          background: "rgba(255, 255, 255, 0)",
+                          borderRadius: "16px",
+                          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                          backdropFilter: "blur(20px)",
+                          WebkitBackdropFilter: "blur(20px)",
+                          border: "1px solid rgba(255, 255, 255, 1)",
+                        }}
+                      >
+                        <Icon as={IconComponent} boxSize={4} />
+                        <Button
+                          background={"transparent"}
+                          onClick={() => navigate(route)}
+                        >
+                          {text}
+                        </Button>
+                      </HStack>
+                    ))}
 
-                    <Coupon />
-
-                    <Button
-                      onClick={() => {
-                        navigate("/cart");
-                      }}
-                      leftIcon={<BsCart2 />}
-                    >
-                      Cart
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        navigate("/userprofile");
-                      }}
-                      leftIcon={<AiOutlineUserAdd />}
-                    >
-                      User Profile
-                    </Button>
                     <Divider />
                   </Flex>
+
                   <Button
-                    size="lg"
-                    bg={"blue.400"}
-                    color={"white"}
-                    bgColor={"rgb(0,0,0)"}
+                    // size="lg"
+                    // bg={"blue.400"}
+                    // color={"white"}
+                    // bgColor={"rgb(0,0,0)"}
                     _hover={{
                       boxShadow: "xl",
                     }}
                     width={"100%"}
-                    mb={5}
+                    mb={1}
                     onClick={handleLogoutBtn}
                     leftIcon={<FiLogOut />}
+                    sx={{
+                      background: "rgba(30, 19, 19, 1)",
+                      borderRadius: "16px",
+                      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                      backdropFilter: "blur(20px)",
+                      WebkitBackdropFilter: "blur(20px)",
+                      border: "1px solid rgba(30, 19, 19, 1)",
+                    }}
                   >
                     Logout
                   </Button>

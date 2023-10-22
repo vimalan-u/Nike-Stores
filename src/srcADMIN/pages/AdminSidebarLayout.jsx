@@ -20,6 +20,8 @@ import {
   MenuList,
   Image,
   Divider,
+  Heading,
+  Button,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -117,70 +119,66 @@ const NavItem = ({ icon, name, children, ...rest }) => {
 
 const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
   return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 4 }}
-      height="20"
-      alignItems="center"
-      bg={useColorModeValue("white", "gray.900")}
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue("gray.900", "gray.700")}
-      justifyContent={{ base: "space-between", md: "flex-end" }}
-      {...rest}
-    >
-      <IconButton
-        display={{ base: "flex", md: "none" }}
-        onClick={onOpen}
-        variant="outline"
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
-      <Box
-        w={"80px"}
-        display={{ base: "flex", md: "none" }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
+    <Flex>
+      <Heading
+        as="h4"
+        size="md"
+        pl={5}
+        pt={8}
+        borderBottom={"1px solid"}
+        borderBottomColor={useColorModeValue("gray.900", "gray.700")}
       >
-        <Link to={"/"}>
-          <Image src={nikeLogo} />
-        </Link>
-      </Box>
-
-      <HStack spacing={{ base: "0", md: "6" }}>
+        {window.location.href
+          .split("ecom-client/")[1]
+          .split("admin")[1]
+          .toUpperCase()}
+      </Heading>
+      <Flex
+        ml={{ base: 0, lg: 0 }}
+        px={{ base: 4, lg: 4 }}
+        width={"100%"}
+        height="20"
+        alignItems="center"
+        bg={useColorModeValue("white", "gray.900")}
+        borderBottomWidth="1px"
+        borderBottomColor={useColorModeValue("gray.900", "gray.700")}
+        justifyContent={{ base: "space-between", md: "flex-end" }}
+        {...rest}
+      >
         <IconButton
-          size="lg"
-          variant="ghost"
+          display={{ base: "flex", md: "none" }}
+          onClick={onOpen}
+          variant="outline"
           aria-label="open menu"
-          icon={<FiBell />}
+          icon={<FiMenu />}
         />
-        <Flex alignItems={"center"}>
+        <Box
+          w={"80px"}
+          display={{ base: "flex", md: "none" }}
+          fontSize="2xl"
+          fontFamily="monospace"
+          fontWeight="bold"
+        >
+          <Link to={"/"}>
+            <Image src={nikeLogo} />
+          </Link>
+        </Box>
+
+        <HStack spacing={{ base: "0", md: "6" }}>
           <Menu>
             <MenuButton
-              py={2}
-              transition="all 0.3s"
-              _focus={{ boxShadow: "none" }}
+              as={Button}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
+              minW={0}
             >
-              <HStack>
-                <Avatar size={"sm"} />
-                <VStack
-                  display={{ base: "none", md: "flex" }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2"
-                >
-                  <Text fontSize="sm">
-                    {user.firstName.charAt(0).toUpperCase() +
-                      user.firstName.slice(1)}
-                  </Text>
-                  <Text fontSize="xs" color="gray.600">
-                    Admin
-                  </Text>
-                </VStack>
-                <Box display={{ base: "none", md: "flex" }}>
-                  <FiChevronDown />
-                </Box>
-              </HStack>
+              <IconButton
+                size="lg"
+                variant="ghost"
+                aria-label="open menu"
+                icon={<FiBell />}
+              />
             </MenuButton>
             <MenuList
               bg={useColorModeValue("white", "gray.900")}
@@ -192,11 +190,8 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                   bgColor: "gray.700",
                   transition: "background 0.5s ease-out",
                 }}
-                onClick={() => {
-                  navigate("/admindashboard");
-                }}
               >
-                Dashboard
+                New Orders : 29
               </MenuItem>
               <MenuItem
                 bgColor={"transparent"}
@@ -204,58 +199,114 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                   bgColor: "gray.700",
                   transition: "background 0.5s ease-out",
                 }}
-                onClick={() => {
-                  navigate("/adminallproducts");
-                }}
               >
-                Products
-              </MenuItem>
-              <MenuItem
-                bgColor={"transparent"}
-                _hover={{
-                  bgColor: "gray.700",
-                  transition: "background 0.5s ease-out",
-                }}
-                onClick={() => {
-                  navigate("/adminallusers");
-                }}
-              >
-                Customers
-              </MenuItem>
-              <MenuItem
-                bgColor={"transparent"}
-                _hover={{
-                  bgColor: "gray.700",
-                  transition: "background 0.5s ease-out",
-                }}
-                onClick={() => {
-                  navigate("/adminviewmap");
-                }}
-              >
-                View Users On Map
-              </MenuItem>
-              <Divider />
-              <MenuItem
-                bgColor={"transparent"}
-                _hover={{
-                  bgColor: "gray.700",
-                  transition: "background 0.5s ease-out",
-                }}
-                onClick={() => {
-                  navigate("/");
-                }}
-                icon={<HiOutlineLogin />}
-              >
-                User Dashboard
-              </MenuItem>
-              <MenuDivider />
-              <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
-                Sign out
+                Logged In Customers : 130
               </MenuItem>
             </MenuList>
           </Menu>
-        </Flex>
-      </HStack>
+          <Flex alignItems={"center"}>
+            <Menu>
+              <MenuButton
+                py={2}
+                transition="all 0.3s"
+                _focus={{ boxShadow: "none" }}
+              >
+                <HStack>
+                  <Avatar size={"sm"} />
+                  <VStack
+                    display={{ base: "none", md: "flex" }}
+                    alignItems="flex-start"
+                    spacing="1px"
+                    ml="2"
+                  >
+                    <Text fontSize="sm">
+                      {user.firstName.charAt(0).toUpperCase() +
+                        user.firstName.slice(1)}
+                    </Text>
+                    <Text fontSize="xs" color="gray.600">
+                      Admin
+                    </Text>
+                  </VStack>
+                  <Box display={{ base: "none", md: "flex" }}>
+                    <FiChevronDown />
+                  </Box>
+                </HStack>
+              </MenuButton>
+              <MenuList
+                bg={useColorModeValue("white", "gray.900")}
+                borderColor={useColorModeValue("gray.200", "gray.700")}
+              >
+                <MenuItem
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "gray.700",
+                    transition: "background 0.5s ease-out",
+                  }}
+                  onClick={() => {
+                    navigate("/admindashboard");
+                  }}
+                >
+                  Dashboard
+                </MenuItem>
+                <MenuItem
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "gray.700",
+                    transition: "background 0.5s ease-out",
+                  }}
+                  onClick={() => {
+                    navigate("/adminallproducts");
+                  }}
+                >
+                  Products
+                </MenuItem>
+                <MenuItem
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "gray.700",
+                    transition: "background 0.5s ease-out",
+                  }}
+                  onClick={() => {
+                    navigate("/adminallusers");
+                  }}
+                >
+                  Customers
+                </MenuItem>
+                <MenuItem
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "gray.700",
+                    transition: "background 0.5s ease-out",
+                  }}
+                  onClick={() => {
+                    navigate("/adminviewmap");
+                  }}
+                >
+                  View Users On Map
+                </MenuItem>
+                <Divider />
+                <MenuItem
+                  bgColor={"transparent"}
+                  _hover={{
+                    bgColor: "gray.700",
+                    transition: "background 0.5s ease-out",
+                  }}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                  icon={<HiOutlineLogin />}
+                >
+                  User Dashboard
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem onClick={handleLogoutBtn} icon={<FiLogOut />}>
+                  Sign out
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
+        </HStack>
+      </Flex>
     </Flex>
   );
 };
@@ -278,8 +329,9 @@ const AdminSidebarLayout = ({ children }) => {
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={onClose}
-        display={{ base: "none", md: "block" }}
+        display={{ base: "none", lg: "block" }}
       />
+
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -299,7 +351,7 @@ const AdminSidebarLayout = ({ children }) => {
         handleLogoutBtn={handleLogoutBtn}
         navigate={navigate}
       />
-      <Box ml={{ base: 0, md: 60 }} p="4" minH={"100%"} borderRadius={"13px"}>
+      <Box ml={{ base: 0, lg: 60 }} p="4" minH={"100%"} borderRadius={"13px"}>
         <Box minH={"70vh"}>{children}</Box>
         <Box minH={"100%"}>
           <Footer />
