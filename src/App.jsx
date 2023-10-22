@@ -19,7 +19,7 @@ function App() {
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
     try {
-      setLoading(true);
+      // setLoading(true);
       let response = await axios.post(
         "/auth/addlocation",
         {
