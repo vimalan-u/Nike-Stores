@@ -167,13 +167,7 @@ export default function LoginCard() {
             </Box>
           </Stack>
         ) : (
-          <Stack
-            spacing={8}
-            mx={"auto"}
-            maxW={"2xl"}
-            py={10}
-            px={10}
-          >
+          <Stack spacing={8} mx={"auto"} maxW={"2xl"} py={10} px={10}>
             <Stack align={"center"}>
               <Heading fontSize={"3xl"}>Login to your account</Heading>
               <Text fontSize={"lg"} color={"gray.600"}>

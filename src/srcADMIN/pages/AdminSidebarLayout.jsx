@@ -129,7 +129,8 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
         borderBottomColor={useColorModeValue("gray.900", "gray.700")}
       >
         {window.location.href
-          .split("ecom-client/")[1]
+          .split("//")[1]
+          .split("/")[1]
           .split("admin")[1]
           .toUpperCase()}
       </Heading>
