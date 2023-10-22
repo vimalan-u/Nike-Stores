@@ -11,6 +11,8 @@ import {
   Text,
   useToast,
   useColorModeValue,
+  Spinner,
+  HStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -30,6 +32,7 @@ export default function LoginCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
+  const { loading } = useSelector((state) => state.auth);
 
   const location = useLocation();
 
@@ -54,6 +57,7 @@ export default function LoginCard() {
         navigate("/");
       }
     } catch (rejectedValueOrSerializedError) {
+      console.log("error", rejectedValueOrSerializedError);
       setToast(
         toast,
         rejectedValueOrSerializedError.message
@@ -61,7 +65,6 @@ export default function LoginCard() {
           : "Invalid Credentials",
         "error"
       );
-      console.error(rejectedValueOrSerializedError);
     }
   };
 
@@ -150,7 +153,13 @@ export default function LoginCard() {
                       cursor={"pointer"}
                       onClick={() => setreset(false)}
                     >
-                      Login
+                      {loading ? (
+                        <HStack>
+                          <Spinner /> <Text>"Please wait..."</Text>
+                        </HStack>
+                      ) : (
+                        "Login"
+                      )}
                     </Text>
                   </Box>
                 </Stack>
@@ -158,7 +167,13 @@ export default function LoginCard() {
             </Box>
           </Stack>
         ) : (
-          <Stack spacing={8} mx={"auto"} maxW={"2xl"} py={10} px={10}>
+          <Stack
+            spacing={8}
+            mx={"auto"}
+            maxW={"2xl"}
+            py={10}
+            px={10}
+          >
             <Stack align={"center"}>
               <Heading fontSize={"3xl"}>Login to your account</Heading>
               <Text fontSize={"lg"} color={"gray.600"}>

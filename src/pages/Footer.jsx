@@ -16,11 +16,12 @@ const Footer = () => {
       color={"white"}
       mt={"40px"}
       mb={0}
+      w={"100% !important"}
     >
       <Grid
         h={"220px"}
         p={"10px"}
-        templateColumns={["100%", "48% 2% 50%", "48% 2% 50%", "25% 25% 50%"]}
+        templateColumns={["100%", "50% 2% 47%", "48% 2% 50%", "25% 25% 50%"]}
       >
         <Center>
           <Flex
@@ -82,9 +83,9 @@ const Footer = () => {
           mt={"20px"}
           gap={"15px"}
           flexDirection={"row-reverse"}
-          justifyContent={["center", "right", "right", "right", "right"]}
+          justifyContent={["right", "right", "right", "right", "right"]}
           color={"gray"}
-          mr={["0px", "30px", "80px", "80px", "80px"]}
+          mr={["0px", "0px", "80px", "80px", "80px"]}
         >
           <IconLink
             icon={MdOutlinePersonPin}

@@ -48,7 +48,7 @@ function Home() {
           <Text>UP TO 70% OFF EVERYTHING!</Text>
         </Box>
         <HStack
-          width={["90%", "90%", "80%", "80%", "70%"]}
+          width={["100%", "100%", "80%", "80%", "70%"]}
           align={"center"}
           justifyContent={[
             "flex-start",
@@ -61,7 +61,7 @@ function Home() {
           gap={10}
         >
           <Button
-            width={"35%"}
+            width={["100%", "50%", "35%"]}
             bgColor={"black"}
             color={"white"}
             p={"6px 20px"}
@@ -76,7 +76,7 @@ function Home() {
             SHOP NOW
           </Button>
           <Button
-            width={"35%"}
+            width={["100%", "50%", "35%"]}
             bgColor={"black"}
             color={"white"}
             p={"6px 20px"}
