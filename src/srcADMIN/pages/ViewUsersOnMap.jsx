@@ -76,7 +76,7 @@ const indiaZoom = 5;
 function ViewUsersOnMap() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAvp3DMVxXmWgRkMMbj41qvl_gs3ddvP14",
+    googleMapsApiKey: import.meta.env.MODE.GOOGLE_API_KEY_CREDENTIALS,
   });
 
   const [selectedCity, setSelectedCity] = useState(null);
