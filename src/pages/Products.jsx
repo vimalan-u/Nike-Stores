@@ -35,12 +35,16 @@ function Products() {
 
   useEffect(() => {
     if (url === "men") {
+      setToast(toast, "Welcome to the Mens Section", "success");
       dispatch(getProductsData("men"));
     } else if (url === "women") {
+      setToast(toast, "Welcome to the Womens Section", "success");
       dispatch(getProductsData("women"));
     } else if (url === "kids") {
+      setToast(toast, "Welcome to the Kids Section", "success");
       dispatch(getProductsData("kids"));
     } else {
+      setToast(toast, "SALE IS LIVE", "success");
       dispatch(getProductsData("sale"));
     }
   }, [url]);
