@@ -1,7 +1,8 @@
 import axios from "axios";
 import "./App.css";
 import { Router } from "./routes/Router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import NoInternet from "./components/Loaders/NoInternate";
 
 function App() {
   // const [loading, setLoading] = useState(false);
@@ -10,6 +11,8 @@ function App() {
     timeout: 5000,
     maximumAge: 0,
   };
+
+  getLocation();
 
   async function success(pos) {
     let crd = pos.coords;
@@ -64,9 +67,32 @@ function App() {
     }
   }
 
-  getLocation();
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    function onlineHandler() {
+      setIsOnline(true);
+    }
+
+    function offlineHandler() {
+      setIsOnline(false);
+    }
+
+    window.addEventListener("online", onlineHandler);
+    window.addEventListener("offline", offlineHandler);
+
+
+    return () => {
+      window.removeEventListener("online", onlineHandler);
+      window.removeEventListener("offline", offlineHandler);
+    };
+  }, [])
+
+
+
   return (
     <>
+      {isOnline && <NoInternet isOnline={isOnline} />}
       <Router />
     </>
   );
