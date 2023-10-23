@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import NoInternet from "./components/Loaders/NoInternate";
 
 function App() {
-  // const [loading, setLoading] = useState(false);=
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [connection, setConnection] = useState(false);
 
   let options = {
     enableHighAccuracy: true,
@@ -25,7 +23,6 @@ function App() {
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
     try {
-      // setLoading(true);
       let response = await axios.post(
         "/auth/addlocation",
         {
@@ -39,7 +36,6 @@ function App() {
         }
       );
       console.log(response);
-      // setLoading  (false);
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +56,7 @@ function App() {
           } else if (result.state === "prompt") {
             navigator.geolocation.getCurrentPosition(success, errors, options);
           } else if (result.state === "denied") {
+            console.log("denied", result)
           }
           result.onchange = function () {
             console.log(result.state);
