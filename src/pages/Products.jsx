@@ -26,7 +26,7 @@ function Products() {
   const { colorMode } = useColorMode();
   const [isFilter, setIsFilter] = useState(true);
   const { products, loading, error } = useSelector((state) => state.product);
-  const url = window.location.href.split("/")[1];
+  const url = window.location.href.split("/")[3];
 
   const dispatch = useDispatch();
   const toast = useToast();
