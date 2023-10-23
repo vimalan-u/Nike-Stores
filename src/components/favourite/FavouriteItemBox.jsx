@@ -39,7 +39,7 @@ export const FavouriteItemBox = ({
 
   const handleDisplayProduct = () => {
     setItemSession("singleProduct", data);
-    navigate("/description");
+    navigate(`/description/${id}`);
   };
 
   return (
