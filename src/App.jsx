@@ -92,7 +92,7 @@ function App() {
 
   return (
     <>
-      {isOnline && <NoInternet isOnline={isOnline} />}
+      {!isOnline && <NoInternet isOnline={isOnline} />}
       <Router />
     </>
   );
