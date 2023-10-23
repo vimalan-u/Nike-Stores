@@ -70,33 +70,24 @@ function App() {
     }
   }
 
-
   useEffect(() => {
     function onlineHandler() {
       setIsOnline(true);
+      window.location.reload();
     }
 
     function offlineHandler() {
-      setIsOnline(false); 
+      setIsOnline(false);
     }
 
-
-    window.addEventListener("online", () => {
-      onlineHandler()
-      connection && window.location.reload()
-    });
-    window.addEventListener("offline", () => {
-      offlineHandler()
-      setConnection(true)
-    });
-
+    window.addEventListener("online", onlineHandler);
+    window.addEventListener("offline", offlineHandler);
 
     return () => {
       window.removeEventListener("online", onlineHandler);
       window.removeEventListener("offline", offlineHandler);
     };
-  }, [isOnline])
-
+  }, []);
 
 
   return (
