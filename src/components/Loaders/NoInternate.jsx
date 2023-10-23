@@ -5,7 +5,7 @@ function NoInternet({ isOnline }) {
 
     return (
 
-        <Slide direction='bottom' in={isOnline} style={{ zIndex: 10 }}>
+        <Slide direction='bottom' in={!isOnline} style={{ zIndex: 10 }}>
             <Box
                 p='15px'
                 color='white'

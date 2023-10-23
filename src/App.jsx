@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import NoInternet from "./components/Loaders/NoInternate";
 
 function App() {
-  // const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);=
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [connection, setConnection] = useState(false);
+
   let options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -67,7 +70,7 @@ function App() {
     }
   }
 
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  console.log("isOnline", navigator.onLine)
 
   useEffect(() => {
     function onlineHandler() {
@@ -75,18 +78,25 @@ function App() {
     }
 
     function offlineHandler() {
-      setIsOnline(false);
+      setIsOnline(false); 
     }
 
-    window.addEventListener("online", onlineHandler);
-    window.addEventListener("offline", offlineHandler);
+
+    window.addEventListener("online", () => {
+      onlineHandler()
+      connection && window.location.reload()
+    });
+    window.addEventListener("offline", () => {
+      offlineHandler()
+      setConnection(true)
+    });
 
 
     return () => {
       window.removeEventListener("online", onlineHandler);
       window.removeEventListener("offline", offlineHandler);
     };
-  }, [])
+  }, [isOnline])
 
 
 
