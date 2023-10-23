@@ -113,6 +113,19 @@ function OrderChart() {
     // chart.options = chartOptions;
   }, [theme]);
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Order Line Chart",
+      },
+    },
+  };
+
   return (
     <Box
       bg={"#13141c"}
@@ -129,7 +142,7 @@ function OrderChart() {
         border: "1px solid rgba(255, 255, 255, 0.42)",
       }}
     >
-      <Line ref={chartRef} data={chartData} />
+      <Line options={options} ref={chartRef} data={chartData} />
     </Box>
   );
 }

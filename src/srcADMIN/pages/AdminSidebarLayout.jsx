@@ -22,6 +22,7 @@ import {
   Divider,
   Heading,
   Button,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -67,6 +68,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <Image src={nikeLogo} />
           </Link>
         </Box>
+
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -118,22 +120,25 @@ const NavItem = ({ icon, name, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
+  const [isLargerThan420] = useMediaQuery("(min-width: 426px)");
   return (
     <Flex>
-      <Heading
-        as="h4"
-        size="md"
-        pl={5}
-        pt={8}
-        borderBottom={"1px solid"}
-        borderBottomColor={useColorModeValue("gray.900", "gray.700")}
-      >
-        {window.location.href
-          .split("//")[1]
-          .split("/")[1]
-          .split("admin")[1]
-          .toUpperCase()}
-      </Heading>
+      {isLargerThan420 && (
+        <Heading
+          as="h4"
+          size="md"
+          pl={5}
+          pt={8}
+          borderBottom={"1px solid"}
+          borderBottomColor={useColorModeValue("gray.900", "gray.700")}
+        >
+          {window.location.href
+            .split("//")[1]
+            .split("/")[1]
+            .split("admin")[1]
+            .toUpperCase()}
+        </Heading>
+      )}
       <Flex
         ml={{ base: 0, lg: 0 }}
         px={{ base: 4, lg: 4 }}
@@ -153,19 +158,22 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
           aria-label="open menu"
           icon={<FiMenu />}
         />
-        <Box
-          w={"80px"}
-          display={{ base: "flex", md: "none" }}
-          fontSize="2xl"
-          fontFamily="monospace"
-          fontWeight="bold"
-        >
-          <Link to={"/"}>
-            <Image src={nikeLogo} />
-          </Link>
-        </Box>
 
-        <HStack spacing={{ base: "0", md: "6" }}>
+        {isLargerThan420 && (
+          <Box
+            w={"80px"}
+            display={{ base: "flex", md: "none" }}
+            fontSize="2xl"
+            fontFamily="monospace"
+            fontWeight="bold"
+          >
+            <Link to={"/"}>
+              <Image src={nikeLogo} />
+            </Link>
+          </Box>
+        )}
+
+        <HStack spacing={{ base: "4", md: "6" }}>
           <Menu>
             <MenuButton
               as={Button}
