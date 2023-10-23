@@ -70,7 +70,6 @@ function App() {
     }
   }
 
-  console.log("isOnline", navigator.onLine)
 
   useEffect(() => {
     function onlineHandler() {
