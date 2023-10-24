@@ -1,0 +1,1 @@
+import{j as r,ar as t}from"./index-4c04a5bf.js";import{C as e}from"./chunk-5MKCW436-3421f162.js";const i=()=>r.jsx(e,{my:"140px",display:"flex",justifyContent:"center",height:"30vh",children:r.jsx(t,{size:"xl"})});export{i as L};
