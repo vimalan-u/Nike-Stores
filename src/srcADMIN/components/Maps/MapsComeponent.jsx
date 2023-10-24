@@ -22,7 +22,7 @@ import { useRef, useState } from "react";
 
 const center = { lat: 48.8584, lng: 2.2945 };
 
-function MapComponent() {
+function MapsComeponent() {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.MODE.GOOGLE_API_KEY_CREDENTIALS,
     libraries: ["places"],
@@ -73,18 +73,9 @@ function MapComponent() {
       flexDirection="column"
       alignItems="center"
       h="100vh"
-      w="fullWidth"
-      backgroundColor={"red"}
-      zIndex={"modal"}
+      w="100%"
     >
-      <Box
-        position="absolute"
-        left={0}
-        top={0}
-        h="100%"
-        w="100%"
-        backgroundColor={"blue"}
-      >
+      <Box position="absolute" left={0} top={0} h="100%" w="100%">
         {/* Google Map Box */}
         <GoogleMap
           center={center}
@@ -108,12 +99,21 @@ function MapComponent() {
         p={4}
         borderRadius="lg"
         m={4}
-        bgColor="gray.900"
+        opacity={0.9}
+        bgColor={"black"}
         shadow="base"
         minW="container.md"
         zIndex="1"
         position={"absolute"}
         bottom={0}
+        sx={{
+          background: "rgba(0, 0, 0, 1)",
+          borderRadius: "16px",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          backdropFilter: "blur(0px)",
+          WebkitBackdropFilter: "blur(0px)",
+          border: "1px solid rgba(0, 0, 0, 0.03)",
+        }}
       >
         <HStack spacing={2} justifyContent="space-between">
           <Box flexGrow={1}>
@@ -160,4 +160,4 @@ function MapComponent() {
   );
 }
 
-export default MapComponent;
+export default MapsComeponent;
