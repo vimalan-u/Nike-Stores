@@ -6,9 +6,6 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateColorModel } from "../../redux/Reducers/authReducer";
 
 const list = [
   {

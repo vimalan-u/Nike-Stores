@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react";
 import {
   Avatar,
   AvatarBadge,
@@ -17,33 +17,35 @@ import {
   useColorModeValue,
   useDisclosure,
   VStack,
-} from '@chakra-ui/react'
-import { useSelector } from 'react-redux';
+} from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 
-export default function Profile() {
-  const [userProfile, setUserProfile] = useState(null)
+export default function Profile({ selectedProfile, setSelectedProfile }) {
+  const [userProfile, setUserProfile] = useState(null);
 
   const user = useSelector((state) => state.auth.user) || "Test";
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const profileImage = useRef(null)
+  const profileImage = useRef(null);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const openChooseImage = () => {
-    profileImage.current.click()
-  }
+    profileImage.current.click();
+  };
 
-  const changeProfileImage = event => {
-    const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg']
-    const selected = event.target.files[0]
+  const changeProfileImage = (event) => {
+    const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
+    const selected = event.target.files[0];
 
     if (selected && ALLOWED_TYPES.includes(selected.type)) {
-      let reader = new FileReader()
-      reader.onloadend = () => setUserProfile(reader.result)
-      return reader.readAsDataURL(selected)
+      setSelectedProfile(selected);
+      let reader = new FileReader();
+      reader.onloadend = () => setUserProfile(reader.result);
+      return reader.readAsDataURL(selected);
     }
 
-    onOpen()
-  }
+    onOpen();
+  };
 
   return (
     <VStack spacing={3} py={5} borderBottomWidth={1} borderColor="brand.light">
@@ -52,7 +54,7 @@ export default function Profile() {
         name={user.firstName}
         cursor="pointer"
         onClick={openChooseImage}
-        src={userProfile && userProfile}
+        src={user.profilePic ? user.profilePic : userProfile}
       >
         <AvatarBadge bg="brand.blue" boxSize="1em">
           <svg width="0.4em" fill="currentColor" viewBox="0 0 20 20">
@@ -93,15 +95,20 @@ export default function Profile() {
         </ModalContent>
       </Modal>
       <VStack spacing={1}>
-        <Heading as="h3" fontSize="xl" color={useColorModeValue("brand.dark", "brand.light")}>
+        <Heading
+          as="h3"
+          fontSize="xl"
+          color={useColorModeValue("brand.dark", "brand.light")}
+        >
           Venketesh Rushi
         </Heading>
-        <Text color={useColorModeValue("brand.gray", "brand.light")} fontSize="sm">
+        <Text
+          color={useColorModeValue("brand.gray", "brand.light")}
+          fontSize="sm"
+        >
           {"Pune, India"}
         </Text>
       </VStack>
     </VStack>
-  )
+  );
 }
-
-
