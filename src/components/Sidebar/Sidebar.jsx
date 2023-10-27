@@ -6,10 +6,11 @@ import Profile from "./Profile";
 import { useSelector } from "react-redux";
 import { setToast } from "../../utils/extraFunctions";
 import { useState } from "react";
-import { setItem } from "../../utils/cookiestorage";
+import { getItem, removeItem, setItem } from "../../utils/cookiestorage";
 
 function Sidebar() {
   const [selectedProfile, setSelectedProfile] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
 
   const token = useSelector((state) => state.auth.token);
   const toast = useToast();
@@ -27,8 +28,10 @@ function Sidebar() {
       });
       console.log(response.data.user);
       let userdata = JSON.stringify(response.data.user)
+      removeItem("user")
       setItem("user", userdata)
       setToast(toast, "Profile Piture Upload Succsfully.", "success");
+      setUserProfile(null)
     } catch (error) {
       console.log(error);
       setToast(toast, "Something Went Wrong!", "error");
@@ -47,6 +50,8 @@ function Sidebar() {
       bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Profile
+        userProfile={userProfile}
+        setUserProfile={setUserProfile}
         selectedProfile={selectedProfile}
         setSelectedProfile={setSelectedProfile}
       />

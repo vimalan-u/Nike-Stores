@@ -20,8 +20,8 @@ import {
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
-export default function Profile({ selectedProfile, setSelectedProfile }) {
-  const [userProfile, setUserProfile] = useState(null);
+export default function Profile({ userProfile, setUserProfile, selectedProfile, setSelectedProfile }) {
+
 
   const user = useSelector((state) => state.auth.user) || "Test";
 
@@ -38,9 +38,9 @@ export default function Profile({ selectedProfile, setSelectedProfile }) {
     const selected = event.target.files[0];
 
     if (selected && ALLOWED_TYPES.includes(selected.type)) {
-      setSelectedProfile(selected);
       let reader = new FileReader();
       reader.onloadend = () => setUserProfile(reader.result);
+      setSelectedProfile(selected);
       return reader.readAsDataURL(selected);
     }
 
@@ -54,7 +54,7 @@ export default function Profile({ selectedProfile, setSelectedProfile }) {
         name={user.firstName}
         cursor="pointer"
         onClick={openChooseImage}
-        src={user.profilePic ? user.profilePic : userProfile}
+        src={userProfile ? userProfile : user.profilePic}
       >
         <AvatarBadge bg="brand.blue" boxSize="1em">
           <svg width="0.4em" fill="currentColor" viewBox="0 0 20 20">
