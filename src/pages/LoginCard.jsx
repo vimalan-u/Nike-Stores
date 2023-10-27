@@ -49,8 +49,9 @@ export default function LoginCard() {
       return setToast(toast, "Please Fill All The Fields", "error");
     }
     try {
-      const res = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
+      const response = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
       setToast(toast, "Login successfully", "success");
+      console.log(location)
       if (location.state && location.state.from) {
         navigate(location.state.from, { replace: true });
       } else {

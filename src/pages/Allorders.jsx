@@ -60,7 +60,7 @@ export default function Allorders() {
       {data?.map((item) => {
         const { date, time } = dateFormater(item.createdAt);
         return (
-          <OrderSection date={date} time={time}>
+          <OrderSection date={date} time={time} key={item.id}>
             {" "}
             <Box key={item.id}>
               <Grid
@@ -75,7 +75,7 @@ export default function Allorders() {
                   <Divider mb={"20px"} />
                   {item.cartProducts.map((product) => (
                     <Grid
-                      key={product.price}
+                      key={product.id}
                       templateColumns={"100px 60%"}
                       p={"5px"}
                     >
@@ -92,8 +92,8 @@ export default function Allorders() {
                     </Grid>
                   ))}
                 </Box>
-                {item.ShippingDetails.map((ele) => (
-                  <Box py={"15px"} px={"25px"}>
+                {item.ShippingDetails.map((ele, index) => (
+                  <Box key={ele.name} py={"15px"} px={"25px"}>
                     <Text textAlign={"left"} fontSize={"20px"} fontWeight={600}>
                       Shipping Address
                     </Text>

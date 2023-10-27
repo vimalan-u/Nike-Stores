@@ -7,6 +7,7 @@ import OrderStaus from './OrderStaus'
 
 export default function Content() {
   const tabs = ['Account Settings', 'Orders Placed', 'Notifications']
+  let selecteTab = useColorModeValue("brand.dark", "white")
 
   return (
     <Box
@@ -34,7 +35,7 @@ export default function Content() {
               color="brand.cadet"
               borderBottomWidth={1}
               _active={{ bg: 'transparent' }}
-              _selected={{ color: useColorModeValue("brand.dark", "white"), borderColor: 'brand.blue' }}
+              _selected={{ color: selecteTab, borderColor: 'brand.blue' }}
             >
               {tab}
             </Tab>
