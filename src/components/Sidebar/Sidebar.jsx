@@ -6,7 +6,7 @@ import Profile from "./Profile";
 import { useSelector } from "react-redux";
 import { setToast } from "../../utils/extraFunctions";
 import { useState } from "react";
-import { getItem, removeItem, setItem } from "../../utils/cookiestorage";
+import { removeItem, setItem } from "../../utils/cookiestorage";
 
 function Sidebar() {
   const [selectedProfile, setSelectedProfile] = useState(null);

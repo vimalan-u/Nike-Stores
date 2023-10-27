@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
-export default function Profile({ userProfile, setUserProfile, selectedProfile, setSelectedProfile }) {
+function Profile({ userProfile, setUserProfile, selectedProfile, setSelectedProfile }) {
 
 
   const user = useSelector((state) => state.auth.user) || "Test";
@@ -54,6 +54,7 @@ export default function Profile({ userProfile, setUserProfile, selectedProfile, 
         name={user.firstName}
         cursor="pointer"
         onClick={openChooseImage}
+        // src={user.profilePic && userProfile !== null ? userProfile : user.profilePic && userProfile === null ? user.profilePic : userProfile}
         src={userProfile ? userProfile : user.profilePic}
       >
         <AvatarBadge bg="brand.blue" boxSize="1em">
@@ -112,3 +113,5 @@ export default function Profile({ userProfile, setUserProfile, selectedProfile, 
     </VStack>
   );
 }
+
+export default Profile
