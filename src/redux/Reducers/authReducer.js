@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getItem, setItem } from "../../utils/cookiestorage";
-import { setToast } from "../../utils/extraFunctions";
 import Cookies from "js-cookie";
 
 const initialState = {

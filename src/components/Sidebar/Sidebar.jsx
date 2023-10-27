@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import { useSelector } from "react-redux";
 import { setToast } from "../../utils/extraFunctions";
 import { useState } from "react";
+import { setItem } from "../../utils/cookiestorage";
 
 function Sidebar() {
   const [selectedProfile, setSelectedProfile] = useState(null);
@@ -24,7 +25,8 @@ function Sidebar() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
+      console.log(response.data.user);
+      setItem("user", response.data.user)
       setToast(toast, "Profile Piture Upload Succsfully.", "success");
     } catch (error) {
       console.log(error);
