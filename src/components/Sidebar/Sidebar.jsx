@@ -20,7 +20,7 @@ function Sidebar() {
     formData.append("imgCollection", selectedProfile);
 
     try {
-      const response = await axios.post("user/adduserimage", formData, {
+      const response = await axios.post("/user/adduserimage", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
