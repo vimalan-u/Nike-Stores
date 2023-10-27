@@ -26,7 +26,8 @@ function Sidebar() {
         },
       });
       console.log(response.data.user);
-      setItem("user", response.data.user)
+      let userdata = JSON.stringify(response.data.user)
+      setItem("user", userdata)
       setToast(toast, "Profile Piture Upload Succsfully.", "success");
     } catch (error) {
       console.log(error);
