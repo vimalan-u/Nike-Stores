@@ -1,7 +1,6 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from '@chakra-ui/react'
 
 import AccountSettings from './AccountSettings'
-import Actions from './Actions'
 import Notifications from './Notifications'
 import OrderStaus from './OrderStaus'
 
@@ -54,8 +53,6 @@ export default function Content() {
           </TabPanel>
         </TabPanels>
       </Tabs>
-
-      <Actions />
     </Box>
   )
 }

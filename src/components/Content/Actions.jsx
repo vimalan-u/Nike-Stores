@@ -10,7 +10,7 @@ export default function Actions() {
   }
 
   return (
-    <Box mt={5} py={5} px={8} borderTopWidth={1} borderColor="brand.light">
+    <Box mt={5} py={8} px={0} borderTopWidth={1} borderColor="brand.light">
       <Button color={"white"}
         bgColor={"rgb(0,0,0)"}
         _hover={{
