@@ -4,6 +4,7 @@ import { HomeDescText, HomeText } from "./HomeText";
 import { useNavigate } from "react-router-dom";
 
 export const ClothSection = ({ clothData }) => {
+  // console.log(clothData)
   const navigate = useNavigate();
   return (
     <>
@@ -27,27 +28,27 @@ export const ClothSection = ({ clothData }) => {
           ]}
         >
           <ClothGridBox
-            source={clothData.a[0]?.image}
+            source={clothData?.a[0]?.image}
             onClick={() => {
-              navigate(`/description/${clothData.a[0].id}`);
+              navigate(`/description/${clothData?.a[0].id}`);
             }}
           />
           <ClothGridBox
-            source={clothData.a[1]?.image}
+            source={clothData?.a[1]?.image}
             onClick={() => {
-              navigate(`/description/${clothData.a[1].id}`);
+              navigate(`/description/${clothData?.a[1].id}`);
             }}
           />
           <ClothGridBox
-            source={clothData.a[2]?.image}
+            source={clothData?.a[2]?.image}
             onClick={() => {
-              navigate(`/description/${clothData.a[2].id}`);
+              navigate(`/description/${clothData?.a[2].id}`);
             }}
           />
           <ClothGridBox
-            source={clothData.a[3]?.image}
+            source={clothData?.a[3]?.image}
             onClick={() => {
-              navigate(`/description/${clothData.a[3].id}`);
+              navigate(`/description/${clothData?.a[3].id}`);
             }}
           />
         </Grid>
