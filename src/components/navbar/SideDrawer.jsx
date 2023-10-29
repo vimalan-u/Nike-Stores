@@ -42,6 +42,7 @@ export const SideDrawer = () => {
     removeItem("token");
     removeItem("user");
     dispatch(logoutApi());
+    removeItem("persist:root");
     onClose();
     navigate("/");
   };
@@ -125,9 +126,16 @@ export const SideDrawer = () => {
                     size="lg"
                     bg={"blue.400"}
                     color={"white"}
-                    bgColor={"rgb(0,0,0)"}
                     _hover={{
                       boxShadow: "xl",
+                    }}
+                    sx={{
+                      background: "rgba(0, 0, 0, 0.78)",
+                      borderRadius: "16px",
+                      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                      border: "1px solid rgba(0, 0, 0, 0.71)",
+                      backdropFilter: "blur(4.4px)",
+                      WebkitBackdropFilter: "blur(4.4px)",
                     }}
                     width={"100%"}
                     onClick={handleLoginBtn}
@@ -139,9 +147,16 @@ export const SideDrawer = () => {
                     size="lg"
                     bg={"blue.400"}
                     color={"white"}
-                    bgColor={"rgb(0,0,0)"}
                     _hover={{
                       boxShadow: "xl",
+                    }}
+                    sx={{
+                      background: "rgba(0, 0, 0, 0.78)",
+                      borderRadius: "16px",
+                      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                      border: "1px solid rgba(0, 0, 0, 0.71)",
+                      backdropFilter: "blur(4.4px)",
+                      WebkitBackdropFilter: "blur(4.4px)",
                     }}
                     width={"100%"}
                     mb={5}
@@ -194,14 +209,11 @@ export const SideDrawer = () => {
                           WebkitBackdropFilter: "blur(20px)",
                           border: "1px solid rgba(255, 255, 255, 1)",
                         }}
+                        cursor={"pointer"}
+                        onClick={() => navigate(route)}
                       >
                         <Icon as={IconComponent} boxSize={4} />
-                        <Button
-                          background={"transparent"}
-                          onClick={() => navigate(route)}
-                        >
-                          {text}
-                        </Button>
+                        <Button background={"transparent"}>{text}</Button>
                       </HStack>
                     ))}
 

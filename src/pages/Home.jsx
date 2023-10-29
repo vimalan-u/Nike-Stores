@@ -19,7 +19,9 @@ import HomeProductLoader from "../components/Loaders/HomeProductLoader";
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, error, clothData } = useSelector((state) => state.home);
+  const { loading, error, clothDataHomepage } = useSelector(
+    (state) => state.home
+  );
   const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
   useEffect(() => {
     dispatch(getClothData());
@@ -34,7 +36,7 @@ function Home() {
         flexDirection={"column"}
         alignItems={["left", "left", "left", "center"]}
         justifyContent={"center"}
-        mt={6}
+        mt={5}
         mb={[4, 5, 7, 8, 9]}
         textAlign={["left", "left", "left", "center"]}
       >
@@ -57,12 +59,19 @@ function Home() {
             "space-around",
             "space-around",
           ]}
-          mt={[3, 3, 4, 4, 5]}
+          mt={[3, 3, 5, 10, 10]}
           gap={10}
         >
           <Button
             width={["100%", "50%", "35%"]}
-            bgColor={"black"}
+            sx={{
+              background: "rgba(0, 0, 0, 0.78)",
+              borderRadius: "16px",
+              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+              border: "1px solid rgba(0, 0, 0, 0.71)",
+              backdropFilter: "blur(4.4px)",
+              WebkitBackdropFilter: "blur(4.4px)",
+            }}
             color={"white"}
             p={"6px 20px"}
             borderRadius={30}
@@ -77,7 +86,14 @@ function Home() {
           </Button>
           <Button
             width={["100%", "50%", "35%"]}
-            bgColor={"black"}
+            sx={{
+              background: "rgba(0, 0, 0, 0.78)",
+              borderRadius: "16px",
+              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+              border: "1px solid rgba(0, 0, 0, 0.71)",
+              backdropFilter: "blur(4.4px)",
+              WebkitBackdropFilter: "blur(4.4px)",
+            }}
             color={"white"}
             p={"6px 20px"}
             borderRadius={30}
@@ -157,7 +173,7 @@ function Home() {
             </Text>
             <HStack mt={5}>
               <Button
-                fontWeight={0}
+                fontWeight={"bold"}
                 bgColor={"white"}
                 p={"6px 20px"}
                 borderRadius={20}
@@ -168,7 +184,7 @@ function Home() {
                 Explore
               </Button>
               <Button
-                fontWeight={0}
+                fontWeight={"bold"}
                 bgColor={"white"}
                 p={"6px 20px"}
                 borderRadius={20}
@@ -228,7 +244,7 @@ function Home() {
             </Text>
             <HStack mt={5}>
               <Button
-                fontWeight={0}
+                fontWeight={"bold"}
                 bgColor={"white"}
                 p={"6px 20px"}
                 borderRadius={20}
@@ -243,18 +259,16 @@ function Home() {
         </Box>
       </Box>
       <Box>
-        {clothData?.map((data, index) =>
-          loading ? (
-            <HomeProductLoader key={index} />
-          ) : error ? (
-            <Error />
-          ) : (
-            <ClothSection
-              handleSection={() => navigate(`/description/${data.id}`)}
-              key={index}
-              {...data}
-            />
-          )
+        {loading ? (
+          <>
+            <HomeProductLoader />
+            <HomeProductLoader />
+            <HomeProductLoader />
+          </>
+        ) : error ? (
+          <Error />
+        ) : (
+          <ClothSection clothData={clothDataHomepage} />
         )}
       </Box>
     </Box>

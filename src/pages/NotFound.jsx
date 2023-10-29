@@ -1,7 +1,7 @@
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-export default function NotFound() {
+export default function NotFound({ data }) {
   const navigate = useNavigate();
   return (
     <Box textAlign="center" height={"65vh"} py={10} px={6}>
@@ -17,9 +17,15 @@ export default function NotFound() {
       <Text fontSize="18px" mt={3} mb={2}>
         Page Not Found
       </Text>
-      <Text color={"gray.500"} mb={6}>
+      <Text color={"white"} mb={6}>
         The page you&apos; re looking for does not seem to exist
+        {data !== "Page Not Found!" && data!==null && (
+          <Text mt={3} color={"red.400"}>
+            Error: {data}
+          </Text>
+        )}
       </Text>
+
       <Button
         color={"white"}
         bgColor={"rgb(0,0,0)"}

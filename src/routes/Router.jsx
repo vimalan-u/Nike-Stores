@@ -4,6 +4,7 @@ import { Suspense, lazy } from "react";
 import ErrorBoundary from "../pages/ErrorBoundary";
 import NavbarFetureimages from "../pages/NavbarFeatureiMage";
 import FreeCoupon from "../pages/FreeCoupon";
+import { Loading } from "../components/loading/Loading";
 
 const Cart = lazy(() => import("../pages/Cart"));
 const Checkout = lazy(() => import("../pages/Checkout"));
@@ -46,8 +47,8 @@ export const Router = () => {
     location.pathname === "/adminaddproducts" ||
     location.pathname === "/adminaupdateproduct";
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<div>Loading...</div>}>
+    <ErrorBoundary >
+      <Suspense fallback={<Loading />}>
         {isAdminRoute ? null : location.pathname === "/" ? (
           <NavbarFetureimages />
         ) : (
@@ -107,7 +108,7 @@ export const Router = () => {
             }
           />
           <Route path="/contactus" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound data={"Page Not Found!"}/>} />
 
           <Route
             path="/admindashboard"

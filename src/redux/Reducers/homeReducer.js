@@ -5,13 +5,15 @@ const initialState = {
   loading: false,
   error: false,
   clothData: [],
+  clothDataHomepage: {},
   shoeData: [],
 };
 
 export const getClothData = createAsyncThunk("home/getClothData", async () => {
   let res = await axios.get("/product/getfourproducts");
   const data = await res.data;
-  return data;
+  const flatArray = [...data.a, ...data.b, ...data.c];
+  return { data: flatArray, clothDataHomepage: data };
 });
 
 export const homeSlice = createSlice({
@@ -26,7 +28,8 @@ export const homeSlice = createSlice({
     });
     builder.addCase(getClothData.fulfilled, (state, action) => {
       state.loading = false;
-      state.clothData = action.payload;
+      state.clothData = action.payload.data;
+      state.clothDataHomepage = action.payload.clothDataHomepage;
       state.error = false;
     });
     builder.addCase(getClothData.rejected, (state, action) => {

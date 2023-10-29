@@ -52,7 +52,7 @@ function App() {
         },
       });
 
-      console.log("Response:", response);
+      // console.log("Response:", response);
 
       if (
         response.data.status === "Failed" &&

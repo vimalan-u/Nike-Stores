@@ -48,7 +48,7 @@ const NavbarFetureimages = () => {
           </Box>
         </Box>
       ) : (
-        <Flex h={"60px"} py="1" flexDirection={"row"} px={"20px"}>
+        <Flex h={"80px"} py="1" flexDirection={"row"} px={"20px"}>
           {!isLargerThan768 && (
             <Box w={"80px"}>
               <Link to={"/"}>
