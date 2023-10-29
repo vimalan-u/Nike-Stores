@@ -32,9 +32,20 @@ export default function LoginCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
-  const { loading } = useSelector((state) => state.auth);
+  const { loading, isLogin } = useSelector((state) => state.auth);
 
   const location = useLocation();
+
+  useEffect(() => {
+    if (isLogin) {
+      if (location.state && location.state.from) {
+        console.log(location);
+        navigate(location.state.from, { replace: true });
+      } else {
+        navigate("/");
+      }
+    }
+  }, [isLogin]);
 
   const hanldeChange = (e) => {
     const { name, value } = e.target;
@@ -51,12 +62,7 @@ export default function LoginCard() {
     try {
       const response = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
       setToast(toast, "Login successfully", "success");
-      console.log(location)
-      if (location.state && location.state.from) {
-        navigate(location.state.from, { replace: true });
-      } else {
-        navigate("/");
-      }
+      navigate("/");
     } catch (rejectedValueOrSerializedError) {
       console.log("error", rejectedValueOrSerializedError);
       setToast(

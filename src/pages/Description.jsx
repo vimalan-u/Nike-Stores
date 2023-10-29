@@ -94,7 +94,7 @@ function Description() {
           userid: user.id,
         });
 
-        console.log("review added", response);
+        // console.log("review added", response);
 
         setReviewValue({ rating: 5, reviewdes: "" });
         onClose();

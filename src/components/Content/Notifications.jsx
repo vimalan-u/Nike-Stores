@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { FormControl, FormLabel, Switch, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { setToast } from "../../utils/extraFunctions";
 import { useSelector } from "react-redux";
+import { removeItem, setItem } from "../../utils/cookiestorage";
 
 function Notifications() {
   const toast = useToast();
   const { token, user } = useSelector((state) => state.auth);
-  // const [checked, setChecked] = useState(false);
+  console.log(user.notification)
 
   const updateUsersNotification = async () => {
     try {
@@ -21,12 +22,12 @@ function Notifications() {
           },
         }
       );
-      console.log(response);
-      setToast(toast, "Notification service started", "success");
-      setChecked(true);
+      let userdata = JSON.stringify(response.data.user)
+      removeItem("user")
+      setItem("user", userdata)
+      setToast(toast, response.data.user.notification === true ?  "Notification Service started" : "Notification Service Stopped", "success");
     } catch (error) {
       console.error(error);
-      setChecked(false);
       setToast(
         toast,
         error.response?.data?.message || "Something went wrong!",
@@ -51,12 +52,9 @@ function Notifications() {
       </FormLabel>
       <Switch
         id="notificationEmails"
-      />
-      {/* <Switch
-        id="notificationEmails"
-        isChecked={checked}
+        isChecked={user.notification}
         onChange={updateUsersNotification}
-      /> */}
+      />
     </FormControl>
   );
 }
