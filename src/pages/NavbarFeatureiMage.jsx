@@ -93,7 +93,6 @@ const NavbarFetureimages = () => {
                 w={"28px"}
                 h={"28px"}
                 color={location.pathname === "/" && "white"}
-                bgColor={"red"}
                 mr={"10px"}
                 as={RiShoppingBagLine}
               />
