@@ -24,6 +24,7 @@ import {
 } from "../redux/Reducers/authReducer";
 import { setToast } from "../utils/extraFunctions";
 import GoogleButton from "../components/googleButton/GoogleButton";
+import axios from "axios";
 
 export default function LoginCard() {
   const [signUpcreds, setsignUpcreds] = useState({ email: "", password: "" });
@@ -33,6 +34,7 @@ export default function LoginCard() {
   const dispatch = useDispatch();
   const toast = useToast();
   const { loading, isLogin } = useSelector((state) => state.auth);
+  let color = useColorModeValue("white", "gray.700");
 
   const location = useLocation();
 
@@ -62,6 +64,7 @@ export default function LoginCard() {
     try {
       const response = await dispatch(getLoginSuccess(signUpcreds)).unwrap();
       setToast(toast, "Login successfully", "success");
+      getLocation();
       navigate("/");
     } catch (rejectedValueOrSerializedError) {
       console.log("error", rejectedValueOrSerializedError);
@@ -74,8 +77,6 @@ export default function LoginCard() {
       );
     }
   };
-
-  let color = useColorModeValue("white", "gray.700");
 
   const handleSubmitReset = async () => {
     if (resetemail === "") {
@@ -103,6 +104,65 @@ export default function LoginCard() {
   //     "_self"
   //   );
   // };
+
+
+  let options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+
+  async function success(pos) {
+    let crd = pos.coords;
+
+    console.log("Your current position is:");
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+    try {
+      let response = await axios.post(
+        "/auth/addlocation",
+        {
+          latitude: crd.latitude,
+          longitude: crd.longitude,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function errors(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then(function (result) {
+          if (result.state === "granted") {
+            console.log(result.state);
+            navigator.geolocation.getCurrentPosition(success);
+          } else if (result.state === "prompt") {
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "denied") {
+            console.log("denied", result);
+          }
+          result.onchange = function () {
+            console.log(result.state);
+          };
+        });
+    } else {
+      console.log("Geolocation is not available on this device.");
+    }
+  }
 
   return (
     <>
@@ -212,6 +272,8 @@ export default function LoginCard() {
                     </Text>
                   </Stack>
                   <Button
+                    isLoading={loading}
+                    loadingText="Validating..."
                     bg={"blue.400"}
                     color={"white"}
                     bgColor={"rgb(0,0,0)"}

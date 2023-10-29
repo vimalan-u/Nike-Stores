@@ -293,7 +293,7 @@ const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
                 >
                   View Users On Map
                 </MenuItem>
-                <Divider />
+                <MenuDivider />
                 <MenuItem
                   bgColor={"transparent"}
                   _hover={{

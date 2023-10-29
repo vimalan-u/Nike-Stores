@@ -2,13 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getItem, setItem } from "../../utils/cookiestorage";
 import Cookies from "js-cookie";
+import { removeItemLocal } from "../../utils/localstorage";
 
 const initialState = {
   isLogin: false,
   token: getItem("token") || "",
   user: getItem("user") || {},
   error: "",
-  loading: true,
+  loading: false,
   resetemail: "",
   dark: false,
   isAdmin: false,
@@ -78,6 +79,8 @@ export const authSlice = createSlice({
       state.token = "";
       state.user = {};
       state.loading = false;
+      removeItemLocal("persist:root");
+      window.localStorage.clear()
     },
     updateColorModel: (state, action) => {
       state.dark = action.payload;

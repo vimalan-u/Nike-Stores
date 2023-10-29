@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Box, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Grid, Text, useColorModeValue } from "@chakra-ui/react";
 import { Error } from "../../components/loading/Error";
 import { Loading } from "../../components/loading/Loading";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import ProductCard from "../components/AllProducts/ProductCard";
+import { ProductDisplayBox } from "../../components/products/ProductDisplayBox";
+import { useNavigate } from "react-router-dom";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   const token = useSelector((state) => state.auth.token);
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -28,7 +32,6 @@ export default function AllProducts() {
       let response = await axios("/admin/getproducts", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("users", response);
       setProducts(response.data);
       setLoading(false);
     } catch (error) {
@@ -36,6 +39,10 @@ export default function AllProducts() {
       setLoading(false);
       console.log(error);
     }
+  };
+
+  const handleSingleProduct = (data) => {
+    navigate(`/adminaupdateproduct/${data.id}`);
   };
 
   return (
@@ -62,21 +69,27 @@ export default function AllProducts() {
         ) : error ? (
           <Error />
         ) : products.length > 0 ? (
-          <Box
-            display={"flex"}
-            justifyContent={"flex-start"}
-            flexDirection={"column"}
-            width={["100%","80%","70%","60%","60%"]}
+          <Grid
+            gap={[2, 4]}
+            p={["10px", "10px", "20px", "20px", "20px"]}
+            templateColumns={[
+              "repeat(2, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(3, 1fr)",
+            ]}
           >
-            {products.map((product, index) => (
-              <ProductCard
+            {products?.map((product, index) => (
+              <ProductDisplayBox
+                {...product}
                 key={index}
-                boxShadow={cardShadow}
-                mb="20px"
-                product={product}
+                onClick={() => {
+                  handleSingleProduct(product);
+                }}
               />
             ))}
-          </Box>
+          </Grid>
         ) : (
           <Box my={"140px"}>
             <Text fontSize={"20px"} fontWeight={500} textAlign={"center"}>

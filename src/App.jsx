@@ -40,9 +40,8 @@ function App() {
   }, []);
 
   async function checkUser() {
-    console.log(token);
     if (!token || token.length <= 0) {
-      console.log("new user");
+      // console.log("new user");
       return;
     }
 
@@ -73,66 +72,6 @@ function App() {
       setToast(toast, "Session expired. Please login again.", "success");
     }
   }
-
-  // let options = {
-  //   enableHighAccuracy: true,
-  //   timeout: 5000,
-  //   maximumAge: 0,
-  // };
-
-  // getLocation();
-
-  // async function success(pos) {
-  //   let crd = pos.coords;
-
-  //   console.log("Your current position is:");
-  //   console.log(`Latitude : ${crd.latitude}`);
-  //   console.log(`Longitude: ${crd.longitude}`);
-  //   console.log(`More or less ${crd.accuracy} meters.`);
-  //   try {
-  //     let response = await axios.post(
-  //       "/auth/addlocation",
-  //       {
-  //         latitude: crd.latitude,
-  //         longitude: crd.longitude,
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // function errors(err) {
-  //   console.warn(`ERROR(${err.code}): ${err.message}`);
-  // }
-
-  // function getLocation() {
-  //   if (navigator.geolocation) {
-  //     navigator.permissions
-  //       .query({ name: "geolocation" })
-  //       .then(function (result) {
-  //         if (result.state === "granted") {
-  //           console.log(result.state);
-  //           navigator.geolocation.getCurrentPosition(success);
-  //         } else if (result.state === "prompt") {
-  //           navigator.geolocation.getCurrentPosition(success, errors, options);
-  //         } else if (result.state === "denied") {
-  //           console.log("denied", result);
-  //         }
-  //         result.onchange = function () {
-  //           console.log(result.state);
-  //         };
-  //       });
-  //   } else {
-  //     console.log("Geolocation is not available on this device.");
-  //   }
-  // }
 
   return (
     <>

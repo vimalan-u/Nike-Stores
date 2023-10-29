@@ -73,7 +73,14 @@ export const Router = () => {
               </Private>
             }
           />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/cart"
+            element={
+              <Private>
+                <Cart />
+              </Private>
+            }
+          />
 
           <Route
             path="/checkout"

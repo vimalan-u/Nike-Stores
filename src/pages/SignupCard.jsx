@@ -22,7 +22,12 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
-  const [signUpcreds, setsignUpcreds] = useState({ name: "", email: "", password: "" });
+  const [signUpcreds, setsignUpcreds] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const toast = useToast();
@@ -44,10 +49,13 @@ export default function SignupCard() {
       setToast(toast, "Please Fill All The Fields", "error");
     }
     try {
+      setLoading(true);
       let response = await axios.post("/auth/register", signUpcreds);
       setToast(toast, "Signup Successfull", "success");
       navigate("/login");
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       setToast(
         toast,
         error.response.data.message
@@ -116,7 +124,8 @@ export default function SignupCard() {
               </FormControl>
               <Stack spacing={10} pt={2}>
                 <Button
-                  loadingText="Submitting"
+                  isLoading={loading}
+                  loadingText="Singing..."
                   size="lg"
                   bg={"blue.400"}
                   color={"white"}

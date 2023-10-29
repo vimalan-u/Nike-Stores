@@ -67,10 +67,10 @@ function Home() {
             p={"6px 20px"}
             borderRadius={30}
             alignItems={"center"}
-            fontWeight={0}
             _hover={{
               bgColor: "black",
             }}
+            fontWeight={"bolder"}
             onClick={() => navigate("/sale")}
           >
             SHOP NOW
@@ -82,7 +82,7 @@ function Home() {
             p={"6px 20px"}
             borderRadius={30}
             alignItems={"center"}
-            fontWeight={0}
+            fontWeight={"bolder"}
             _hover={{
               bgColor: "black",
             }}
@@ -97,8 +97,8 @@ function Home() {
         width={"89%"}
         fontSize={"24px"}
         textAlign={"left"}
-        fontWeight={"500"}
         marginBottom={2}
+        fontWeight={"bolder"}
       >
         Featuerd
       </Text>
@@ -122,6 +122,8 @@ function Home() {
           flexDirection={"column"}
           alignItems={"center"}
           justifyContent={"center"}
+          cursor={"pointer"}
+          onClick={() => navigate("/sale")}
         >
           <Box
             color={"white"}
@@ -161,6 +163,7 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
+                onClick={() => navigate("/sale")}
               >
                 Explore
               </Button>
@@ -171,6 +174,7 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
+                onClick={() => navigate("/men")}
               >
                 Top 10 Gifts
               </Button>
@@ -188,6 +192,8 @@ function Home() {
           flexDirection={"column"}
           alignItems={"center"}
           justifyContent={"center"}
+          cursor={"pointer"}
+          onClick={() => navigate("/sale")}
         >
           <Box
             color={"white"}
@@ -205,6 +211,7 @@ function Home() {
                 transition: "color 0.5s ease-out",
               }}
               fontWeight="bold"
+              onClick={() => navigate("/sale")}
             >
               Early Access
             </Text>
@@ -215,6 +222,7 @@ function Home() {
               }}
               fontWeight="bold"
               fontSize={"24px"}
+              onClick={() => navigate("/men")}
             >
               Top Selling
             </Text>
@@ -226,6 +234,7 @@ function Home() {
                 borderRadius={20}
                 color={"black"}
                 alignItems={"center"}
+                onClick={() => navigate("/sale")}
               >
                 Get It First
               </Button>
@@ -236,7 +245,7 @@ function Home() {
       <Box>
         {clothData?.map((data, index) =>
           loading ? (
-            <HomeProductLoader />
+            <HomeProductLoader key={index} />
           ) : error ? (
             <Error />
           ) : (

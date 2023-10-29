@@ -9,6 +9,7 @@ import { getCartTotal } from "../../utils/getCartTotal";
 import { setToast } from "../../utils/extraFunctions";
 import { getItemLocal, setItemLocal } from "../../utils/localstorage";
 import axios from "axios";
+import { removeItem } from "../../utils/cookiestorage";
 
 export const addToCartRequest = createAsyncThunk(
   "cart/addToCart",
@@ -55,6 +56,7 @@ export const getCartProducts = createAsyncThunk(
   "cart/getFromCart",
   async (data1, { dispatch, rejectWithValue }) => {
     let token = data1[0];
+    let toast = data1[1];
     try {
       let res = await axios.get("/cart/getcart", {
         headers: { Authorization: `Bearer ${token}` },
@@ -72,7 +74,7 @@ export const getCartProducts = createAsyncThunk(
       };
     } catch (error) {
       console.log("error", error);
-      return rejectWithValue(error.response.data.message);
+      return rejectWithValue(error);
     }
   }
 );
