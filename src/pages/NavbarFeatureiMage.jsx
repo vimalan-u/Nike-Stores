@@ -98,7 +98,7 @@ const NavbarFetureimages = () => {
               />
               <Box
                 position={"absolute"}
-                top={-1}
+                top={1}
                 right={-0.4}
                 borderRadius={"50%"}
                 width={"25px"}

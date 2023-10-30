@@ -93,12 +93,12 @@ export const Navbar = () => {
           </Link>
         </Center>
 
-        <Center position={"relative"} mt={isLargerThan780 ? 2 : 3} mr={"22px"}>
+        <Center position={"relative"} mt={isLargerThan780 ? 2 : 3} mr={"22px"} zIndex={1}>
           <Link to={"/cart"}>
             <NavIcon iconName={RiShoppingBagLine} />
             <Box
               position={"absolute"}
-              top={-1}
+              top={1}
               right={-0.4}
               borderRadius={"50%"}
               width={"25px"}
