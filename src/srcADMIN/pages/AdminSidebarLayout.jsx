@@ -331,6 +331,7 @@ const AdminSidebarLayout = ({ children }) => {
     removeItem("token");
     removeItem("user");
     dispatch(logoutApi());
+    removeItem("persist:root");
     navigate("/");
   };
 

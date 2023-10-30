@@ -34,6 +34,7 @@ function Cart() {
         removeItem("token");
         removeItem("user");
         dispatch(logoutApi());
+        removeItem("persist:root");
         setToast(toast, "Session expired. Please login again.", "success");
         navigate("/login");
       }

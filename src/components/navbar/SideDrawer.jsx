@@ -53,7 +53,7 @@ export const SideDrawer = () => {
 
   const handleSignupBtn = () => {
     onClose();
-    navigate("signup");
+    navigate("/signup");
   };
 
   return (
