@@ -3,39 +3,31 @@ import {
   Button,
   Heading,
   HStack,
-  Image,
   Text,
-  useMediaQuery,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ClothSection } from "../components/home/ClothSection";
-import { Error } from "../components/loading/Error.jsx";
-import { Loading } from "../components/loading/Loading.jsx";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { getClothData } from "../redux/Reducers/homeReducer";
-import HomeProductLoader from "../components/Loaders/HomeProductLoader";
 
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, error, clothDataHomepage } = useSelector(
-    (state) => state.home
-  );
-  const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
+
   useEffect(() => {
     getHomeClothData()
   }, []);
 
   async function getHomeClothData() {
     try {
-      // console.log("getClothData called")
       const response = await dispatch(getClothData()).unwrap();
       console.log(response)
     } catch (rejectedValueOrSerializedError) {
       console.log(rejectedValueOrSerializedError)
     }
   }
+
   return (
     <Box width={"100%"}>
       <Box
@@ -45,8 +37,8 @@ function Home() {
         flexDirection={"column"}
         alignItems={["left", "left", "left", "center"]}
         justifyContent={"center"}
-        mt={5}
-        mb={[4, 5, 7, 8, 9]}
+        mt={7}
+        mb={["25px", "30px", "33px", "43px", "56px"]}
         textAlign={["left", "left", "left", "center"]}
       >
         <Box>
@@ -118,12 +110,12 @@ function Home() {
         </HStack>
       </Box>
       <Text
-        m={"auto"}
         width={"89%"}
-        fontSize={"24px"}
+        fontSize={"25px"}
         textAlign={"left"}
-        marginBottom={2}
         fontWeight={"bolder"}
+        m={"auto"}
+        marginBottom={3}
       >
         Featuerd
       </Text>
@@ -268,17 +260,7 @@ function Home() {
         </Box>
       </Box>
       <Box>
-        {loading ? (
-          <>
-            <HomeProductLoader />
-            <HomeProductLoader />
-            <HomeProductLoader />
-          </>
-        ) : error ? (
-          <Error />
-        ) : (
-          <ClothSection clothData={clothDataHomepage} />
-        )}
+        <ClothSection />
       </Box>
     </Box>
   );
