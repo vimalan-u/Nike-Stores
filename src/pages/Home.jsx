@@ -24,9 +24,18 @@ function Home() {
   );
   const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
   useEffect(() => {
-    dispatch(getClothData());
+    getHomeClothData()
   }, []);
 
+  async function getHomeClothData() {
+    try {
+      // console.log("getClothData called")
+      const response = await dispatch(getClothData()).unwrap();
+      console.log(response)
+    } catch (rejectedValueOrSerializedError) {
+      console.log(rejectedValueOrSerializedError)
+    }
+  }
   return (
     <Box width={"100%"}>
       <Box

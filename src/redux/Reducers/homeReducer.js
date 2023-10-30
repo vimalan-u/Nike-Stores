@@ -27,9 +27,9 @@ export const homeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getClothData.fulfilled, (state, action) => {
-      state.loading = false;
       state.clothData = action.payload.data;
       state.clothDataHomepage = action.payload.clothDataHomepage;
+      state.loading = false;
       state.error = false;
     });
     builder.addCase(getClothData.rejected, (state, action) => {
