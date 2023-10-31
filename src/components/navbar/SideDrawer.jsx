@@ -210,7 +210,10 @@ export const SideDrawer = () => {
                           border: "1px solid rgba(255, 255, 255, 1)",
                         }}
                         cursor={"pointer"}
-                        onClick={() => navigate(route)}
+                        onClick={() => {
+                          onClose();
+                          return navigate(route);
+                        }}
                       >
                         <Icon as={IconComponent} boxSize={4} />
                         <Button background={"transparent"}>{text}</Button>

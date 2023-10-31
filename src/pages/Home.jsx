@@ -22,7 +22,7 @@ function Home() {
   async function getHomeClothData() {
     try {
       const response = await dispatch(getClothData()).unwrap();
-      console.log(response)
+      // console.log(response)
     } catch (rejectedValueOrSerializedError) {
       console.log(rejectedValueOrSerializedError)
     }

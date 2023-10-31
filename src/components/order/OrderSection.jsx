@@ -7,9 +7,9 @@ import {
 } from "@chakra-ui/react";
 
 // This Accordion Section For All Orders
-export const OrderSection = ({ date, time, children }) => {
+export const OrderSection = ({ date, time, id, children }) => {
   return (
-    <AccordionItem width={"100%"}>
+    <AccordionItem width={"100%"} key={`${date}-${id}`}>
       <h2>
         <AccordionButton>
           <Box flex="1" textAlign="left">

@@ -8,7 +8,7 @@ import { removeItem, setItem } from "../../utils/cookiestorage";
 function Notifications() {
   const toast = useToast();
   const { token, user } = useSelector((state) => state.auth);
-  console.log(user.notification)
+  // console.log(user.notification)
 
   const updateUsersNotification = async () => {
     try {

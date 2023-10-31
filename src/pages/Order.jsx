@@ -47,7 +47,7 @@ export default function Order() {
   if (data.length === 0) {
     return (
       <Box>
-        <Center h={"40vh"}>
+        <Center h={"60vh"}>
           <Text fontSize={"20px"}>Your orders will be displayed here.</Text>
         </Center>
       </Box>
@@ -59,7 +59,7 @@ export default function Order() {
   ) : isError ? (
     <Error />
   ) : (
-    <Box>
+    <Box minH={"68vh"}>
       <Box px={"20px"} mb={["250px", "150px", "150px", "150px", "150px"]}>
         <Flex justify={"space-between"} maxW={1200} m={"20px auto"}>
           <Center>

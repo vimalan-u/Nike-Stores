@@ -57,12 +57,13 @@ export default function Allorders() {
     <Error />
   ) : (
     <Accordion allowMultiple width={"100%"}>
-      {data?.map((item) => {
+      {data?.map((item,index) => {
         const { date, time } = dateFormater(item.createdAt);
+        const uniqueKey = `${date}-${item.id}`;
         return (
-          <OrderSection date={date} time={time} key={item.id}>
+          <OrderSection date={date} time={time} id={item.id} key={uniqueKey}>
             {" "}
-            <Box key={item.id}>
+            <Box>
               <Grid
                 templateColumns={["100%", "100%", "100%", "50% 50%", "50% 50%"]}
                 gap={["20px", "20px", "4%", "2%", "4%"]}
@@ -73,9 +74,9 @@ export default function Allorders() {
                     Ordered Items
                   </Text>
                   <Divider mb={"20px"} />
-                  {item.cartProducts.map((product) => (
+                  {item.cartProducts.map((product,index) => (
                     <Grid
-                      key={product.id}
+                      key={product.id+"-"+index}
                       templateColumns={"100px 60%"}
                       p={"5px"}
                     >

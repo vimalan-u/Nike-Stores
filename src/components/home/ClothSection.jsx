@@ -12,7 +12,7 @@ export const ClothSection = () => {
     (state) => state.home
   );
 
-  console.log("Render Card clothDataHomepage", clothDataHomepage)
+  // console.log("Render Card clothDataHomepage", clothDataHomepage)
 
   const navigate = useNavigate();
 
