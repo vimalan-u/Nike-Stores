@@ -133,6 +133,7 @@ function OrderChart() {
       p={4}
       borderRadius="md"
       boxShadow="md"
+      minH={"250px"}
       sx={{
         background: "rgba(255, 255, 255, 0.02)",
         borderRadius: "16px",

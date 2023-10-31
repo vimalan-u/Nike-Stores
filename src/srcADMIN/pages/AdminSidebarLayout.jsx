@@ -120,7 +120,7 @@ const NavItem = ({ icon, name, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, user, handleLogoutBtn, navigate, ...rest }) => {
-  const [isLargerThan420] = useMediaQuery("(min-width: 426px)");
+  const [isLargerThan420] = useMediaQuery("(min-width: 750px)");
   return (
     <Flex>
       {isLargerThan420 && (
