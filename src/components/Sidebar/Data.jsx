@@ -9,22 +9,7 @@ import {
 
 const list = [
   {
-    id: 1,
-    name: "Total Orders Placed",
-    value: 32,
-    color: "yellow",
-  },
-  {
-    id: 2,
-    name: "Ongoing Deliveries",
-    value: 6,
-    color: "green",
-  },
-  {
-    id: 3,
-    name: "Products Favorited",
-    value: 10,
-    color: "cadet",
+  
   },
 ];
 
