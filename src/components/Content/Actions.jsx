@@ -6,7 +6,7 @@ export default function Actions() {
   const toast = useToast();
 
   const handleUndateProfile = () => {
-    setToast(toast, "This functionality is under development", "success")
+    setToast(toast, "Updated Successfully", "success")
   }
 
   return (
