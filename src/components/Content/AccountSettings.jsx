@@ -18,15 +18,7 @@ function AccountSettings() {
           <FormLabel>Last Name</FormLabel>
           <Input focusBorderColor="brand.blue" type="text" placeholder={user.lastName ? user.lastName : "Enter Your Last Name"} readOnly />
         </FormControl>
-        <FormControl id="phoneNumber">
-          <FormLabel>Phone Number</FormLabel>
-          <Input
-            focusBorderColor="brand.blue"
-            type="tel"
-            placeholder="+91 XXXXXXXXXX"
-            readOnly
-          />
-        </FormControl>
+     
         <FormControl id="emailAddress">
           <FormLabel>Email Address</FormLabel>
           <Input
@@ -37,17 +29,7 @@ function AccountSettings() {
           />
         </FormControl>
         <FormControl id="city">
-          <FormLabel>City</FormLabel>
-          <Select focusBorderColor="brand.blue" placeholder="Select city" isReadOnly={true}>
-            <option value="chennai">Chennai</option>
-            <option value="pune" selected>Pune</option>
-            <option value="mumbai">Mumbai</option>
-            <option value="hyderabad">Hyderabad</option>
-            <option value="bangalore">Bangalore</option>
-            <option value="delhi">New Delhi</option>
-            <option value="kolkata">Kolkata</option>
-          </Select>
-        </FormControl>
+          
         <FormControl id="country">
           <FormLabel>Country</FormLabel>
           <Select focusBorderColor="brand.blue" placeholder="Select country" isReadOnly={true}>
