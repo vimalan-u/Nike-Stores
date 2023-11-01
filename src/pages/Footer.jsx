@@ -91,18 +91,7 @@ const Footer = () => {
           mr={["0px", "0px", "80px", "80px", "80px"]}
           mt={["40px", "40px", "20px", "20px", "20px"]}
         >
-          <IconLink
-            icon={MdOutlinePersonPin}
-            link={"https://venketeshrushi.github.io/Portfolio/"}
-          />
-          <IconLink
-            icon={FaGithub}
-            link={"https://github.com/VenketeshRushi"}
-          />
-          <IconLink
-            icon={FaLinkedin}
-            link={"https://www.linkedin.com/in/venketesh-rushi-423722236/"}
-          />
+          
         </Flex>
       </Grid>
     </Box>
