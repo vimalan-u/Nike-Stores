@@ -39,12 +39,12 @@ function AccountSettings() {
         <FormControl id="city">
           <FormLabel>City</FormLabel>
           <Select focusBorderColor="brand.blue" placeholder="Select city" isReadOnly={true}>
+            <option value="chennai">Chennai</option>
             <option value="pune" selected>Pune</option>
             <option value="mumbai">Mumbai</option>
             <option value="hyderabad">Hyderabad</option>
             <option value="bangalore">Bangalore</option>
             <option value="delhi">New Delhi</option>
-            <option value="chennai">Chennai</option>
             <option value="kolkata">Kolkata</option>
           </Select>
         </FormControl>
