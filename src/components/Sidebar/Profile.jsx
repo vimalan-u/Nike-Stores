@@ -76,22 +76,14 @@ function Profile({ userProfile, setUserProfile, selectedProfile, setSelectedProf
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Something went wrong</ModalHeader>
+          
           <ModalCloseButton />
           <ModalBody>
-            <Text>File not supported!</Text>
-            <HStack mt={1}>
-              <Text color="brand.cadet" fontSize="sm">
-                Supported types:
-              </Text>
-              <Badge colorScheme="green">PNG</Badge>
-              <Badge colorScheme="green">JPG</Badge>
-              <Badge colorScheme="green">JPEG</Badge>
-            </HStack>
+
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
+            
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -103,12 +95,7 @@ function Profile({ userProfile, setUserProfile, selectedProfile, setSelectedProf
         >
           Vimalan
         </Heading>
-        <Text
-          color={useColorModeValue("brand.gray", "brand.light")}
-          fontSize="sm"
-        >
-          {"Pune, India"}
-        </Text>
+       
       </VStack>
     </VStack>
   );
