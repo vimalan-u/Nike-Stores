@@ -23,9 +23,7 @@ export default function Actions({ onProfilePicSubmit }) {
 
   return (
     <VStack py={8} px={5} spacing={3}>
-      <Button w="full" variant="outline" onClick={onProfilePicSubmit}>
-        Update Profile
-      </Button>
+     
     </VStack>
   );
 }
