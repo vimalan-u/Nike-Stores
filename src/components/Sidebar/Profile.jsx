@@ -101,7 +101,7 @@ function Profile({ userProfile, setUserProfile, selectedProfile, setSelectedProf
           fontSize="xl"
           color={useColorModeValue("brand.dark", "brand.light")}
         >
-          Venketesh Rushi
+          Vimalan
         </Heading>
         <Text
           color={useColorModeValue("brand.gray", "brand.light")}
